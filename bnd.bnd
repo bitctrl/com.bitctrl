@@ -1,0 +1,4 @@
+-exportcontents: com.bitctrl.*
+-sources: true
+
+Bundle-Name: Allgemeine BitCtrl-Bibliothek
