@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -31,7 +31,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -54,7 +56,6 @@ import java.util.List;
  * TEXTDATA = %x20-21 / %x23-2B / %x2D-7E</code></blockquote>
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: CSVWriter.java 53402 2015-03-02 15:17:53Z gieseler $
  */
 public class CSVWriter extends CSVProperties {
 
@@ -67,7 +68,11 @@ public class CSVWriter extends CSVProperties {
 	 *            ein Eingabestrom, z.&nbsp;B. von einem File.
 	 */
 	public CSVWriter(final OutputStream out) {
-		this.out = new OutputStreamWriter(out);
+		try {
+			this.out = new OutputStreamWriter(out, Charset.defaultCharset().name());
+		} catch (UnsupportedEncodingException e) {
+			throw new IllegalStateException("Kann nicht passieren", e);
+		}
 	}
 
 	/**

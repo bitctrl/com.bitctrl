@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -36,7 +36,6 @@ import java.text.NumberFormat;
  * 1.880000000001.
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
- * @version $Id: SkalierungHelper.java 26597 2010-10-08 13:40:16Z uhlmann $
  */
 public class SkalierungHelper {
 

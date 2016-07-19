@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
  * @deprecated Mit {@link MessageHandler} zusammenführen.
  * 
  * @author BitCtrl Systems GmbH, Görlitz
- * @version $Id: MessageHandler2.java 17161 2009-04-24 11:22:45Z goerlitz $
  */
 @Deprecated
 public interface MessageHandler2 extends MessageHandler {

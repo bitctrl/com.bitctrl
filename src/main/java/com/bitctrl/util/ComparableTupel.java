@@ -14,7 +14,7 @@ import java.util.Comparator;
  * </p>
  * 
  * @author BitCtrl Systems GmbH, schnepel
- * @version $Id$
+ * 
  * @param <S1>
  *            Typ des ersten Elements des Tupels
  * @param <S2>

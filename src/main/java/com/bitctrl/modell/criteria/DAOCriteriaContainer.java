@@ -6,7 +6,6 @@ import java.util.Collection;
  * Container für UND oder ODER Verknüpfung von DAOCriterias
  * 
  * @author BitCtrl Systems GmbH, krosse
- * @version $Id$
  */
 public interface DAOCriteriaContainer extends DAOCriterion {
 

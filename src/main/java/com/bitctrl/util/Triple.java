@@ -4,7 +4,7 @@ package com.bitctrl.util;
  * Encapsulates three objects of possible different types.
  * 
  * @author BitCtrl Systems GmbH, schnepel
- * @version $Id$
+ * 
  * @param <A>
  *            type of first object
  * @param <B>

@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -41,7 +41,6 @@ import java.util.jar.JarFile;
  * Hilfsmethoden um auf Ressourcen im Classpath zuzugreifen.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: Classpath.java 7963 2008-04-04 13:17:08Z Schumann $
  */
 public final class Classpath {
 

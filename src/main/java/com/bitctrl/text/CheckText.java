@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -36,7 +36,6 @@ import com.bitctrl.Constants;
  * Stellt Methoden zum Prüfen von Bedingungen an Textvariablen bereit.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: CheckText.java 14887 2008-12-16 10:32:41Z Schumann $
  */
 public final class CheckText {
 

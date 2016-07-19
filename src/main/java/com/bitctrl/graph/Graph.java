@@ -7,7 +7,6 @@ import java.util.Set;
  * Basisschnittstelle für einen Graphen.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public interface Graph {
 

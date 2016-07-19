@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -32,7 +32,6 @@ import java.util.EventObject;
  * Repräsentiert ein Ereignis eines DAO.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: DAOEvent.java 52983 2015-02-09 16:32:46Z hoesel $
  */
 public class DAOEvent extends EventObject {
 
@@ -105,9 +104,6 @@ public class DAOEvent extends EventObject {
 		this.object = object;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public DAO<?, ?> getSource() {
 		return (DAO<?, ?>) super.getSource();

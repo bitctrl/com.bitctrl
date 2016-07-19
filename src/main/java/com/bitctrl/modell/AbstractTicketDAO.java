@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -30,20 +30,16 @@ package com.bitctrl.modell;
  * Implementiert allgemeine Funktionen einer Ticket-DAO.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: AbstractTicketDAO.java 16303 2009-02-25 18:26:45Z Schumann $
+ * 
  * @param <T>
  *            der Typ der Datenobjekte.
  * @param <ID>
  *            der Schlüssel für die Datenobjekte.
  */
-public abstract class AbstractTicketDAO<T, ID> extends AbstractDAO<T, ID>
-		implements TicketDAO<T, ID> {
+public abstract class AbstractTicketDAO<T, ID> extends AbstractDAO<T, ID> implements TicketDAO<T, ID> {
 
 	private DAOTicket ticket;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public DAOTicket getTicket() {
 		return ticket;
 	}

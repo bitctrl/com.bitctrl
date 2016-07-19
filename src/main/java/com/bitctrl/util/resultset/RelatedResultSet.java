@@ -4,7 +4,7 @@
  * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -36,7 +36,7 @@ import java.util.TimerTask;
  * Basisimplementierung für eine Menge zusammengehöriger Ergebnisse.
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
- * @version $Id: RelatedResultSet.java 27388 2010-11-05 10:35:07Z uhlmann $
+ * 
  * @param <T>
  *            ein beliebier Datentyp, typischerweise Zahlen
  * @param <B>
@@ -62,8 +62,7 @@ public abstract class RelatedResultSet<T, B> implements IRelatedResultSet<T, B> 
 	 * @param timeoutMs
 	 *            Timeout in Millisekunden.
 	 */
-	public RelatedResultSet(final IRelatedResultSetContainer container,
-			final int timeoutMs) {
+	public RelatedResultSet(final IRelatedResultSetContainer container, final int timeoutMs) {
 		super();
 		this.container = container;
 		this.timeoutMs = timeoutMs;
@@ -84,9 +83,6 @@ public abstract class RelatedResultSet<T, B> implements IRelatedResultSet<T, B> 
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void dispose() {
 		for (final IIndividualResult<T, B> iRes : getIndividualResults()) {
@@ -101,8 +97,7 @@ public abstract class RelatedResultSet<T, B> implements IRelatedResultSet<T, B> 
 	 * @return die Werte. Kann leer, aber nicht <code>null</code> sein.
 	 */
 	public Collection<IIndividualResult<T, B>> getIndividualResults() {
-		final Collection<IIndividualResult<T, B>> iRes = new ArrayList<IIndividualResult<T, B>>(
-				backend.size());
+		final Collection<IIndividualResult<T, B>> iRes = new ArrayList<IIndividualResult<T, B>>(backend.size());
 		iRes.addAll(backend.keySet());
 		return iRes;
 	}

@@ -4,7 +4,6 @@ package com.bitctrl.graph;
  * Basisschnittstelle für einen Bogen in einem {@link Graph}.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public interface Bogen {
 

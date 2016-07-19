@@ -4,7 +4,6 @@ package com.bitctrl.graph;
  * Basisklasse für {@link Knoten}-Implementierungen.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public abstract class AbstractKnoten implements Knoten {
 

@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -33,7 +33,6 @@ package com.bitctrl.geo.graph;
  * mit {@code protected}-Membern anstelle von Gettern und Settern ausgelegt.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public class BaseEdge implements Edge {
 
@@ -71,37 +70,22 @@ public class BaseEdge implements Edge {
 		this.target = target;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Node getSource() {
 		return source;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Node getTarget() {
 		return target;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void setName(final String name) {
 		this.name = name;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -114,10 +98,15 @@ public class BaseEdge implements Edge {
 		return false;
 	}
 
+	@Override
+	public int hashCode() {
+		throw new UnsupportedOperationException();
+	}
+
 	/**
-	 * {@inheritDoc}
-	 * 
 	 * Gibt den Namen des Knoten zurück.
+	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

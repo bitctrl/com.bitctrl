@@ -4,7 +4,6 @@ package com.bitctrl.model;
  * Ein benanntes Modellelement.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public class NamedObject extends ModelElement {
 

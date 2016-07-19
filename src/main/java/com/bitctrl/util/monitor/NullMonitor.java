@@ -4,7 +4,6 @@ package com.bitctrl.util.monitor;
  * does nothing.
  * 
  * @author BitCtrl Systems GmbH, meissner
- * @version $Id$
  */
 public class NullMonitor extends AbstractMonitor {
 	private boolean canceled;

@@ -4,7 +4,7 @@ package com.bitctrl.util;
  * Ein Tupel mit zwei Elementen oder ein geordnetes Paar.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
+ * 
  * @param <S1>
  *            der Typ des ersten Elements.
  * @param <S2>

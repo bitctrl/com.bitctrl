@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -33,7 +33,7 @@ import java.util.List;
  * Das Event beschreibt die Änderung einer Liste.
  * 
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: ListChangedEvent.java 13881 2008-11-06 13:37:21Z Schumann $
+ * 
  * @param <T>
  *            der Typ der geänderten Liste
  */

@@ -4,7 +4,6 @@ package com.bitctrl.graph;
  * Basisklasse für eine {@link Graph}-Implementierung.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public abstract class AbstractGraph implements Graph {
 

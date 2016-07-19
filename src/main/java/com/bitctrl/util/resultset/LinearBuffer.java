@@ -4,7 +4,7 @@
  * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -33,7 +33,6 @@ import java.util.Iterator;
  * Ein unsynchronisiertes Schieberegister.
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
- * @version $Id: LinearBuffer.java 27732 2010-11-24 17:36:49Z uhlmann $
  * 
  * @param <T>
  *            der Typ der verwalteten Objekte
@@ -218,9 +217,6 @@ public class LinearBuffer<T> implements Collection<T> {
 		return null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		return Arrays.asList(buffer).toString();

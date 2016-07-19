@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -37,7 +37,7 @@ import java.util.List;
  * protected}-Membern anstelle von Gettern und Settern ausgelegt.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
+ * 
  * @param <N>
  *            der Typ der Knoten.
  * @param <E>
@@ -51,65 +51,38 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 	/** Die Liste der Kanten im Graphen. */
 	protected final List<Edge> edges = new LinkedList<Edge>();
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void addNode(final N node) {
 		nodes.add(node);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void removeNode(final N node) {
 		nodes.remove(node);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean containsNode(final N node) {
 		return nodes.contains(node);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Iterable<Node> nodes() {
 		return nodes;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void insertEdge(final E edge) {
 		edges.add(edge);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void removeEdge(final E edge) {
 		edges.remove(edge);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Iterable<Edge> edges() {
 		return edges;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean containsEdge(final E edge) {
 		return edges.contains(edge);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean containsEdge(final N source, final N target) {
 		for (final Edge e : edges()) {
 			if (source.equals(e.getSource()) && target.equals(e.getTarget())) {
@@ -119,9 +92,6 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 		return false;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Iterable<Edge> inEdges(final N node) {
 		final List<Edge> inEdges = new ArrayList<Edge>();
 		BaseEdge edge;
@@ -137,9 +107,6 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 		return inEdges;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Iterable<Edge> outEdges(final N node) {
 		final List<Edge> outEdges = new ArrayList<Edge>();
 		BaseEdge edge;
@@ -155,9 +122,6 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 		return outEdges;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Iterable<Edge> incidentEdges(final N node) {
 		final List<Edge> incidentEdges = new ArrayList<Edge>();
 		BaseEdge edge;
@@ -180,5 +144,4 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 
 		return incidentEdges;
 	}
-
 }

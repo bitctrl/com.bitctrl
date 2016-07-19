@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * Binding).
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public class ModelElement implements Serializable {
 

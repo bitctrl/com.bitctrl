@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -39,7 +39,6 @@ import com.bitctrl.Constants;
  * Repräsentiert eine absolute oder relative Zeitangabe.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: Timestamp.java 27988 2010-12-15 14:26:14Z schumann $
  */
 public class Timestamp implements Serializable {
 
@@ -324,9 +323,6 @@ public class Timestamp implements Serializable {
 		return remainder - part * factor;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (obj == this) {
@@ -350,9 +346,6 @@ public class Timestamp implements Serializable {
 		return Long.valueOf(timestamp).hashCode();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		return getClass() + "[time=" + timestamp + "]";

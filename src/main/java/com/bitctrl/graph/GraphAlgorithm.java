@@ -11,7 +11,6 @@ import java.util.Set;
  * Stellt allgemeine Algorithmen auf Graphen bereit.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public final class GraphAlgorithm {
 

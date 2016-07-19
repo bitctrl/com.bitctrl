@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -33,7 +33,6 @@ import java.io.Serializable;
  * sowohl für IPv4 als auch für IPv6 verwendet werden.
  * 
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: IP.java 16349 2009-02-26 14:31:00Z Schumann $
  */
 public class IP implements Serializable {
 
@@ -110,10 +109,10 @@ public class IP implements Serializable {
 				throw new IllegalArgumentException(
 						"Can not determine subnet address.");
 			}
-			address = Long.valueOf(s[0]) << 24;
-			address |= Long.valueOf(s[1]) << 16;
-			address |= Long.valueOf(s[2]) << 8;
-			address |= Long.valueOf(s[3]);
+			address = Long.parseLong(s[0]) << 24;
+			address |= Long.parseLong(s[1]) << 16;
+			address |= Long.parseLong(s[2]) << 8;
+			address |= Long.parseLong(s[3]);
 
 			return address;
 		}
@@ -267,9 +266,6 @@ public class IP implements Serializable {
 		throw new UnsupportedOperationException("IPv6 not implemented yet.");
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		String s = getHostAsString();

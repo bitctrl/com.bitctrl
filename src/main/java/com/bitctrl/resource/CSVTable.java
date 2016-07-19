@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -27,6 +27,7 @@
 package com.bitctrl.resource;
 
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -46,8 +47,9 @@ import java.util.regex.Pattern;
  * </ul>
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: CSVTable.java 13881 2008-11-06 13:37:21Z Schumann $ TODO
- *          Schreiben implementieren TODO Weitere CSV-Eigenschaften hinzufügen
+ * 
+ * TODO Schreiben implementieren 
+ * TODO Weitere CSV-Eigenschaften hinzufügen
  */
 public class CSVTable {
 
@@ -71,7 +73,7 @@ public class CSVTable {
 	 *            enthält.
 	 */
 	public CSVTable(final InputStream in, final boolean firstLineIsHeader) {
-		scanner = new Scanner(in);
+		scanner = new Scanner(in, Charset.defaultCharset().name());
 		scanner.useDelimiter(newlinePattern);
 		this.firstLineIsHeader = firstLineIsHeader;
 	}

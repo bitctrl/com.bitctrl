@@ -13,25 +13,25 @@ import java.util.Comparator;
  * </p>
  * 
  * @author BitCtrl Systems GmbH, schnepel
- * @version $Id$
- * @param <S1> der Typ des ersten Elements des Tupels
- * @param <S2> der Typ des zweiten Elements des Tupels
+ * 
+ * @param <S1>
+ *            der Typ des ersten Elements des Tupels
+ * @param <S2>
+ *            der Typ des zweiten Elements des Tupels
  * @see ComparableTupel#comparator()
  */
-public class ComparatorTupel<S1, S2> extends Tupel<S1, S2> implements
-		Comparable<ComparatorTupel<S1, S2>> {
+public class ComparatorTupel<S1, S2> extends Tupel<S1, S2> implements Comparable<ComparatorTupel<S1, S2>> {
 	private Comparator<S1> compFirst;
 	private Comparator<S2> compSecond;
 
-	public ComparatorTupel(final Comparator<S1> compFirst,
-			final Comparator<S2> compSecond) {
+	public ComparatorTupel(final Comparator<S1> compFirst, final Comparator<S2> compSecond) {
 		super();
 		setFirstComparator(compFirst);
 		setSecondComparator(compSecond);
 	}
 
-	public ComparatorTupel(final S1 first, final S2 second,
-			final Comparator<S1> compFirst, final Comparator<S2> compSecond) {
+	public ComparatorTupel(final S1 first, final S2 second, final Comparator<S1> compFirst,
+			final Comparator<S2> compSecond) {
 		super(first, second);
 		setFirstComparator(compFirst);
 		setSecondComparator(compSecond);

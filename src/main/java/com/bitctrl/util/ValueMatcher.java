@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -40,7 +40,7 @@ import com.bitctrl.Constants;
  * generiert, ob der Wert "matched" oder nicht.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: ValueMatcher.java 28878 2011-03-22 15:47:37Z schumann $
+ * 
  * @param <T>
  *            der Typ der zu prüfenden Werte.
  */
@@ -129,9 +129,6 @@ public interface ValueMatcher<T> {
 			return collection.contains(value);
 		}
 
-		/**
-		 * {@inheritDoc}
-		 */
 		@Override
 		public String toString() {
 			String s;
@@ -216,10 +213,6 @@ public interface ValueMatcher<T> {
 	 */
 	static class PasswdMatcher implements ValueMatcher<String> {
 
-		/**
-		 * {@inheritDoc}
-		 * 
-		 */
 		public boolean match(final String value) {
 		return value != null && Pattern.matches("^[a-zA-Z0-9]{6,}$", value) //$NON-NLS-1$
 				&& Pattern.matches(".*[0-9].*[0-9].*", value); //$NON-NLS-1$

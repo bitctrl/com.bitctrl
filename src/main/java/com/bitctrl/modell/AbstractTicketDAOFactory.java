@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -30,16 +30,12 @@ package com.bitctrl.modell;
  * Implementiert die Ticketfähigkeit.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: AbstractTicketDAOFactory.java 16303 2009-02-25 18:26:45Z Schumann $
  */
 public abstract class AbstractTicketDAOFactory extends AbstractDAOFactory
 		implements TicketDAOFactory {
 
 	private DAOTicket ticket;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public DAOTicket getTicket() {
 		return ticket;
 	}
@@ -60,9 +56,6 @@ public abstract class AbstractTicketDAOFactory extends AbstractDAOFactory
 		this.ticket = ticket;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public <T> TicketDAO<T, ?> findDAO(final Class<T> type) {
 		return (TicketDAO<T, ?>) super.findDAO(type);

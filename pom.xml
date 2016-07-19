@@ -169,7 +169,7 @@
                 <version>2.17</version>
                 <configuration>
                     <configLocation>src/main/config/checkstyle.xml</configLocation>
-                    <headerFile>src/main/config/java.header</headerFile>
+                    <headerLocation>src/main/config/java.header</headerLocation>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                 </configuration>
                 <executions>

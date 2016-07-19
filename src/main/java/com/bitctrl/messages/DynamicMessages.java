@@ -32,7 +32,6 @@ import java.util.ResourceBundle;
  * Dynamische Schnittstelle zum Auslesen des ResourcenBundles.
  * 
  * @author BitCtrl Systems GmbH, Enrico Schnepel
- * @version $Id: $
  */
 public class DynamicMessages {
 

@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -28,9 +28,12 @@ package com.bitctrl.util.jar;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
@@ -44,7 +47,6 @@ import com.bitctrl.VersionInfo;
  * Enthält Hilfsmethoden für den Umgang mit Jar-Files.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: JarTools.java 13956 2008-11-10 14:59:32Z Schumann $
  */
 public final class JarTools {
 
@@ -100,8 +102,7 @@ public final class JarTools {
 		 * @param parentFile
 		 * @throws IOException
 		 */
-		public void findJarsAndPrintInfo(final File parentFile)
-				throws IOException {
+		public void findJarsAndPrintInfo(final File parentFile) throws IOException {
 			File[] files;
 
 			files = parentFile.listFiles();
@@ -124,29 +125,29 @@ public final class JarTools {
 		 * @throws IOException
 		 */
 		public void printInfo(final JarFile jar) throws IOException {
-			final BufferedWriter buf;
 			final Manifest manifest;
 			final Attributes attributes;
 			final Iterator<Object> iterator;
 
-			buf = new BufferedWriter(new FileWriter(out, true));
-			manifest = jar.getManifest();
-			attributes = manifest.getMainAttributes();
-			iterator = attributes.keySet().iterator();
+			try (BufferedWriter buf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(out, true), Charset.defaultCharset().name()))) {
+				manifest = jar.getManifest();
+				attributes = manifest.getMainAttributes();
+				iterator = attributes.keySet().iterator();
 
-			System.out.println("JAR-File:\n" + jar.getName());
-			buf.write("JAR-File:\n" + jar.getName() + "\n");
-			System.out.println("\nEigenschaften:");
-			buf.write("\nEigenschaften:" + "\n");
-			while (iterator.hasNext()) {
-				final Attributes.Name key = (Attributes.Name) iterator.next();
+				System.out.println("JAR-File:\n" + jar.getName());
+				buf.write("JAR-File:\n" + jar.getName() + "\n");
+				System.out.println("\nEigenschaften:");
+				buf.write("\nEigenschaften:" + "\n");
+				while (iterator.hasNext()) {
+					final Attributes.Name key = (Attributes.Name) iterator.next();
 
-				System.out.println(key + " = " + attributes.getValue(key));
-				buf.write(key + " = " + attributes.getValue(key) + "\n");
+					System.out.println(key + " = " + attributes.getValue(key));
+					buf.write(key + " = " + attributes.getValue(key) + "\n");
+				}
+				System.out.println("\n");
+				buf.write("\n\n");
+				buf.flush();
 			}
-			System.out.println("\n");
-			buf.write("\n\n");
-			buf.flush();
 		}
 
 	}
@@ -170,8 +171,7 @@ public final class JarTools {
 				new JarAnalyzer();
 			}
 		} catch (final IOException ex) {
-			Logger.getLogger(JarTools.class.getName()).log(Level.SEVERE, null,
-					ex);
+			Logger.getLogger(JarTools.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -197,16 +197,13 @@ public final class JarTools {
 			}
 
 			url = new URL("jar:" + url + "!/META-INF/MANIFEST.MF");
-			final VersionInfo info = new VersionInfo(new Manifest(url
-					.openStream()));
+			final VersionInfo info = new VersionInfo(new Manifest(url.openStream()));
 
 			System.out.println();
 			System.out.println(info.getTitle());
 			System.out.println("Version " + info.getVersion());
-			System.out.println("Copyright (c) by " + info.getVendor() + ", "
-					+ info.getVendorUrl());
-			System.out
-					.println("---------------------------------------------------------------------");
+			System.out.println("Copyright (c) by " + info.getVendor() + ", " + info.getVendorUrl());
+			System.out.println("---------------------------------------------------------------------");
 
 			System.out.println();
 		} catch (final IOException ex) {
@@ -233,8 +230,7 @@ public final class JarTools {
 
 			url = clazz.getProtectionDomain().getCodeSource().getLocation();
 			if (!url.toString().endsWith(".jar")) {
-				throw new IllegalArgumentException(
-						"Class is not in a Jar-file.");
+				throw new IllegalArgumentException("Class is not in a Jar-file.");
 			}
 
 			url = new URL("jar:" + url + "!/META-INF/MANIFEST.MF");

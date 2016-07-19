@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -46,7 +46,6 @@ import com.bitctrl.util.TreeProperties;
  * beliebige andere Propertiesfile als Konfiguration dienen.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: Configuration.java 17160 2009-04-24 11:19:20Z goerlitz $
  */
 public final class Configuration implements ReadOnlyConfiguration {
 
@@ -192,114 +191,66 @@ public final class Configuration implements ReadOnlyConfiguration {
 		// Konstruktor verstecken
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void beginGroup(final String name) {
 		configuration.beginGroup(name);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int beginReadArray(final String name) {
 		return configuration.beginReadArray(name);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void endArray(final String name) {
 		configuration.endArray(name);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void endGroup(final String name) {
 		configuration.endGroup(name);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean getBoolean(final String key) {
 		return configuration.getBoolean(key);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean getBoolean(final String key, final boolean defaultValue) {
 		return configuration.getBoolean(key, defaultValue);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public double getDouble(final String key) {
 		return configuration.getDouble(key);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public double getDouble(final String key, final double defaultValue) {
 		return configuration.getDouble(key, defaultValue);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int getInt(final String key) {
 		return configuration.getInt(key);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int getInt(final String key, final int defaultValue) {
 		return configuration.getInt(key, defaultValue);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public long getLong(final String key) {
 		return configuration.getLong(key);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public long getLong(final String key, final long defaultValue) {
 		return configuration.getLong(key, defaultValue);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public String getString(final String key) {
 		return configuration.getString(key);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public String getString(final String key, final String defaultValue) {
 		return configuration.getString(key, defaultValue);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void setArrayIndex(final int index) {
 		configuration.setArrayIndex(index);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		return configuration.toString();
@@ -322,11 +273,8 @@ public final class Configuration implements ReadOnlyConfiguration {
 		return keys;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean containsKey(final String key) {
-		return containsKey(key);
+		return configuration.containsKey(key);
 	}
 
 }

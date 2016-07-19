@@ -8,7 +8,7 @@ import java.util.List;
  * einer {@link List Liste}.
  * 
  * @author BitCtrl Systems GmbH, schnepel
- * @version $Id$
+ * 
  * @param <T>
  *            der Typ der Listenelemente
  */

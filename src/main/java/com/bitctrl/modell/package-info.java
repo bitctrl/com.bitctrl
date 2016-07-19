@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -31,7 +31,6 @@
  * <img src="doc-files/DAO.png" alt="Modellansicht">
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: package-info.java 16305 2009-02-25 18:39:57Z Schumann $
  */
 package com.bitctrl.modell;
 

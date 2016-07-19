@@ -4,7 +4,7 @@
  * 
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -29,7 +29,7 @@ package com.bitctrl.util.resultset;
  * Eine Menge von individuellen Ergebnissen.
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
- * @version $Id: IRelatedResultSet.java 27388 2010-11-05 10:35:07Z uhlmann $
+ * 
  * @param <T>
  *            der Datentyp der Ergebnisse
  * @param <B>

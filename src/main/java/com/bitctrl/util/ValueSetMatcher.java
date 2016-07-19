@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -34,7 +34,7 @@ import java.util.List;
  * zusammen. Dieser Matcher prüft, ob irgendein gekapselter Matcher matcht.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: ValueSetMatcher.java 13881 2008-11-06 13:37:21Z Schumann $
+ * 
  * @param <T>
  *            der Typ der zu prüfenden Werte.
  */
@@ -54,7 +54,9 @@ public class ValueSetMatcher<T> implements ValueMatcher<T> {
 
 	/**
 	 * Gibt {@code true} zurück, wenn irgendein Matcher der Matcher-Menge matcht
-	 * und {@code false}, wenn kein Matcher matcht. {@inheritDoc}
+	 * und {@code false}, wenn kein Matcher matcht. 
+	 * 
+	 * {@inheritDoc}
 	 */
 	public boolean match(final T value) {
 		for (final ValueMatcher<T> vm : matchers) {
@@ -65,9 +67,6 @@ public class ValueSetMatcher<T> implements ValueMatcher<T> {
 		return false;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		String s;

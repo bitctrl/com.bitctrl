@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -45,7 +45,6 @@ import com.bitctrl.resource.WritableConfiguration;
  * Erweitert die Properties um die Fähigkeit mit Gruppen und Feldern umzugehen.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: TreeProperties.java 16300 2009-02-25 17:37:22Z Schumann $
  */
 public class TreeProperties extends Properties implements WritableConfiguration {
 
@@ -132,9 +131,6 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 			}
 		}
 
-		/**
-		 * {@inheritDoc}
-		 */
 		@Override
 		public String toString() {
 			String s = name + ".";
@@ -149,15 +145,14 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 	}
 
 	private static final long serialVersionUID = 1L;
-	private static final char[] HEXDIGIT = { '0', '1', '2', '3', '4', '5', '6',
-			'7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+	private static final char[] HEXDIGIT = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E',
+			'F' };
 
 	private static char toHex(final int nibble) {
 		return HEXDIGIT[(nibble & 0xF)];
 	}
 
-	private static void writeln(final BufferedWriter bw, final String s)
-			throws IOException {
+	private static void writeln(final BufferedWriter bw, final String s) throws IOException {
 		bw.write(s);
 		bw.newLine();
 	}
@@ -183,34 +178,22 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		super(defaults);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void beginGroup(final String name) {
 		beginGroupOrArray(new Group(name));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int beginReadArray(final String name) {
 		beginGroupOrArray(new Group(name, false));
 		if (getProperty("size") != null) {
-			return Integer.valueOf(getProperty("size"));
+			return Integer.parseInt(getProperty("size"));
 		}
 		return 0;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void beginWriteArray(final String name) {
 		beginWriteArray(name, -1);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void beginWriteArray(final String name, final int size) {
 		beginGroupOrArray(new Group(name, size < 0));
 
@@ -221,9 +204,6 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void endArray(final String name) {
 		final Group group = stack.pop();
 
@@ -243,9 +223,6 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void endGroup(final String name) {
 		final Group group = stack.pop();
 
@@ -261,96 +238,58 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean getBoolean(final String key) {
 		return getBoolean(key, DEFAULT_BOOLEAN);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean getBoolean(final String key, final boolean defaultValue) {
 		return Boolean.valueOf(getProperty(key, String.valueOf(defaultValue)));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public double getDouble(final String key) {
 		return getDouble(key, DEFAULT_DOUBLE);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public double getDouble(final String key, final double defaultValue) {
 		return Double.valueOf(getProperty(key, String.valueOf(defaultValue)));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int getInt(final String key) {
 		return getInt(key, DEFAULT_INT);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int getInt(final String key, final int defaultValue) {
-		return Integer.valueOf(getProperty(key, String.valueOf(defaultValue)));
+		return Integer.parseInt(getProperty(key, String.valueOf(defaultValue)));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public long getLong(final String key) {
 		return getInt(key, DEFAULT_LONG);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public long getLong(final String key, final long defaultValue) {
-		return Integer.valueOf(getProperty(key, String.valueOf(defaultValue)));
+		return Long.parseLong(getProperty(key, String.valueOf(defaultValue)));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getProperty(final String key) {
 		return super.getProperty(getAbsoluteKey(key));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String getProperty(final String key, final String defaultValue) {
 		final String val = getProperty(key);
 		return val == null ? defaultValue : val;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public String getString(final String key) {
 		return getString(key, DEFAULT_STRING);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public String getString(final String key, final String defaultValue) {
 		return getProperty(key, defaultValue);
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * 
 	 * @deprecated Die Klasse ist nur für Propertiesfiles gedacht.
 	 */
 	@Deprecated
@@ -359,52 +298,31 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public synchronized Object remove(final Object key) {
 		return super.remove(getAbsoluteKey(key.toString()));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void set(final String key, final boolean value) {
 		setProperty(key, String.valueOf(value));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void set(final String key, final double value) {
 		setProperty(key, String.valueOf(value));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void set(final String key, final int value) {
 		setProperty(key, String.valueOf(value));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void set(final String key, final long value) {
 		setProperty(key, String.valueOf(value));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void set(final String key, final String value) {
 		setProperty(key, value);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void setArrayIndex(final int index) {
 		final Group group = stack.peek();
 		int length;
@@ -416,13 +334,9 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		length = group.toString().length();
 
 		group.setIndex(Math.max(index, 0));
-		trace = trace.substring(0, Math.max(trace.length() - length, 0))
-				+ group.toString();
+		trace = trace.substring(0, Math.max(trace.length() - length, 0)) + group.toString();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Object setProperty(final String key, final String value) {
 		return super.setProperty(getAbsoluteKey(key), value);
@@ -435,8 +349,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 	 * {@inheritDoc}
 	 */
 	@Override
-	public synchronized void store(final OutputStream out, final String comments)
-			throws IOException {
+	public synchronized void store(final OutputStream out, final String comments) throws IOException {
 		BufferedWriter awriter;
 
 		awriter = new BufferedWriter(new OutputStreamWriter(out, "8859_1"));
@@ -472,8 +385,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 	 */
 	@Deprecated
 	@Override
-	public synchronized void storeToXML(final OutputStream os,
-			final String comment) {
+	public synchronized void storeToXML(final OutputStream os, final String comment) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -484,8 +396,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 	 */
 	@Deprecated
 	@Override
-	public synchronized void storeToXML(final OutputStream os,
-			final String comment, final String encoding) {
+	public synchronized void storeToXML(final OutputStream os, final String comment, final String encoding) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -606,9 +517,6 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		return keys;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean containsKey(final String key) {
 		return contains(getAbsoluteKey(key)) || contains(key);
 	}

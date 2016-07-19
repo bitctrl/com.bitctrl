@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -43,8 +43,9 @@ import javax.swing.event.EventListenerList;
  * werden!
  * 
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: ObservableList.java 13881 2008-11-06 13:37:21Z Schumann $
- * @param <T> der Typ der Listenelemente
+ * 
+ * @param <T>
+ *            der Typ der Listenelemente
  */
 public class ObservableList<T> implements List<T> {
 
@@ -71,9 +72,6 @@ public class ObservableList<T> implements List<T> {
 		listener.remove(ListChangedListener.class, l);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean add(final T e) {
 		final int index = input.size();
 		final boolean b = input.add(e);
@@ -84,17 +82,11 @@ public class ObservableList<T> implements List<T> {
 		return b;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void add(final int index, final T element) {
 		input.add(index, element);
 		fireAdded(index, element);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean addAll(final Collection<? extends T> c) {
 		final int index = input.size();
 		final boolean b = input.addAll(c);
@@ -102,62 +94,38 @@ public class ObservableList<T> implements List<T> {
 		return b;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean addAll(final int index, final Collection<? extends T> c) {
 		final boolean b = input.addAll(index, c);
 		fireAdded(index, input.size() - 1, new ArrayList<T>(c));
 		return b;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void clear() {
 		final List<T> removed = new ArrayList<T>(input);
 		input.clear();
 		fireRemoved(0, removed.size() - 1, removed);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean contains(final Object o) {
 		return input.contains(o);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean containsAll(final Collection<?> c) {
 		return input.containsAll(c);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public T get(final int index) {
 		return input.get(index);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int indexOf(final Object o) {
 		return input.indexOf(o);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean isEmpty() {
 		return input.isEmpty();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Iterator<T> iterator() {
 
 		return new Iterator<T>() {
@@ -184,16 +152,10 @@ public class ObservableList<T> implements List<T> {
 		};
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int lastIndexOf(final Object o) {
 		return input.lastIndexOf(o);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public ListIterator<T> listIterator() {
 		return new ListIterator<T>() {
 
@@ -245,9 +207,6 @@ public class ObservableList<T> implements List<T> {
 		};
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public ListIterator<T> listIterator(final int index) {
 		return new ListIterator<T>() {
 
@@ -299,9 +258,6 @@ public class ObservableList<T> implements List<T> {
 		};
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean remove(final Object o) {
 		final int index = indexOf(o);
 		final boolean b = input.remove(o);
@@ -309,30 +265,20 @@ public class ObservableList<T> implements List<T> {
 		return b;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public T remove(final int index) {
 		final T prev = input.remove(index);
 		fireRemoved(index, prev);
 		return prev;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean removeAll(final Collection<?> c) {
 		final boolean b = input.retainAll(c);
-		final List<T> intersection = CollectionUtilities.intersection(input,
-				new ArrayList(c));
+		final List<T> intersection = CollectionUtilities.intersection(input, new ArrayList(c));
 
 		fireRemoved(-1, -1, intersection);
 		return b;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean retainAll(final Collection<?> c) {
 		final List<T> old = new ArrayList<T>(input);
 		final boolean b = input.retainAll(c);
@@ -342,39 +288,24 @@ public class ObservableList<T> implements List<T> {
 		return b;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public T set(final int index, final T element) {
 		final T prev = input.set(index, element);
 		fireChanged(index, element, prev);
 		return prev;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int size() {
 		return input.size();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public List<T> subList(final int fromIndex, final int toIndex) {
 		return input.subList(fromIndex, toIndex);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Object[] toArray() {
 		return input.toArray();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public <T0> T0[] toArray(final T0[] a) {
 		return input.toArray(a);
 	}
@@ -382,15 +313,16 @@ public class ObservableList<T> implements List<T> {
 	/**
 	 * Signalisiert, das ein einzelnes Element hinzugefügt wurde.
 	 * 
-	 * @param index der Index der Änderung
-	 * @param added das hinzugefügte Element
+	 * @param index
+	 *            der Index der Änderung
+	 * @param added
+	 *            das hinzugefügte Element
 	 */
 	protected synchronized void fireAdded(final int index, final T added) {
-		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, index,
-				index, Collections.singletonList(added), new ArrayList<T>());
+		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, index, index, Collections.singletonList(added),
+				new ArrayList<T>());
 
-		for (final ListChangedListener<T> l : listener
-				.getListeners(ListChangedListener.class)) {
+		for (final ListChangedListener<T> l : listener.getListeners(ListChangedListener.class)) {
 			l.listChanged(e);
 		}
 	}
@@ -398,15 +330,16 @@ public class ObservableList<T> implements List<T> {
 	/**
 	 * Signalisiert, das ein einzelnes Element aus der Liste entfernt wurde.
 	 * 
-	 * @param index der Index der Änderung
-	 * @param removed das entfernte Element
+	 * @param index
+	 *            der Index der Änderung
+	 * @param removed
+	 *            das entfernte Element
 	 */
 	protected synchronized void fireRemoved(final int index, final T removed) {
-		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, index,
-				index, new ArrayList<T>(), Collections.singletonList(removed));
+		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, index, index, new ArrayList<T>(),
+				Collections.singletonList(removed));
 
-		for (final ListChangedListener<T> l : listener
-				.getListeners(ListChangedListener.class)) {
+		for (final ListChangedListener<T> l : listener.getListeners(ListChangedListener.class)) {
 			l.listChanged(e);
 		}
 	}
@@ -414,39 +347,33 @@ public class ObservableList<T> implements List<T> {
 	/**
 	 * Signalisiert, das ein einzelnes Element geändert wurde.
 	 * 
-	 * @param index der Index der Änderung
-	 * @param element das neue Element
-	 * @param previous das alte Element
+	 * @param index
+	 *            der Index der Änderung
+	 * @param element
+	 *            das neue Element
+	 * @param previous
+	 *            das alte Element
 	 */
-	protected synchronized void fireChanged(final int index, final T element,
-			final T previous) {
-		final ListElementChangedEvent<T> e = new ListElementChangedEvent<T>(
-				this, index, element, previous);
+	protected synchronized void fireChanged(final int index, final T element, final T previous) {
+		final ListElementChangedEvent<T> e = new ListElementChangedEvent<T>(this, index, element, previous);
 
-		for (final ListChangedListener<T> l : listener
-				.getListeners(ListChangedListener.class)) {
+		for (final ListChangedListener<T> l : listener.getListeners(ListChangedListener.class)) {
 			l.elementChanged(e);
 		}
 	}
 
-	protected synchronized void fireAdded(final int indexFrom,
-			final int indexTo, final List<T> added) {
-		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, indexFrom,
-				indexTo, added, new ArrayList<T>());
+	protected synchronized void fireAdded(final int indexFrom, final int indexTo, final List<T> added) {
+		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, indexFrom, indexTo, added, new ArrayList<T>());
 
-		for (final ListChangedListener<T> l : listener
-				.getListeners(ListChangedListener.class)) {
+		for (final ListChangedListener<T> l : listener.getListeners(ListChangedListener.class)) {
 			l.listChanged(e);
 		}
 	}
 
-	protected synchronized void fireRemoved(final int indexFrom,
-			final int indexTo, final List<T> removed) {
-		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, indexFrom,
-				indexTo, new ArrayList<T>(), removed);
+	protected synchronized void fireRemoved(final int indexFrom, final int indexTo, final List<T> removed) {
+		final ListChangedEvent<T> e = new ListChangedEvent<T>(this, indexFrom, indexTo, new ArrayList<T>(), removed);
 
-		for (final ListChangedListener<T> l : listener
-				.getListeners(ListChangedListener.class)) {
+		for (final ListChangedListener<T> l : listener.getListeners(ListChangedListener.class)) {
 			l.listChanged(e);
 		}
 	}

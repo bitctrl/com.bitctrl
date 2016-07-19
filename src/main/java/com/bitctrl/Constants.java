@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -33,7 +33,6 @@ package com.bitctrl;
  * Entsprechende Konstanten sind mit einem Hinweis versehen.
  * 
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: Constants.java 22540 2010-04-12 12:39:42Z hoesel $
  */
 public final class Constants {
 

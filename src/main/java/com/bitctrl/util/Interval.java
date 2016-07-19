@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -31,7 +31,6 @@ package com.bitctrl.util;
  * Zeitintervalle genutzt, die mit Zeitstempeln arbeiten.
  * 
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: Interval.java 10808 2008-07-31 14:23:28Z schumann $
  */
 public class Interval implements Cloneable {
 
@@ -80,9 +79,6 @@ public class Interval implements Cloneable {
 		this.length = end - start;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Interval clone() {
 		try {
@@ -162,9 +158,6 @@ public class Interval implements Cloneable {
 		return start;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int hashCode() {
 		int hash = 7;

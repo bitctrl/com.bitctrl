@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -27,6 +27,7 @@
 package com.bitctrl.net;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
@@ -35,7 +36,6 @@ import org.apache.commons.codec.binary.Hex;
  * Diese Klasse stellt eine MAC-Adresse dar.
  * 
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: MAC.java 16349 2009-02-26 14:31:00Z Schumann $
  */
 public class MAC implements Serializable {
 
@@ -104,33 +104,23 @@ public class MAC implements Serializable {
 		return address;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		} else if (obj instanceof MAC) {
 			final MAC o = (MAC) obj;
-
-			if (address.length != o.address.length) {
-				return false;
-			}
-			for (int i = 0; i < address.length; ++i) {
-				if (address[i] != o.address[i]) {
-					return false;
-				}
-			}
-			return true;
+			return Arrays.equals(address, o.address);
 		}
 
 		return false;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(address);
+	}
+
 	@Override
 	public String toString() {
 		final char[] hex = Hex.encodeHex(address);

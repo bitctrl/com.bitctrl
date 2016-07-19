@@ -7,7 +7,6 @@ import java.util.EventObject;
 
 /**
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: ListElementChangedEvent.java 13881 2008-11-06 13:37:21Z Schumann $
  */
 public class ListElementChangedEvent<T> extends EventObject {
 

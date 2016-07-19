@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -47,7 +47,6 @@ import com.bitctrl.resource.Classpath;
  * jeweiligen Testergebnis aufgeführt. Am Ende ergolgt eine Zusammenfassung.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: TestRunner.java 7975 2008-04-04 14:32:51Z Schumann $
  */
 public final class TestRunner {
 
@@ -123,11 +122,6 @@ public final class TestRunner {
 				System.out.println("\n" + failure.getTrace());
 			}
 
-			/**
-			 * {@inheritDoc}
-			 * 
-			 * @see org.junit.runner.notification.RunListener#testFinished(org.junit.runner.Description)
-			 */
 			@Override
 			public void testFinished(final Description description)
 					throws Exception {

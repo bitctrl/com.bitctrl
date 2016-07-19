@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -29,6 +29,7 @@ package com.bitctrl.modell.util;
 import java.beans.BeanInfo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.bitctrl.beans.BeanUtils;
 import com.bitctrl.geo.graph.tree.TreeUtil;
@@ -42,7 +43,6 @@ import com.bitctrl.modell.criteria.LimitDAOCriterion;
  * DAO-Elementen benötigt werden. Eine Datenabfrage erfolgt erst bei Bedarf.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id$
  */
 public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 
@@ -183,17 +183,10 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		return dao.retrieve(criteriaWithLimit);
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	public Class<?> getLeafElementsType() {
 		return dao.getPersistentClass();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public DAOCriterion[] getLeafElementsCriteriaWithLimit(final int index) {
 		final DAOCriterion[] criteriaWithLimit = new DAOCriterion[criteria.length + 1];
 		System.arraycopy(criteria, 0, criteriaWithLimit, 0, criteria.length);
@@ -210,9 +203,6 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		return (int) (to - from);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public int getLeafElementsCount() {
 		return getPageSize();
 	}
@@ -248,9 +238,14 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		}
 		if (obj instanceof DAOPage) {
 			final DAOPage other = (DAOPage) obj;
-			return dao.getClass().equals(other.dao.getClass()) && from == other.from && to == other.to;
+			return Objects.equals(dao.getClass(), other.dao.getClass()) && from == other.from && to == other.to;
 		}
 		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dao, from, to);
 	}
 
 	/**
@@ -260,7 +255,7 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	 * Page.
 	 */
 	public int compareTo(final DAOPage o) {
-		return Long.valueOf(from).compareTo(o.from);
+		return Long.compare(from, o.from);
 	}
 
 	/**

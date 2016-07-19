@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -42,12 +42,10 @@ import java.util.Calendar;
  * Sonntag)</li>
  * </ol>
  * 
- * TODO Listen unterstützen.
- * TODO Bereiche unterstützen.
- * TODO Schrittweiten unterstützen.
- * TODO Strings für Monat und Wochentag unterstützen.
+ * TODO Listen unterstützen. TODO Bereiche unterstützen. TODO Schrittweiten
+ * unterstützen. TODO Strings für Monat und Wochentag unterstützen.
+ * 
  * @author BitCtrl Systems GmbH, Falko Schumann
- * @version $Id: CronPattern.java 13881 2008-11-06 13:37:21Z Schumann $
  */
 public class CronPattern implements ValueMatcher<Long> {
 
@@ -83,42 +81,32 @@ public class CronPattern implements ValueMatcher<Long> {
 
 		parts = pattern.split(" |\t");
 		if (parts.length != 5) {
-			throw new IllegalArgumentException(
-					"Das Pattern entspricht nicht der unterstützten Cron-Syntax.");
+			throw new IllegalArgumentException("Das Pattern entspricht nicht der unterstützten Cron-Syntax.");
 		}
 		try {
 			if (parts[0].equals("*")) {
 				minuteMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
 			} else {
-				minuteMatcher
-						.add(new ValueMatcher.CollectionValueMatcher<Integer>(
-								Integer.valueOf(parts[0])));
+				minuteMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[0])));
 			}
 
 			if (parts[1].equals("*")) {
 				hourMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
 			} else {
-				hourMatcher
-						.add(new ValueMatcher.CollectionValueMatcher<Integer>(
-								Integer.valueOf(parts[1])));
+				hourMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[1])));
 			}
 
 			if (parts[2].equals("*")) {
-				dayOfMonthMatcher
-						.add(new ValueMatcher.AlwaysMatcher<Integer>());
+				dayOfMonthMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
 			} else {
-				dayOfMonthMatcher
-						.add(new ValueMatcher.CollectionValueMatcher<Integer>(
-								Integer.valueOf(parts[2])));
+				dayOfMonthMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[2])));
 			}
 
 			if (parts[3].equals("*")) {
 				monthMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
 			} else {
 				// Java-Monate gehen bei 0 los
-				monthMatcher
-						.add(new ValueMatcher.CollectionValueMatcher<Integer>(
-								Integer.valueOf(parts[3])));
+				monthMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[3])));
 			}
 
 			if (parts[4].equals("*")) {
@@ -127,14 +115,12 @@ public class CronPattern implements ValueMatcher<Long> {
 				// Java-Wochentage gehen bei 1 mit Sonntag los
 				int day;
 
-				day = Integer.valueOf(parts[4]);
+				day = Integer.parseInt(parts[4]);
 				if (day == 7) {
 					// Sonntag ist intern nur 0, nicht mehr auch 7
 					day = 0;
 				}
-				dayOfWeekMatcher
-						.add(new ValueMatcher.CollectionValueMatcher<Integer>(
-								day));
+				dayOfWeekMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(day));
 			}
 
 		} catch (final NumberFormatException ex) {
@@ -178,9 +164,6 @@ public class CronPattern implements ValueMatcher<Long> {
 		return result;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		String s;

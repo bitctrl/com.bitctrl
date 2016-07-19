@@ -4,7 +4,6 @@ package com.bitctrl.modell.criteria;
  * Konjunktion von {@link DAOCriterion}
  * 
  * @author BitCtrl Systems GmbH, krosse
- * @version $Id$
  */
 public class ConjunctionDAOCriteriaContainer extends BaseDAOCriteriaContainer {
 

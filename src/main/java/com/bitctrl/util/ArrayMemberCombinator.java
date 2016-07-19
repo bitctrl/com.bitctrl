@@ -10,7 +10,7 @@ import java.util.List;
  * {@link #combine(Object, Object)} ein neuer Wert zugewiesen wird.
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
- * @version $Id$
+ * 
  * @param <I>
  *            Typ der Eingangsobjekte
  * @param <O>

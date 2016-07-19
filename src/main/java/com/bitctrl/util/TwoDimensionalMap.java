@@ -28,7 +28,6 @@ import java.util.Map.Entry;
  *            the value type
  * 
  * @author BitCtrl Systems GmbH, schnepel
- * @version $Id$
  */
 public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensionalMap<R, C, D> {
 	private static final long serialVersionUID = 3216584215464568453L;
@@ -85,9 +84,6 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 
 	// row stuff ...
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Set<R> getRowKeys() {
 		final Set<R> keySet = rows.keySet();
 		if (orderedRows) {
@@ -96,9 +92,6 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return Collections.unmodifiableSet(keySet);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Collection<D> getRow(final R row) {
 		return Collections.unmodifiableCollection(getRowInternal(row));
 	}
@@ -145,9 +138,6 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 
 	// column stuff ...
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Set<C> getColumnKeys() {
 		final Set<C> keySet = columns.keySet();
 		if (orderedColumns) {
@@ -205,9 +195,6 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 
 	// other stuff ...
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public D put(final R row, final C column, final D value) {
 		Integer cIndex = columns.get(column);
 		if (null == cIndex) {
@@ -222,9 +209,6 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return this.data.get(rIndex).set(cIndex, value);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public D get(final R row, final C column) {
 		Integer cIndex = columns.get(column);
 		if (null == cIndex) {
@@ -239,9 +223,6 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return this.data.get(rIndex).get(cIndex);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public Collection<D> values() {
 		final ArrayList<D> values = new ArrayList<D>(rows.size() * columns.size());
 		for (final ArrayList<D> ld : data) {

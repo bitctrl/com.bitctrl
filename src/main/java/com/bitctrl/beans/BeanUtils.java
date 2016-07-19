@@ -4,7 +4,7 @@
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
+ * Software Foundation; either version 3.0 of the License, or (at your option)
  * any later version.
  *
  * This library is distributed in the hope that it will be useful, but WITHOUT
@@ -40,7 +40,6 @@ import java.util.WeakHashMap;
  * Enthält Hilfsmethoden für den Umgang mit Java Beans.
  * 
  * @author BitCtrl Systems GmbH, Schumann
- * @version $Id: BeanUtils.java 17938 2009-06-03 16:55:10Z Schumann $
  */
 public final class BeanUtils {
 
