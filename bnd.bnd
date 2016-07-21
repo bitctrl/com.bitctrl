@@ -2,3 +2,4 @@
 -sources: true
 
 Bundle-Name: Allgemeine BitCtrl-Bibliothek
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8,JavaSE-1.7
