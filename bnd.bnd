@@ -2,3 +2,6 @@
 -sources: true
 
 Bundle-Name: Allgemeine BitCtrl-Bibliothek
+Import-Package: \
+	org.apache.commons.codec.*;resolution:=optional,\
+	*
