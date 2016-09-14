@@ -44,7 +44,7 @@ import com.bitctrl.resource.Classpath;
 
 /**
  * Führt JUnit-Tests von Konsole aus. Jeder ausgeführte Test wird mit dem
- * jeweiligen Testergebnis aufgeführt. Am Ende ergolgt eine Zusammenfassung.
+ * jeweiligen Testergebnis aufgeführt. Am Ende erfolgt eine Zusammenfassung.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
