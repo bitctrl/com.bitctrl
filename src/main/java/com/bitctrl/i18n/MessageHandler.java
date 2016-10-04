@@ -26,6 +26,7 @@
 
 package com.bitctrl.i18n;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -42,6 +43,20 @@ public interface MessageHandler {
 	 * @return Resource-Bundle
 	 */
 	ResourceBundle getResourceBundle();
+
+	/**
+	 * Gibt das Resource-Bundle für diesen Message-Handler in der entsprechenden
+	 * Sprache zurück.
+	 * 
+	 * @param locale
+	 *            Die Sprache in der das Resource-Bundle zurückgegeben werden
+	 *            soll.
+	 * 
+	 * @return Das Resource-Bundle.
+	 */
+	default ResourceBundle getResourceBundle(Locale locale) {
+		return getResourceBundle();
+	}
 
 	/**
 	 * Gibt den Namen des Meldungstyps zurück. Unter diesem Namen wird im

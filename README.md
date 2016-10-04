@@ -3,3 +3,7 @@
 
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
+
+## Version 2.0
+- Update auf Java 8
+- MessageHandler-Interface erweitert
