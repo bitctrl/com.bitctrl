@@ -30,6 +30,7 @@ import java.beans.BeanDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
@@ -106,8 +107,23 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 					for (int i = 0; i < propertyDescriptorCache.length; ++i) {
 						final PropertyDescriptor prop;
 
+						PropertyDescriptor tempPd = new PropertyDescriptor(propInfo[i].name(),
+								getBeanClass(), null, null);
+						
+						Method readMethod = tempPd.getReadMethod();
+						String readMethodName = null;
+						if( readMethod != null) {
+							readMethodName = readMethod.getName();
+						}
+						
+						Method writeMethod = tempPd.getWriteMethod();
+						String writeMethodName = null;
+						if( writeMethod != null) {
+							writeMethodName = writeMethod.getName();
+						}
+						
 						prop = new PropertyDescriptor(propInfo[i].name(),
-								getBeanClass());
+								getBeanClass(), readMethodName, writeMethodName);
 						prop.setDisplayName(getDisplayName(propInfo[i]));
 						prop
 								.setShortDescription(getShortDescription(propInfo[i]));
