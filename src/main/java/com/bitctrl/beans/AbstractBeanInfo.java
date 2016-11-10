@@ -95,38 +95,41 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 		synchronized (AbstractBeanInfo.class) {
 			if (propertyDescriptorCache == null) {
 				final PropertyInfo[] propInfo = getProperties();
-				final List<PropertyInfo> hiddenProps = Arrays
-						.asList(getHiddenProperties());
-				final List<PropertyInfo> preferredProps = Arrays
-						.asList(getPreferredProperties());
-				final List<PropertyInfo> expertProps = Arrays
-						.asList(getExpertProperties());
+				final List<PropertyInfo> hiddenProps = Arrays.asList(getHiddenProperties());
+				final List<PropertyInfo> preferredProps = Arrays.asList(getPreferredProperties());
+				final List<PropertyInfo> expertProps = Arrays.asList(getExpertProperties());
 				propertyDescriptorCache = new PropertyDescriptor[propInfo.length];
 
 				try {
 					for (int i = 0; i < propertyDescriptorCache.length; ++i) {
 						final PropertyDescriptor prop;
 
-						PropertyDescriptor tempPd = new PropertyDescriptor(propInfo[i].name(),
-								getBeanClass(), null, null);
-						
-						Method readMethod = tempPd.getReadMethod();
+						Class<?> beanClass = getBeanClass();
+						String propName = propInfo[i].name();
+						propName = propName.substring(0, 1).toUpperCase() + propName.substring(1);
+
 						String readMethodName = null;
-						if( readMethod != null) {
-							readMethodName = readMethod.getName();
+						try {
+							readMethodName = beanClass.getMethod("get" + propName).getName();
+						} catch (NoSuchMethodException ignored) {
+							try {
+								readMethodName = beanClass.getMethod("is" + propName).getName();
+							} catch (NoSuchMethodException ex) {
+								// dann eben nicht
+							}
 						}
-						
-						Method writeMethod = tempPd.getWriteMethod();
+
 						String writeMethodName = null;
-						if( writeMethod != null) {
-							writeMethodName = writeMethod.getName();
+						try {
+							writeMethodName = beanClass.getMethod("set" + propName).getName();
+						} catch (NoSuchMethodException ex) {
+							// dann eben nicht
 						}
-						
-						prop = new PropertyDescriptor(propInfo[i].name(),
-								getBeanClass(), readMethodName, writeMethodName);
+
+						prop = new PropertyDescriptor(propInfo[i].name(), getBeanClass(), readMethodName,
+								writeMethodName);
 						prop.setDisplayName(getDisplayName(propInfo[i]));
-						prop
-								.setShortDescription(getShortDescription(propInfo[i]));
+						prop.setShortDescription(getShortDescription(propInfo[i]));
 						if (hiddenProps.contains(propInfo[i])) {
 							prop.setHidden(true);
 						}
