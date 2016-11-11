@@ -108,23 +108,8 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 						String propName = propInfo[i].name();
 						propName = propName.substring(0, 1).toUpperCase() + propName.substring(1);
 
-						String readMethodName = null;
-						try {
-							readMethodName = beanClass.getMethod("get" + propName).getName();
-						} catch (NoSuchMethodException ignored) {
-							try {
-								readMethodName = beanClass.getMethod("is" + propName).getName();
-							} catch (NoSuchMethodException ex) {
-								// dann eben nicht
-							}
-						}
-
-						String writeMethodName = null;
-						try {
-							writeMethodName = beanClass.getMethod("set" + propName).getName();
-						} catch (NoSuchMethodException ex) {
-							// dann eben nicht
-						}
+						String readMethodName = getReadMethodName(beanClass, propName);
+						String writeMethodName = getWriteMethodName(beanClass, propName);
 
 						prop = new PropertyDescriptor(propInfo[i].name(), getBeanClass(), readMethodName,
 								writeMethodName);
@@ -151,6 +136,34 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 		return propertyDescriptorCache;
 	}
 
+	private String getReadMethodName(Class<?> beanClass, String propName) {
+		
+		try {
+			return beanClass.getMethod("get" + propName).getName();
+		} catch (NoSuchMethodException ignored) {
+			try {
+				return beanClass.getMethod("is" + propName).getName();
+			} catch (NoSuchMethodException ex) {
+				return null;
+			}
+		}
+	}
+
+	private String getWriteMethodName(Class<?> beanClass, String propName) {
+		
+		String name = "set" + propName;
+		
+		Method[] declaredMethods = beanClass.getDeclaredMethods();
+		for ( Method method : declaredMethods) {
+			if( name.equals(method.getName())) {
+				return name;
+			}
+		}
+		
+		return null;
+	}
+
+	
 	/**
 	 * Gibt die Liste der Properties zurück der Java Bean zurück.
 	 * 
