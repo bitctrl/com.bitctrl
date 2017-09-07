@@ -45,7 +45,6 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 
 	// Die Descriptoren werden aus Performancegründen nach dem Erzeugen gecacht.
 	private BeanDescriptor beanDescriptorCache;
-	private PropertyDescriptor[] propertyDescriptorCache;
 
 	/**
 	 * Die Methode legt die zu beschreibende Java Bean fest und setzt deren
@@ -75,11 +74,9 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	}
 
 	/**
-	 * Die Methode registriert die vorhandenen Properties und setzt deren
-	 * übersetzte Namen und Kurzbeschreibungen. Da sich die Bean zur Laufzeit
-	 * i.&nbsp;d.&nbsp;R. nicht ändert wird das Ergebnis der Funktion intern
-	 * statisch gecacht, so dass der Aufruf ab dem zweiten Mal schneller
-	 * vonstatten geht.
+	 * Die Methode registriert die vorhandenen Properties und setzt deren übersetzte
+	 * Namen und Kurzbeschreibungen. In Umgebungen mit Mehrsprachigkeit können sich
+	 * die Properties zur Laufzeit ändern (z.B. {@link #getDisplayName(PropertyInfo)}. 
 	 * 
 	 * {@inheritDoc}
 	 * 
@@ -93,47 +90,43 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	@Override
 	public PropertyDescriptor[] getPropertyDescriptors() {
 		synchronized (AbstractBeanInfo.class) {
-			if (propertyDescriptorCache == null) {
-				final PropertyInfo[] propInfo = getProperties();
-				final List<PropertyInfo> hiddenProps = Arrays.asList(getHiddenProperties());
-				final List<PropertyInfo> preferredProps = Arrays.asList(getPreferredProperties());
-				final List<PropertyInfo> expertProps = Arrays.asList(getExpertProperties());
-				propertyDescriptorCache = new PropertyDescriptor[propInfo.length];
+			final PropertyInfo[] propInfo = getProperties();
+			final List<PropertyInfo> hiddenProps = Arrays.asList(getHiddenProperties());
+			final List<PropertyInfo> preferredProps = Arrays.asList(getPreferredProperties());
+			final List<PropertyInfo> expertProps = Arrays.asList(getExpertProperties());
+			PropertyDescriptor[] propertyDescriptors = new PropertyDescriptor[propInfo.length];
 
-				try {
-					for (int i = 0; i < propertyDescriptorCache.length; ++i) {
-						final PropertyDescriptor prop;
+			try {
+				for (int i = 0; i < propertyDescriptors.length; ++i) {
+					final PropertyDescriptor prop;
 
-						Class<?> beanClass = getBeanClass();
-						String propName = propInfo[i].name();
-						propName = propName.substring(0, 1).toUpperCase() + propName.substring(1);
+					Class<?> beanClass = getBeanClass();
+					String propName = propInfo[i].name();
+					propName = propName.substring(0, 1).toUpperCase() + propName.substring(1);
 
-						String readMethodName = getReadMethodName(beanClass, propName);
-						String writeMethodName = getWriteMethodName(beanClass, propName);
+					String readMethodName = getReadMethodName(beanClass, propName);
+					String writeMethodName = getWriteMethodName(beanClass, propName);
 
-						prop = new PropertyDescriptor(propInfo[i].name(), getBeanClass(), readMethodName,
-								writeMethodName);
-						prop.setDisplayName(getDisplayName(propInfo[i]));
-						prop.setShortDescription(getShortDescription(propInfo[i]));
-						if (hiddenProps.contains(propInfo[i])) {
-							prop.setHidden(true);
-						}
-						if (preferredProps.contains(propInfo[i])) {
-							prop.setPreferred(true);
-						}
-						if (expertProps.contains(propInfo[i])) {
-							prop.setExpert(true);
-						}
-						propertyDescriptorCache[i] = prop;
+					prop = new PropertyDescriptor(propInfo[i].name(), getBeanClass(), readMethodName, writeMethodName);
+					prop.setDisplayName(getDisplayName(propInfo[i]));
+					prop.setShortDescription(getShortDescription(propInfo[i]));
+					if (hiddenProps.contains(propInfo[i])) {
+						prop.setHidden(true);
 					}
-				} catch (final IntrospectionException ex) {
-					propertyDescriptorCache = null;
-					throw new IllegalStateException(ex);
+					if (preferredProps.contains(propInfo[i])) {
+						prop.setPreferred(true);
+					}
+					if (expertProps.contains(propInfo[i])) {
+						prop.setExpert(true);
+					}
+					propertyDescriptors[i] = prop;
 				}
+			} catch (final IntrospectionException ex) {
+				propertyDescriptors = null;
+				throw new IllegalStateException(ex);
 			}
+			return propertyDescriptors;
 		}
-
-		return propertyDescriptorCache;
 	}
 
 	private String getReadMethodName(Class<?> beanClass, String propName) {
