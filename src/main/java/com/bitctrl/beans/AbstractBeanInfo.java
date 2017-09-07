@@ -30,6 +30,7 @@ import java.beans.BeanDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
@@ -94,23 +95,26 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 		synchronized (AbstractBeanInfo.class) {
 			if (propertyDescriptorCache == null) {
 				final PropertyInfo[] propInfo = getProperties();
-				final List<PropertyInfo> hiddenProps = Arrays
-						.asList(getHiddenProperties());
-				final List<PropertyInfo> preferredProps = Arrays
-						.asList(getPreferredProperties());
-				final List<PropertyInfo> expertProps = Arrays
-						.asList(getExpertProperties());
+				final List<PropertyInfo> hiddenProps = Arrays.asList(getHiddenProperties());
+				final List<PropertyInfo> preferredProps = Arrays.asList(getPreferredProperties());
+				final List<PropertyInfo> expertProps = Arrays.asList(getExpertProperties());
 				propertyDescriptorCache = new PropertyDescriptor[propInfo.length];
 
 				try {
 					for (int i = 0; i < propertyDescriptorCache.length; ++i) {
 						final PropertyDescriptor prop;
 
-						prop = new PropertyDescriptor(propInfo[i].name(),
-								getBeanClass());
+						Class<?> beanClass = getBeanClass();
+						String propName = propInfo[i].name();
+						propName = propName.substring(0, 1).toUpperCase() + propName.substring(1);
+
+						String readMethodName = getReadMethodName(beanClass, propName);
+						String writeMethodName = getWriteMethodName(beanClass, propName);
+
+						prop = new PropertyDescriptor(propInfo[i].name(), getBeanClass(), readMethodName,
+								writeMethodName);
 						prop.setDisplayName(getDisplayName(propInfo[i]));
-						prop
-								.setShortDescription(getShortDescription(propInfo[i]));
+						prop.setShortDescription(getShortDescription(propInfo[i]));
 						if (hiddenProps.contains(propInfo[i])) {
 							prop.setHidden(true);
 						}
@@ -132,6 +136,34 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 		return propertyDescriptorCache;
 	}
 
+	private String getReadMethodName(Class<?> beanClass, String propName) {
+		
+		try {
+			return beanClass.getMethod("get" + propName).getName();
+		} catch (NoSuchMethodException ignored) {
+			try {
+				return beanClass.getMethod("is" + propName).getName();
+			} catch (NoSuchMethodException ex) {
+				return null;
+			}
+		}
+	}
+
+	private String getWriteMethodName(Class<?> beanClass, String propName) {
+		
+		String name = "set" + propName;
+		
+		Method[] declaredMethods = beanClass.getDeclaredMethods();
+		for ( Method method : declaredMethods) {
+			if( name.equals(method.getName())) {
+				return name;
+			}
+		}
+		
+		return null;
+	}
+
+	
 	/**
 	 * Gibt die Liste der Properties zurück der Java Bean zurück.
 	 * 

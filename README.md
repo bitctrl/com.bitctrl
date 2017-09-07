@@ -7,3 +7,7 @@ Allgemeine Bibliothek für BitCtrl-Projekte
 ## Version 2.0
 - Update auf Java 8
 - MessageHandler-Interface erweitert
+
+## Version 2.0.1
+- AbstractBeanInfo prüft für Properties jetzt, ob es Getter und Setter gibt
+
