@@ -146,8 +146,8 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 		
 		String name = "set" + propName;
 		
-		Method[] declaredMethods = beanClass.getDeclaredMethods();
-		for ( Method method : declaredMethods) {
+		Method[] methods = beanClass.getMethods();
+		for ( Method method : methods) {
 			if( name.equals(method.getName())) {
 				return name;
 			}

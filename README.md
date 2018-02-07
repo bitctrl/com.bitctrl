@@ -4,6 +4,8 @@
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
 
+## Version 2.0.3
+
 ## Version 2.0.2
 - Die PropertyDescriptoren einer Bean werden nicht mehr gecached
   In Umgebungen mit mehreren Sprachen, können sich einzelne Attribute, wie
