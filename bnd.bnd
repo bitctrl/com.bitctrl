@@ -5,3 +5,5 @@ Bundle-Name: Allgemeine BitCtrl-Bibliothek
 Import-Package: \
 	org.apache.commons.codec.*;resolution:=optional,\
 	*
+	
+Automatic-Module-Name: ${def;bsn}
