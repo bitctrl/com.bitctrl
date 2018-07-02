@@ -4,6 +4,10 @@
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
 
+## Version 2.0.4
+
+- Java 9 - Kompatibilität: Automatic-Module-Name in Bundle ergänzt.
+
 ## Version 2.0.3
 
 ## Version 2.0.2
