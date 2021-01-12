@@ -1,6 +1,7 @@
 -exportcontents: com.bitctrl.*
 -sources: true
 
+Bundle-Vendor: BitCtrl Systems GmbH
 Bundle-Name: Allgemeine BitCtrl-Bibliothek
 Import-Package: \
 	org.apache.commons.codec.*;resolution:=optional,\
