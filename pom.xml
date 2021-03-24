@@ -53,31 +53,10 @@
 	<profiles>
 		<profile>
 			<id>bitctrl</id>
-			<pluginRepositories>
-				<pluginRepository>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-					<id>bintray-datenverteiler-maven</id>
-					<name>bintray-plugins</name>
-					<url>http://dl.bintray.com/datenverteiler/maven</url>
-				</pluginRepository>
-			</pluginRepositories>
 			<repositories>
 				<repository>
-					<id>bitctrl.nexus.snapshots</id>
-					<name>Lokales BitCtrl Maven Snapshots Repository</name>
-					<url>http://bitctrlbuildserver:8081/nexus/content/repositories/snapshots/</url>
-				</repository>
-				<repository>
-					<id>bitctrl.nexus</id>
-					<name>BitCtrl Nexus Releases Repository</name>
-					<url>http://bitctrlbuildserver:8081/nexus/content/repositories/releases/</url>
-				</repository>
-				<repository>
-					<id>bintray-bitctrl-maven</id>
-					<name>bintray</name>
-					<url>http://dl.bintray.com/bitctrl/maven</url>
+					<id>central</id>
+					<url>https://repo1.maven.org/maven2</url>
 				</repository>
 			</repositories>
 			<distributionManagement>
@@ -103,49 +82,12 @@
 					<id>central</id>
 					<url>https://repo1.maven.org/maven2</url>
 				</repository>
-				<repository>
-					<id>github</id>
-					<url>https://maven.pkg.github.com/OWNER/*</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
 			</repositories>
 			<distributionManagement>
 				<repository>
 					<id>github</id>
 					<name>GitHub OWNER Apache Maven Packages</name>
 					<url>https://maven.pkg.github.com/bitctrl/com.bitctrl</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-		<profile>
-			<id>bintray</id>
-			<repositories>
-				<repository>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-					<id>bintray-bitctrl-maven</id>
-					<name>bintray</name>
-					<url>http://dl.bintray.com/bitctrl/maven</url>
-				</repository>
-			</repositories>
-			<pluginRepositories>
-				<pluginRepository>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-					<id>bintray-datenverteiler-maven</id>
-					<name>bintray-plugins</name>
-					<url>http://dl.bintray.com/datenverteiler/maven</url>
-				</pluginRepository>
-			</pluginRepositories>
-			<distributionManagement>
-				<repository>
-					<id>bintray-bitctrl-maven</id>
-					<name>bitctrl-maven</name>
-					<url>https://api.bintray.com/maven/bitctrl/maven/${project.artifactId}/;publish=1</url>
 				</repository>
 			</distributionManagement>
 		</profile>
