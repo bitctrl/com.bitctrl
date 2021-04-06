@@ -94,9 +94,7 @@
 			</distributionManagement>
 		</profile>
 		<profile>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			
 			<id>github</id>
 			<repositories>
 				<repository>
@@ -120,34 +118,23 @@
 			</distributionManagement>
 		</profile>
 		<profile>
-			<id>bintray</id>
-			<repositories>
-				<repository>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-					<id>bintray-bitctrl-maven</id>
-					<name>bintray</name>
-					<url>http://dl.bintray.com/bitctrl/maven</url>
-				</repository>
-			</repositories>
-			<pluginRepositories>
-				<pluginRepository>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-					<id>bintray-datenverteiler-maven</id>
-					<name>bintray-plugins</name>
-					<url>http://dl.bintray.com/datenverteiler/maven</url>
-				</pluginRepository>
-			</pluginRepositories>
+		<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<id>jfrog</id>
 			<distributionManagement>
-				<repository>
-					<id>bintray-bitctrl-maven</id>
-					<name>bitctrl-maven</name>
-					<url>https://api.bintray.com/maven/bitctrl/maven/${project.artifactId}/;publish=1</url>
-				</repository>
-			</distributionManagement>
+       <repository>
+        <id>central</id>
+        <name>a0vdje2llpf2q-artifactory-primary-0-releases</name>
+        <url>https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>a0vdje2llpf2q-artifactory-primary-0-snapshots</name>
+        <url>https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public</url>
+    </snapshotRepository>
+
+</distributionManagement>
 		</profile>
 	</profiles>
 
