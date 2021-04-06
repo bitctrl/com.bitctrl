@@ -5,7 +5,7 @@ name: Maven Publish On Push
 
 on:
   push:
-    branches: [ master ]
+    branches: [ * ]
   pull_request:
     branches: [ master ]
 
@@ -37,7 +37,7 @@ jobs:
         url: https://bitctrl.jfrog.io/artifactory/maven-public/
         credentials type: 'apikey'
         apikey: ${{ secrets.JFROG_RT_APIKEY }}
-        args: mvn
+        
     
     
     
