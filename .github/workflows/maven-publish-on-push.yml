@@ -30,3 +30,28 @@ jobs:
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
+    
+    - name: jFrog CLI for Artifactory
+      uses: advancedcsg-open/action-jfrog-cli@v1.2.0
+      with:
+        url: https://bitctrl.jfrog.io/artifactory/maven-public/
+        credentials type: 'apikey'
+        apikey: ${{ secrets.JFROG_RT_APIKEY }}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
