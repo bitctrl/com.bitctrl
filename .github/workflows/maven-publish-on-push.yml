@@ -36,7 +36,7 @@ jobs:
       with:
         url: https://bitctrl.jfrog.io/artifactory/maven-public/
         credentials type: 'apikey'
-        apikey: ${{ secrets.RT_APIKEY }}
+        apikey: ${{ secrets.JFROG_RT_APIKEY }}
     
     
     
