@@ -5,7 +5,7 @@ name: Maven Publish On Push
 
 on:
   push:
-    branches: [ * ]
+    branches: [ ChristianHoesel-patch-1 ]
   pull_request:
     branches: [ master ]
 
