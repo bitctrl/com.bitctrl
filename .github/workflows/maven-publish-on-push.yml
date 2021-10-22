@@ -3,8 +3,8 @@
 
 name: Maven Publish On Push
 
-on: [push]
-
+on: [push,workflow_dispatch]
+   
 jobs:
   build:
 
