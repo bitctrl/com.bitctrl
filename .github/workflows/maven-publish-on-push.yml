@@ -33,7 +33,7 @@ jobs:
         url: https://bitctrl.jfrog.io/artifactory/maven-public/
         credentials type: 'apikey'
         apikey: ${{ secrets.JFROG_RT_APIKEY }}
-        args: u "target/*.jar" "" --recursive=true --build-name=com.bitctrl
+        args: u "target/*.jar" "com/bitctrl/com.bitctrl" --recursive=true --build-name=com.bitctrl
     
     
     
