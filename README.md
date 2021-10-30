@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/bitctrl/com.bitctrl.svg?branch=master)](https://travis-ci.org/bitctrl/com.bitctrl)
 [![Download](https://api.bintray.com/packages/bitctrl/maven/com.bitctrl/images/download.svg)](https://bintray.com/bitctrl/maven/com.bitctrl)
-[![Maven Publish On Push](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-publish-on-push.yml/badge.svg)](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-publish-on-push.yml)
+[![Maven Publish Master On Push](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-publish-on-push.yml/badge.svg)](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-publish-on-push.yml)
 
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
