@@ -22,7 +22,8 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Publish to GitHub Packages Apache Maven
+    - if: github.ref == 'master'
+      name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -32,7 +33,8 @@ jobs:
       env:
         JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
     - run: jfrog --version
-    - run: jfrog rt mvn clean install 
+    - if: github.ref == 'master'
+      run: jfrog rt mvn clean install 
     #- run: jfrog rt u "target/com.bitctrl*.jar" "/com/bitctrl"
       
       
