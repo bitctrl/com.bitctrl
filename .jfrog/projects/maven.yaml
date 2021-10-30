@@ -1,0 +1,6 @@
+version: 1
+type: maven
+deployer:
+  serverId: jfrog
+  snapshotRepo: bitctrl-maven-public
+  releaseRepo: bitctrl-maven-public
