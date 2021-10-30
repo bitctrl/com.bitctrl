@@ -28,12 +28,17 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
     
     - name: jFrog CLI for Artifactory
-      uses: advancedcsg-open/action-jfrog-cli@master
-      with:
-        url: https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/
-        credentials type: 'apikey'
-        apikey: ${{ secrets.JFROG_RT_APIKEY }}
-        args: u "target/com.bitctrl*.jar" "/com/bitctrl"
+      uses: jfrog/setup-jfrog-cli@v2
+      env:
+       JF_ARTIFACTORY_1: ${{ secrets.JFROG_RT_APIKEY }}
+    - run: |
+         # Ping the server
+         jfrog rt ping
+         jfrog rt u "target/com.bitctrl*.jar" "/com/bitctrl"
+      
+      
+      
+      
         
     
     
