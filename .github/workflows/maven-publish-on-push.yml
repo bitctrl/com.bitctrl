@@ -31,10 +31,8 @@ jobs:
       uses: jfrog/setup-jfrog-cli@v2.0.0
       env:
        JF_ARTIFACTORY_1: ${{ secrets.JFROG_RT_APIKEY }}
-    - run: |
-         # Ping the server
-         jfrog rt ping
-         jfrog rt u "target/com.bitctrl*.jar" "/com/bitctrl"
+    - run: jfrog --version
+    - run: jfrog rt u "target/com.bitctrl*.jar" "/com/bitctrl"
       
       
       
