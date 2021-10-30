@@ -97,7 +97,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -113,7 +113,7 @@
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.3</version>
+			<version>2.3.5</version>
 		</dependency>
 		
 	</dependencies>
@@ -123,7 +123,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.22.1</version>
+				<version>2.22.2</version>
 				<executions>
 					<execution>
 						<goals>
@@ -182,7 +182,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.7.1</version>
+				<version>3.9.1</version>
 				<configuration>
 					<locales>de</locales>
 				</configuration>
@@ -250,7 +250,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-changes-plugin</artifactId>
-				<version>2.11</version>
+				<version>2.12.1</version>
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -262,7 +262,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.3</version>
+				<version>2.10.4</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -283,7 +283,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>3.0.3</version>
+				<version>3.0.5</version>
 				<configuration>
 					<includeTests>true</includeTests>
 				</configuration>
