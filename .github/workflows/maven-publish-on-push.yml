@@ -28,8 +28,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
     
-    - if: github.ref == 'master'
-      name: JFROG CLI
+    - name: JFROG CLI
       uses: jfrog/setup-jfrog-cli@v2.0.0
       env:
         JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
