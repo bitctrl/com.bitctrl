@@ -27,7 +27,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
     
-    - uses: jfrog/setup-jfrog-cli@v2
+    - name: JFROG CLI
+      uses: jfrog/setup-jfrog-cli@v2.0.0
       env:
        JF_ARTIFACTORY_1: ${{ secrets.JFROG_RT_APIKEY }}
     - run: |
