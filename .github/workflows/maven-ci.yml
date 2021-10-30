@@ -18,4 +18,4 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven
-      run: mvn -B verify --file pom.xml
+      run: mvn -B verify checkstyle:checkstyle --file pom.xml
