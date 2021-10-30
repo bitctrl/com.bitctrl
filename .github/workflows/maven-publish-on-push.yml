@@ -33,7 +33,7 @@ jobs:
         #JF_ARTIFACTORY_1: ${{ secrets.JFROG_RT_APIKEY }}
     - run: jfrog --version
     - run: jfrog rt mvnc
-    #- run: jfrog rt mvn clean install --url="https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/"
+    - run: jfrog rt mvn clean install 
     #- run: jfrog rt u "target/com.bitctrl*.jar" "/com/bitctrl"
       
       
