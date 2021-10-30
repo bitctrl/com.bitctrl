@@ -1,6 +1,10 @@
 version: 1
 type: maven
-deployer:
-  serverId: Default-Server
+resolver:
+  serverId: jfrog
   snapshotRepo: bitctrl-maven-public
-  releaseRepo: https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/
+  releaseRepo: bitctrl-maven-public
+deployer:
+  serverId: jfrog
+  snapshotRepo: bitctrl-maven-public
+  releaseRepo: bitctrl-maven-public
