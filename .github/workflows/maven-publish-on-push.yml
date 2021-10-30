@@ -29,17 +29,9 @@ jobs:
     
     - name: JFROG CLI
       uses: jfrog/setup-jfrog-cli@v2.0.0
-     # env:
-        #JF_ARTIFACTORY_1: ${{ secrets.JFROG_RT_APIKEY }}
+      env:
+        JF_ARTIFACTORY_1: ${{ secrets.JFROG_RT_APIKEY }}
     - run: jfrog --version
-    - run: | 
-          jfrog rt mvnc \
-                  --server-id-resolve=bitctrl-maven-public \
-                  --repo-resolve-releases=https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/	\
-                  --repo-resolve-snapshots=https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/	\
-                  --server-id-deploy=bitctrl-maven-public \
-                  --repo-deploy-releases=https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/ \
-                  --repo-deploy-snapshots=https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/
     - run: jfrog rt mvn clean install 
     #- run: jfrog rt u "target/com.bitctrl*.jar" "/com/bitctrl"
       
