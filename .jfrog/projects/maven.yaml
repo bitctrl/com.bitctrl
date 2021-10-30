@@ -3,4 +3,4 @@ type: maven
 deployer:
   serverId: Default-Server
   snapshotRepo: bitctrl-maven-public
-  releaseRepo: https://bitctrl.jfrog.io/artifactory/maven-public/
+  releaseRepo: https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/
