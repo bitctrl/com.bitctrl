@@ -6,13 +6,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '8', '11', '17' ]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
+    - name: Set up Java ${{ matrix.Java }}
       uses: actions/setup-java@v2
       with:
-        java-version: 8.0.302+8
+        java-version: ${{ matrix.java }}
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
