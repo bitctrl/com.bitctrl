@@ -23,5 +23,10 @@ module.exports = {
       dependencyDashboardApproval: false,
       stabilityDays: 0,
     },
+    {
+      matchPackageNames: ['renovatebot/github-action'],
+      matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
+      automerge: true
+    }
   ],
 };
