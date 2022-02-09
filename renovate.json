@@ -9,7 +9,7 @@
         "org.apache.maven.plugins:maven-project-info-reports-plugin",
         "jfrog/setup-jfrog-cli",
         "org.codehaus.mojo:taglist-maven-plugin",
-        "renovatebot/github-action"
+        "github-action"
       ],
       "matchUpdateTypes": [
         "minor",
