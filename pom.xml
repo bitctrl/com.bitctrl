@@ -6,7 +6,7 @@
 
 	<groupId>com.bitctrl</groupId>
 	<artifactId>com.bitctrl</artifactId>
-	<version>2.1.0-SNAPSHOT</version>
+	<version>2.1.0</version>
 
 	<name>Allgemeine BitCtrl-Bibliothek</name>
 	<url>http://bitctrl.github.io/${project.artifactId}/</url>
