@@ -38,7 +38,7 @@ jobs:
       with:
         java-version: 8.0.302+8
         distribution: 'temurin'
-        server-id: nerz 
+        server-id: nerz-snapshots 
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
     - name: Publish to NERZ Nexus
