@@ -57,12 +57,12 @@ jobs:
         server-id: nerz-snapshots 
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
+              
+    - name: Publish to NERZ Nexus
+    #  if: steps.check_release.outputs.is_snapshot == 'true'
       run: |
         echo "Ist ein Snapshot: ${{ steps.check_release.outputs.is_snapshot }}"
-        
-    - name: Publish to NERZ Nexus
-      if: steps.check_release.outputs.is_snapshot == 'true'
-      run: mvn deploy -P nerz
+        mvn deploy -P nerz
       env:
          MAVEN_USERNAME: ${{ secrets.NERZ_USERNAME }}
          MAVEN_PASSWORD: ${{ secrets.NERZ_TOKEN }}
