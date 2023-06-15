@@ -41,7 +41,7 @@ jobs:
          version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
          echo "version=${version}" >> $GITHUB_OUTPUT
 
-    - name: Check if version is a snapshot version
+    - name: Check version properties
       id: check_release
       run: |
         version="${{ steps.read_version.outputs.version }}"
@@ -50,7 +50,7 @@ jobs:
         else
           echo "is_snapshot=false" >> $GITHUB_OUTPUT
         fi
-        if [[ ${{ github.ref_name }} =~ **/tags/** ||; then
+        if [[ ${{ github.ref_name }} =~ **/tags/** ]]; then
           echo "has_tag=true" >> $GITHUB_OUTPUT
         else
           echo "has_tag=false" >> $GITHUB_OUTPUT
