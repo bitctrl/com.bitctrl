@@ -39,7 +39,7 @@ jobs:
          version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
          echo "version=${version}" >> $GITHUB_OUTPUT
 
-    - name: Check if version is a release version
+    - name: Check if version is a snapshot version
       id: check_release
       run: |
         version="${{ steps.read_version.outputs.version }}"
@@ -48,7 +48,7 @@ jobs:
         else
           echo "is_snapshot=true" >> $GITHUB_OUTPUT
         fi
-
+      
     - name: Set up JDK 1.8 for NERZ Deployment
       uses: actions/setup-java@v3
       with:
@@ -57,6 +57,9 @@ jobs:
         server-id: nerz-snapshots 
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
+      run: |
+        echo "Ist ein Snapshot: ${{ steps.check_release.outputs.is_snapshot }}"
+        
     - name: Publish to NERZ Nexus
       if: steps.check_release.outputs.is_snapshot == 'true'
       run: mvn deploy -P nerz
