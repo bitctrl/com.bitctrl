@@ -84,7 +84,7 @@ jobs:
         server-password: MAVEN_PASSWORD
               
     - name: Publish Releases to NERZ Nexus
-      if: steps.check_release.outputs.is_snapshot == 'false' and steps.check_release.outputs.has_tag == 'true'
+      if: steps.check_release.outputs.is_snapshot == 'false' && steps.check_release.outputs.has_tag == 'true'
       run: |
         echo "Ist ein Snapshot: ${{ steps.check_release.outputs.is_snapshot }}"
         mvn deploy -P nerz
