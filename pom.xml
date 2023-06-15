@@ -104,7 +104,7 @@
 			</repositories>
 			<distributionManagement>
 				<repository>
-					<id>nerz-release</id>
+					<id>nerz-releases</id>
 					<name>NERZ Releases</name>
 					<url>https://repo.nerz-ev.de/repository/nerz-maven-releases/</url>
 				</repository>
