@@ -6,7 +6,11 @@
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
 
-## Version 2.0.4
+## Version 2.1.0
+
+- Publikation auf dem NERZ-Maven-Repository
+
+- ## Version 2.0.4
 
 - Java 9 - Kompatibilität: Automatic-Module-Name in Bundle ergänzt.
 
