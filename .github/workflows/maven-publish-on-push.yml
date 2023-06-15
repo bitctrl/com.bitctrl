@@ -43,10 +43,10 @@ jobs:
       id: check_release
       run: |
         version="${{ steps.read_version.outputs.version }}"
-        if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?$ ]]; then
-          echo "is_snapshot=false" >> $GITHUB_OUTPUT
-        else
+        if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+-SNAPSHOT$ ]]; then
           echo "is_snapshot=true" >> $GITHUB_OUTPUT
+        else
+          echo "is_snapshot=false" >> $GITHUB_OUTPUT
         fi
       
     - name: Set up JDK 1.8 for NERZ Deployment
