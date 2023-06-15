@@ -17,7 +17,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 1.8
+    - name: Set up JDK 1.8 for Github deployment
       uses: actions/setup-java@v3
       with:
         java-version: 8.0.302+8
@@ -32,6 +32,40 @@ jobs:
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        
+    - name: Read Maven project version
+      id: read_version
+      run: |
+         version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+         echo "version=${version}" >> $GITHUB_OUTPUT
+
+    - name: Check if version is a snapshot version
+      id: check_release
+      run: |
+        version="${{ steps.read_version.outputs.version }}"
+        if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+-SNAPSHOT$ ]]; then
+          echo "is_snapshot=true" >> $GITHUB_OUTPUT
+        else
+          echo "is_snapshot=false" >> $GITHUB_OUTPUT
+        fi
+      
+    - name: Set up JDK 1.8 for NERZ Deployment
+      uses: actions/setup-java@v3
+      with:
+        java-version: 8.0.302+8
+        distribution: 'temurin'
+        server-id: nerz-snapshots 
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
+              
+    - name: Publish to NERZ Nexus
+    #  if: steps.check_release.outputs.is_snapshot == 'true'
+      run: |
+        echo "Ist ein Snapshot: ${{ steps.check_release.outputs.is_snapshot }}"
+        mvn deploy -P nerz
+      env:
+         MAVEN_USERNAME: ${{ secrets.NERZ_USERNAME }}
+         MAVEN_PASSWORD: ${{ secrets.NERZ_TOKEN }}
     
     - name: JFROG CLI
       uses: jfrog/setup-jfrog-cli@v3.3.0

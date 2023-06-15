@@ -91,6 +91,30 @@
 				</repository>
 			</distributionManagement>
 		</profile>
+		<profile>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<id>nerz</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>https://repo1.maven.org/maven2</url>
+				</repository>
+			</repositories>
+			<distributionManagement>
+				<repository>
+					<id>nerz-release</id>
+					<name>NERZ Releases</name>
+					<url>https://repo.nerz-ev.de/repository/nerz-maven-releases/</url>
+				</repository>
+				<snapshotRepository>
+					<id>nerz-snapshots</id>
+					<name>NERZ Snapshots</name>
+					<url>https://repo.nerz-ev.de/repository/nerz-maven-snapshots/</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
 	</profiles>
 
 	<dependencies>
