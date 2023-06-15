@@ -42,7 +42,7 @@ jobs:
         else
           echo "is_snapshot=false" >> $GITHUB_OUTPUT
         fi
-        if [[ ${{ github.ref_name }} =~ **/tags/** ]]; then
+        if [[ ${{ github.ref }} == 'refs/tags/'* ]]; then
           echo "has_tag=true" >> $GITHUB_OUTPUT
         else
           echo "has_tag=false" >> $GITHUB_OUTPUT
