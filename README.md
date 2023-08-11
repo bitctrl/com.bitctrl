@@ -1,5 +1,4 @@
 
-[![Download](https://img.shields.io/badge/Download-Batch-blue.svg)](https://bitctrl.jfrog.io/artifactory/bitctrl-maven-public/com/bitctrl/com.bitctrl/)
 [![Maven Publish Master On Push](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-publish-on-push.yml/badge.svg)](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-publish-on-push.yml)
 [![Maven CI](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-ci.yml/badge.svg)](https://github.com/bitctrl/com.bitctrl/actions/workflows/maven-ci.yml)
 
