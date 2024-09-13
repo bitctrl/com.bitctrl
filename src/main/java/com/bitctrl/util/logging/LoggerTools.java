@@ -70,7 +70,7 @@ public final class LoggerTools {
 	 *         &gt; [Meldung].cause.cause".
 	 */
 	public static String getMessages(final Throwable t) {
-		StringBuilder msg = new StringBuilder().append(t.getLocalizedMessage());
+		final StringBuilder msg = new StringBuilder().append(t.getLocalizedMessage());
 		if (t.getCause() != null && t.getCause() != t) {
 			msg.append(" > ").append(getMessages(t.getCause()));
 		}

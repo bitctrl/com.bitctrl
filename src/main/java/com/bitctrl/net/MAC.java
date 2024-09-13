@@ -120,7 +120,7 @@ public class MAC implements Serializable {
 	@Override
 	public String toString() {
 		final char[] hex = Hex.encodeHex(address);
-		StringBuilder s = new StringBuilder();
+		final StringBuilder s = new StringBuilder();
 		for (int i = 0; i < hex.length; ++i) {
 			s.append(hex[i]);
 			if (i % 2 == 1 && i < hex.length - 1) {

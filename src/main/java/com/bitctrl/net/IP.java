@@ -259,7 +259,7 @@ public class IP implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder s = new StringBuilder().append(getHostAsString());
+		final StringBuilder s = new StringBuilder().append(getHostAsString());
 		if (getMaskLength() > 0) {
 			s.append("/").append(getMaskLength());
 		}

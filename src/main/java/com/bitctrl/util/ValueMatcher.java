@@ -155,7 +155,7 @@ public interface ValueMatcher<T> {
 		 */
 		@Override
 		public boolean match(final T value) {
-			for (ValueMatcher<T> element : this) {
+			for (final ValueMatcher<T> element : this) {
 				if (!element.match(value)) {
 					return false;
 				}

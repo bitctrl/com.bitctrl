@@ -48,9 +48,8 @@ public class DefaultComparator implements Comparator<Object> {
 	 */
 	@Override
 	public int compare(final Object o1, final Object o2) {
-		if (o1 instanceof final Comparable c1 && o2 instanceof Comparable
+		if (o1 instanceof final Comparable c1 && o2 instanceof final Comparable c2
 				&& (o1.getClass().isAssignableFrom(o2.getClass()) || o2.getClass().isAssignableFrom(o1.getClass()))) {
-			final Comparable c2 = (Comparable) o2;
 			return c1.compareTo(c2);
 		}
 

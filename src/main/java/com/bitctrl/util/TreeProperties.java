@@ -129,7 +129,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 
 		@Override
 		public String toString() {
-			StringBuilder s = new StringBuilder().append(name).append(".");
+			final StringBuilder s = new StringBuilder().append(name).append(".");
 
 			if (index > 0) {
 				s.append(index).append(".");
