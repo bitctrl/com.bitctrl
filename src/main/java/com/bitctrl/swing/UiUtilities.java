@@ -32,6 +32,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.util.logging.Logger;
+
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
@@ -42,14 +43,12 @@ import javax.swing.UIManager;
  */
 public final class UiUtilities {
 
-	private static final Logger LOG = Logger.getLogger(UiUtilities.class
-			.getName());
+	private static final Logger LOG = Logger.getLogger(UiUtilities.class.getName());
 
 	/**
 	 * Zentriert ein beliebiges Fenster auf dem Bildschirm.
 	 * 
-	 * @param window
-	 *            ein (J)Dialog oder (J)Frame
+	 * @param window ein (J)Dialog oder (J)Frame
 	 */
 	public static void centerWindow(final Window window) {
 		Dimension screen;
@@ -63,16 +62,15 @@ public final class UiUtilities {
 	}
 
 	/**
-	 * Ändert die verwendete Standardschrift aller GUI-Komponenten. Die Methode
-	 * wird am besten aufgerufen, bevor das erste Fenster der Applikation
-	 * instanziiert wird. Andernfalls müssen bereits gezeichneten Komponenten
-	 * manuell zum neuzeichen veranlasst werden.
+	 * Ändert die verwendete Standardschrift aller GUI-Komponenten. Die Methode wird
+	 * am besten aufgerufen, bevor das erste Fenster der Applikation instanziiert
+	 * wird. Andernfalls müssen bereits gezeichneten Komponenten manuell zum
+	 * neuzeichen veranlasst werden.
 	 * 
-	 * @param font
-	 *            die neue Standardschrift der Applikation.
+	 * @param font die neue Standardschrift der Applikation.
 	 */
 	public static void setDefaultFont(final Font font) {
-		UIDefaults uiDefaults = UIManager.getDefaults();
+		final UIDefaults uiDefaults = UIManager.getDefaults();
 		uiDefaults.put("TabbedPane.font", font);
 		uiDefaults.put("Button.font", font);
 		uiDefaults.put("List.font", font);
@@ -112,18 +110,18 @@ public final class UiUtilities {
 	}
 
 	/**
-	 * Versucht das Look-and-Feel der Anwendung auf das Look-and-Feel der
-	 * aktuellen Plattform zu setzen.
+	 * Versucht das Look-and-Feel der Anwendung auf das Look-and-Feel der aktuellen
+	 * Plattform zu setzen.
 	 */
 	public static void setSystemLookAndFeel() {
-		if (System.getProperty("java.specification.version").equals("1.4")) {
+		if ("1.4".equals(System.getProperty("java.specification.version"))) {
 			// Workaround, weil sonst die Stile Win2k und WinXP vermischt werden
 			System.setProperty("swing.noxp", "true");
 		}
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			LOG.config("Vewende Look and Feel: " + UIManager.getLookAndFeel());
-		} catch (Exception ex) {
+		} catch (final Exception ex) {
 			LOG.warning("Look and Feel des Systems steht nicht zur Verfügung.");
 		}
 	}

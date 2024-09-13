@@ -41,18 +41,16 @@ public class DynamicMessages {
 		this.resourceBundle = resourceBundle;
 	}
 
-	public static DynamicMessages getInstance(
-			final ResourceBundle resourceBundle) {
+	public static DynamicMessages getInstance(final ResourceBundle resourceBundle) {
 		return new DynamicMessages(resourceBundle);
 	}
 
 	/**
 	 * Liest den Wert zu einem Schluessel aus der Resource.
 	 * 
-	 * @param key
-	 *            der Schluessel
-	 * @return Wenn der Schluessel nicht gefunden wird, gibt die Funktion den
-	 *         String "!Schluessel!" zurueck.
+	 * @param key der Schluessel
+	 * @return Wenn der Schluessel nicht gefunden wird, gibt die Funktion den String
+	 *         "!Schluessel!" zurueck.
 	 */
 	public String getString(final String key) {
 		try {
@@ -65,8 +63,7 @@ public class DynamicMessages {
 	/**
 	 * Liest den Wert zu einem Schluessel aus der Resource.
 	 * 
-	 * @param key
-	 *            der Schluessel
+	 * @param key der Schluessel
 	 * @return Wenn der Schluessel nicht gefunden wird, gibt die Funktion
 	 *         <b>null</b> zurueck.
 	 */

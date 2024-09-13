@@ -37,16 +37,14 @@ import java.util.TimerTask;
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
  * 
- * @param <T>
- *            ein beliebier Datentyp, typischerweise Zahlen
- * @param <B>
- *            der Typ des zugrunde liegenden Datensatzes, z.B. SQLRow
+ * @param <T> ein beliebier Datentyp, typischerweise Zahlen
+ * @param <B> der Typ des zugrunde liegenden Datensatzes, z.B. SQLRow
  */
 public abstract class RelatedResultSet<T, B> implements IRelatedResultSet<T, B> {
 
 	private static final Timer TIMER = new Timer();
 
-	private final Map<IIndividualResult<T, B>, Boolean> backend = new LinkedHashMap<IIndividualResult<T, B>, Boolean>();
+	private final Map<IIndividualResult<T, B>, Boolean> backend = new LinkedHashMap<>();
 
 	private final IRelatedResultSetContainer container;
 
@@ -57,10 +55,8 @@ public abstract class RelatedResultSet<T, B> implements IRelatedResultSet<T, B> 
 	/**
 	 * Konstruktor übernimmt nur die Member.
 	 * 
-	 * @param container
-	 *            der Container, zu dem diese Ergebnisemenge gehört.
-	 * @param timeoutMs
-	 *            Timeout in Millisekunden.
+	 * @param container der Container, zu dem diese Ergebnisemenge gehört.
+	 * @param timeoutMs Timeout in Millisekunden.
 	 */
 	public RelatedResultSet(final IRelatedResultSetContainer container, final int timeoutMs) {
 		super();
@@ -68,6 +64,7 @@ public abstract class RelatedResultSet<T, B> implements IRelatedResultSet<T, B> 
 		this.timeoutMs = timeoutMs;
 	}
 
+	@Override
 	public void neuerWert(final IIndividualResult<T, B> element, final T wert) {
 		timerStarten();
 		backend.put(element, true);
@@ -97,20 +94,19 @@ public abstract class RelatedResultSet<T, B> implements IRelatedResultSet<T, B> 
 	 * @return die Werte. Kann leer, aber nicht <code>null</code> sein.
 	 */
 	public Collection<IIndividualResult<T, B>> getIndividualResults() {
-		final Collection<IIndividualResult<T, B>> iRes = new ArrayList<IIndividualResult<T, B>>(backend.size());
+		final Collection<IIndividualResult<T, B>> iRes = new ArrayList<>(backend.size());
 		iRes.addAll(backend.keySet());
 		return iRes;
 	}
 
 	/**
-	 * Bestimmt, ob ein individuelles Ergebnis gültig ist oder nicht. Der Sinn
-	 * der Methode besteht darin, dass man in der Methode
-	 * {@link IRelatedResultSetContainer#resultSetComplete(boolean)}
-	 * herausfinden kann, welche individuellen Ergebnisse IN DIESEM LAUF einen
-	 * Wert geliefert haben.
+	 * Bestimmt, ob ein individuelles Ergebnis gültig ist oder nicht. Der Sinn der
+	 * Methode besteht darin, dass man in der Methode
+	 * {@link IRelatedResultSetContainer#resultSetComplete(boolean)} herausfinden
+	 * kann, welche individuellen Ergebnisse IN DIESEM LAUF einen Wert geliefert
+	 * haben.
 	 * 
-	 * @param result
-	 *            das zu prüfende Ergebnis.
+	 * @param result das zu prüfende Ergebnis.
 	 * 
 	 * @return true - Ergebnis hat gültige Daten.
 	 */

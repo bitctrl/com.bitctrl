@@ -43,8 +43,7 @@ public interface Edge {
 	/**
 	 * Legt den Namen der Kante fest.
 	 * 
-	 * @param name
-	 *            der neue Kantenname.
+	 * @param name der neue Kantenname.
 	 */
 	void setName(String name);
 

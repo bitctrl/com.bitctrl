@@ -43,8 +43,7 @@ public interface Node {
 	/**
 	 * Legt den Namen des Knotens fest.
 	 * 
-	 * @param name
-	 *            der neue Knotenname.
+	 * @param name der neue Knotenname.
 	 */
 	void setName(String name);
 
@@ -52,10 +51,10 @@ public interface Node {
 	 * Vergleicht diesen Knoten mit einem anderen. Die Standardimplementierung
 	 * vergleicht die Namen der beiden Knoten.
 	 * 
-	 * @param other
-	 *            ein anderer Knoten.
+	 * @param other ein anderer Knoten.
 	 * @return {@code true}, wenn dieser Knoten und der andere gleich sind.
 	 */
+	@Override
 	boolean equals(Object other);
 
 }

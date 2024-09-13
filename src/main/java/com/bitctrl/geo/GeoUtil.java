@@ -36,18 +36,14 @@ import java.awt.Dimension;
 public final class GeoUtil {
 
 	/**
-	 * Skaliert unter Berücksichtigung des Seitenverhältnisses die Breite und
-	 * Höhe derart, dass die Ausnahme ein bestimmtes Maximum nicht
-	 * überschreiten.
+	 * Skaliert unter Berücksichtigung des Seitenverhältnisses die Breite und Höhe
+	 * derart, dass die Ausnahme ein bestimmtes Maximum nicht überschreiten.
 	 * 
-	 * @param toLarge
-	 *            die zu skalierende Dimension.
-	 * @param maximum
-	 *            das angestrebte Maximum.
+	 * @param toLarge die zu skalierende Dimension.
+	 * @param maximum das angestrebte Maximum.
 	 * @return die herunterskalierte Dimension im gleichen Seitenverhältnis.
 	 */
-	public static Dimension resizeToFit(final Dimension toLarge,
-			final Dimension maximum) {
+	public static Dimension resizeToFit(final Dimension toLarge, final Dimension maximum) {
 		if (toLarge == null) {
 			throw new IllegalArgumentException("toLarge is null");
 		}

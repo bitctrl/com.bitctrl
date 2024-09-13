@@ -28,4 +28,3 @@
  * Klassen für Internationalisierung (i18n).
  */
 package com.bitctrl.i18n;
-

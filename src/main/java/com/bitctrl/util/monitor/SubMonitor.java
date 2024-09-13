@@ -274,37 +274,35 @@ public final class SubMonitor extends AbstractMonitor {
 
 	/**
 	 * Minimum number of ticks to allocate when calling beginTask on an unknown
-	 * IProgressMonitor. Pick a number that is big enough such that, no matter
-	 * where progress is being displayed, the user would be unlikely to notice
-	 * if progress were to be reported with higher accuracy.
+	 * IProgressMonitor. Pick a number that is big enough such that, no matter where
+	 * progress is being displayed, the user would be unlikely to notice if progress
+	 * were to be reported with higher accuracy.
 	 */
 	private static final int MINIMUM_RESOLUTION = 1000;
 
 	/**
-	 * The RootInfo holds information about the root progress monitor. A
-	 * SubMonitor and its active descendents share the same RootInfo.
+	 * The RootInfo holds information about the root progress monitor. A SubMonitor
+	 * and its active descendents share the same RootInfo.
 	 */
 	private static final class RootInfo {
 		private final IMonitor root;
 
 		/**
-		 * Remembers the last task name. Prevents us from setting the same task
-		 * name multiple times in a row.
+		 * Remembers the last task name. Prevents us from setting the same task name
+		 * multiple times in a row.
 		 */
 		private String taskName = null;
 
 		/**
-		 * Remembers the last subtask name. Prevents the SubMonitor from setting
-		 * the same subtask string more than once in a row.
+		 * Remembers the last subtask name. Prevents the SubMonitor from setting the
+		 * same subtask string more than once in a row.
 		 */
 		private String subTask = null;
 
 		/**
-		 * Creates a RootInfo struct that delegates to the given progress
-		 * monitor.
+		 * Creates a RootInfo struct that delegates to the given progress monitor.
 		 * 
-		 * @param root
-		 *            progress monitor to delegate to
+		 * @param root progress monitor to delegate to
 		 */
 		public RootInfo(final IMonitor root) {
 			this.root = root;
@@ -341,14 +339,13 @@ public final class SubMonitor extends AbstractMonitor {
 	}
 
 	/**
-	 * Total number of ticks that this progress monitor is permitted to consume
-	 * from the root.
+	 * Total number of ticks that this progress monitor is permitted to consume from
+	 * the root.
 	 */
 	private int totalParent;
 
 	/**
-	 * Number of ticks that this progress monitor has already reported in the
-	 * root.
+	 * Number of ticks that this progress monitor has already reported in the root.
 	 */
 	private int usedForParent = 0;
 
@@ -364,9 +361,9 @@ public final class SubMonitor extends AbstractMonitor {
 	private int totalForChildren;
 
 	/**
-	 * Children created by newChild will be completed automatically the next
-	 * time the parent progress monitor is touched. This points to the last
-	 * incomplete child created with newChild.
+	 * Children created by newChild will be completed automatically the next time
+	 * the parent progress monitor is touched. This points to the last incomplete
+	 * child created with newChild.
 	 */
 	private IMonitor lastSubMonitor = null;
 
@@ -381,26 +378,25 @@ public final class SubMonitor extends AbstractMonitor {
 	private final int flags;
 
 	/**
-	 * May be passed as a flag to newChild. Indicates that the calls to subTask
-	 * on the child should be ignored. Without this flag, calling subTask on the
-	 * child will result in a call to subTask on its parent.
+	 * May be passed as a flag to newChild. Indicates that the calls to subTask on
+	 * the child should be ignored. Without this flag, calling subTask on the child
+	 * will result in a call to subTask on its parent.
 	 */
 	public static final int SUPPRESS_SUBTASK = 0x0001;
 
 	/**
 	 * May be passed as a flag to newChild. Indicates that strings passed into
 	 * beginTask should be ignored. If this flag is specified, then the progress
-	 * monitor instance will accept null as the first argument to beginTask.
-	 * Without this flag, any string passed to beginTask will result in a call
-	 * to setTaskName on the parent.
+	 * monitor instance will accept null as the first argument to beginTask. Without
+	 * this flag, any string passed to beginTask will result in a call to
+	 * setTaskName on the parent.
 	 */
 	public static final int SUPPRESS_BEGINTASK = 0x0002;
 
 	/**
 	 * May be passed as a flag to newChild. Indicates that strings passed into
 	 * setTaskName should be ignored. If this string is omitted, then a call to
-	 * setTaskName on the child will result in a call to setTaskName on the
-	 * parent.
+	 * setTaskName on the child will result in a call to setTaskName on the parent.
 	 */
 	public static final int SUPPRESS_SETTASKNAME = 0x0004;
 
@@ -412,8 +408,7 @@ public final class SubMonitor extends AbstractMonitor {
 
 	/**
 	 * May be passed as a flag to newChild. Indicates that strings passed to
-	 * setTaskName, subTask, and beginTask should all be propagated to the
-	 * parent.
+	 * setTaskName, subTask, and beginTask should all be propagated to the parent.
 	 */
 	public static final int SUPPRESS_NONE = 0;
 
@@ -421,14 +416,12 @@ public final class SubMonitor extends AbstractMonitor {
 	 * Creates a new SubMonitor that will report its progress via the given
 	 * RootInfo.
 	 * 
-	 * @param rootInfo
-	 *            the root of this progress monitor tree
-	 * @param totalWork
-	 *            total work to perform on the given progress monitor
-	 * @param availableToChildren
-	 *            number of ticks allocated for this instance's children
-	 * @param flags
-	 *            a bitwise combination of the SUPPRESS_* constants
+	 * @param rootInfo            the root of this progress monitor tree
+	 * @param totalWork           total work to perform on the given progress
+	 *                            monitor
+	 * @param availableToChildren number of ticks allocated for this instance's
+	 *                            children
+	 * @param flags               a bitwise combination of the SUPPRESS_* constants
 	 */
 	private SubMonitor(final RootInfo rootInfo, final int totalWork, final int availableToChildren, final int flags) {
 		root = rootInfo;
@@ -439,21 +432,19 @@ public final class SubMonitor extends AbstractMonitor {
 
 	/**
 	 * <p>
-	 * Converts an unknown (possibly null) IProgressMonitor into a SubMonitor.
-	 * It is not necessary to call done() on the result, but the caller is
-	 * responsible for calling done() on the argument. Calls beginTask on the
-	 * argument.
+	 * Converts an unknown (possibly null) IProgressMonitor into a SubMonitor. It is
+	 * not necessary to call done() on the result, but the caller is responsible for
+	 * calling done() on the argument. Calls beginTask on the argument.
 	 * </p>
 	 * 
 	 * <p>
 	 * This method should generally be called at the beginning of a method that
-	 * accepts an IProgressMonitor in order to convert the IProgressMonitor into
-	 * a SubMonitor.
+	 * accepts an IProgressMonitor in order to convert the IProgressMonitor into a
+	 * SubMonitor.
 	 * </p>
 	 * 
-	 * @param monitor
-	 *            monitor to convert to a SubMonitor instance or null. Treats
-	 *            null as a new instance of <code>NullProgressMonitor</code>.
+	 * @param monitor monitor to convert to a SubMonitor instance or null. Treats
+	 *                null as a new instance of <code>NullProgressMonitor</code>.
 	 * @return a SubMonitor instance that adapts the argument
 	 */
 	public static SubMonitor convert(final IMonitor monitor) {
@@ -463,23 +454,21 @@ public final class SubMonitor extends AbstractMonitor {
 	/**
 	 * <p>
 	 * Converts an unknown (possibly null) IProgressMonitor into a SubMonitor
-	 * allocated with the given number of ticks. It is not necessary to call
-	 * done() on the result, but the caller is responsible for calling done() on
-	 * the argument. Calls beginTask on the argument.
+	 * allocated with the given number of ticks. It is not necessary to call done()
+	 * on the result, but the caller is responsible for calling done() on the
+	 * argument. Calls beginTask on the argument.
 	 * </p>
 	 * 
 	 * <p>
 	 * This method should generally be called at the beginning of a method that
-	 * accepts an IProgressMonitor in order to convert the IProgressMonitor into
-	 * a SubMonitor.
+	 * accepts an IProgressMonitor in order to convert the IProgressMonitor into a
+	 * SubMonitor.
 	 * </p>
 	 * 
-	 * @param monitor
-	 *            monitor to convert to a SubMonitor instance or null. Treats
-	 *            null as a new instance of <code>NullProgressMonitor</code>.
-	 * @param work
-	 *            number of ticks that will be available in the resulting
-	 *            monitor
+	 * @param monitor monitor to convert to a SubMonitor instance or null. Treats
+	 *                null as a new instance of <code>NullProgressMonitor</code>.
+	 * @param work    number of ticks that will be available in the resulting
+	 *                monitor
 	 * @return a SubMonitor instance that adapts the argument
 	 */
 	public static SubMonitor convert(final IMonitor monitor, final int work) {
@@ -489,26 +478,23 @@ public final class SubMonitor extends AbstractMonitor {
 	/**
 	 * <p>
 	 * Converts an unknown (possibly null) IProgressMonitor into a SubMonitor
-	 * allocated with the given number of ticks. It is not necessary to call
-	 * done() on the result, but the caller is responsible for calling done() on
-	 * the argument. Calls beginTask on the argument.
+	 * allocated with the given number of ticks. It is not necessary to call done()
+	 * on the result, but the caller is responsible for calling done() on the
+	 * argument. Calls beginTask on the argument.
 	 * </p>
 	 * 
 	 * <p>
 	 * This method should generally be called at the beginning of a method that
-	 * accepts an IProgressMonitor in order to convert the IProgressMonitor into
-	 * a SubMonitor.
+	 * accepts an IProgressMonitor in order to convert the IProgressMonitor into a
+	 * SubMonitor.
 	 * </p>
 	 * 
-	 * @param monitor
-	 *            to convert into a SubMonitor instance or null. If given a null
-	 *            argument, the resulting SubMonitor will not report its
-	 *            progress anywhere.
-	 * @param taskName
-	 *            user readable name to pass to monitor.beginTask. Never null.
-	 * @param work
-	 *            initial number of ticks to allocate for children of the
-	 *            SubMonitor
+	 * @param monitor  to convert into a SubMonitor instance or null. If given a
+	 *                 null argument, the resulting SubMonitor will not report its
+	 *                 progress anywhere.
+	 * @param taskName user readable name to pass to monitor.beginTask. Never null.
+	 * @param work     initial number of ticks to allocate for children of the
+	 *                 SubMonitor
 	 * @return a new SubMonitor instance that is a child of the given monitor
 	 */
 	public static SubMonitor convert(IMonitor monitor, final String taskName, final int work) {
@@ -530,20 +516,19 @@ public final class SubMonitor extends AbstractMonitor {
 	/**
 	 * <p>
 	 * Sets the work remaining for this SubMonitor instance. This is the total
-	 * number of ticks that may be reported by all subsequent calls to
-	 * worked(int), newChild(int), etc. This may be called many times for the
-	 * same SubMonitor instance. When this method is called, the remaining space
-	 * on the progress monitor is redistributed into the given number of ticks.
+	 * number of ticks that may be reported by all subsequent calls to worked(int),
+	 * newChild(int), etc. This may be called many times for the same SubMonitor
+	 * instance. When this method is called, the remaining space on the progress
+	 * monitor is redistributed into the given number of ticks.
 	 * </p>
 	 * 
 	 * <p>
 	 * It doesn't matter how much progress has already been reported with this
-	 * SubMonitor instance. If you call setWorkRemaining(100), you will be able
-	 * to report 100 more ticks of work before the progress meter reaches 100%.
+	 * SubMonitor instance. If you call setWorkRemaining(100), you will be able to
+	 * report 100 more ticks of work before the progress meter reaches 100%.
 	 * </p>
 	 * 
-	 * @param workRemaining
-	 *            total number of remaining ticks
+	 * @param workRemaining total number of remaining ticks
 	 * @return the receiver
 	 */
 	public SubMonitor setWorkRemaining(int workRemaining) {
@@ -570,8 +555,7 @@ public final class SubMonitor extends AbstractMonitor {
 	 * Consumes the given number of child ticks, given as a double. Must only be
 	 * called if the monitor is in floating-point mode.
 	 * 
-	 * @param ticks
-	 *            the number of ticks to consume
+	 * @param ticks the number of ticks to consume
 	 * @return ticks the number of ticks to be consumed from parent
 	 */
 	private int consume(final double ticks) {
@@ -602,6 +586,7 @@ public final class SubMonitor extends AbstractMonitor {
 	 * 
 	 * @see org.eclipse.core.runtime.IProgressMonitor#isCanceled()
 	 */
+	@Override
 	public boolean isCanceled() {
 		return root.isCanceled();
 	}
@@ -609,9 +594,9 @@ public final class SubMonitor extends AbstractMonitor {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.core.runtime.IProgressMonitor#setTaskName(java.lang.String)
+	 * @see org.eclipse.core.runtime.IProgressMonitor#setTaskName(java.lang.String)
 	 */
+	@Override
 	public void setTaskName(final String name) {
 		if ((flags & SUPPRESS_SETTASKNAME) == 0) {
 			root.setTaskName(name);
@@ -624,15 +609,14 @@ public final class SubMonitor extends AbstractMonitor {
 	 * 
 	 * <p>
 	 * This method is equivalent calling setWorkRemaining(...) on the receiver.
-	 * Unless the SUPPRESS_BEGINTASK flag is set, this will also be equivalent
-	 * to calling setTaskName(...) on the parent.
+	 * Unless the SUPPRESS_BEGINTASK flag is set, this will also be equivalent to
+	 * calling setTaskName(...) on the parent.
 	 * </p>
 	 * 
-	 * @param name
-	 *            new main task name
-	 * @param totalWork
-	 *            number of ticks to allocate
+	 * @param name      new main task name
+	 * @param totalWork number of ticks to allocate
 	 */
+	@Override
 	public void beginTask(final String name, final int totalWork) {
 		if ((flags & SUPPRESS_BEGINTASK) == 0 && name != null) {
 			root.setTaskName(name);
@@ -645,6 +629,7 @@ public final class SubMonitor extends AbstractMonitor {
 	 * 
 	 * @see org.eclipse.core.runtime.IProgressMonitor#done()
 	 */
+	@Override
 	public void done() {
 		cleanupActiveChild();
 		final int delta = totalParent - usedForParent;
@@ -677,6 +662,7 @@ public final class SubMonitor extends AbstractMonitor {
 	 * 
 	 * @see org.eclipse.core.runtime.IProgressMonitor#subTask(java.lang.String)
 	 */
+	@Override
 	public void subTask(final String name) {
 		if ((flags & SUPPRESS_SUBTASK) == 0) {
 			root.subTask(name);
@@ -688,6 +674,7 @@ public final class SubMonitor extends AbstractMonitor {
 	 * 
 	 * @see org.eclipse.core.runtime.IProgressMonitor#worked(int)
 	 */
+	@Override
 	public void worked(final int work) {
 		internalWorked(work);
 	}
@@ -697,30 +684,30 @@ public final class SubMonitor extends AbstractMonitor {
 	 * 
 	 * @see org.eclipse.core.runtime.IProgressMonitor#setCanceled(boolean)
 	 */
+	@Override
 	public void setCanceled(final boolean b) {
 		root.setCanceled(b);
 	}
 
 	/**
 	 * <p>
-	 * Creates a sub progress monitor that will consume the given number of
-	 * ticks from the receiver. It is not necessary to call
-	 * <code>beginTask</code> or <code>done</code> on the result. However, the
-	 * resulting progress monitor will not report any work after the first call
-	 * to done() or before ticks are allocated. Ticks may be allocated by
-	 * calling beginTask or setWorkRemaining.
+	 * Creates a sub progress monitor that will consume the given number of ticks
+	 * from the receiver. It is not necessary to call <code>beginTask</code> or
+	 * <code>done</code> on the result. However, the resulting progress monitor will
+	 * not report any work after the first call to done() or before ticks are
+	 * allocated. Ticks may be allocated by calling beginTask or setWorkRemaining.
 	 * </p>
 	 * 
 	 * <p>
-	 * Each SubMonitor only has one active child at a time. Each time newChild()
-	 * is called, the result becomes the new active child and any unused
-	 * progress from the previously-active child is consumed.
+	 * Each SubMonitor only has one active child at a time. Each time newChild() is
+	 * called, the result becomes the new active child and any unused progress from
+	 * the previously-active child is consumed.
 	 * </p>
 	 * 
 	 * <p>
 	 * This is property makes it unnecessary to call done() on a SubMonitor
-	 * instance, since child monitors are automatically cleaned up the next time
-	 * the parent is touched.
+	 * instance, since child monitors are automatically cleaned up the next time the
+	 * parent is touched.
 	 * </p>
 	 * 
 	 * <pre>
@@ -768,8 +755,7 @@ public final class SubMonitor extends AbstractMonitor {
 	 * </code>
 	 * </pre>
 	 * 
-	 * @param totalWork
-	 *            number of ticks to consume from the receiver
+	 * @param totalWork number of ticks to consume from the receiver
 	 * @return new sub progress monitor that may be used in place of a new
 	 *         SubMonitor
 	 */
@@ -779,24 +765,23 @@ public final class SubMonitor extends AbstractMonitor {
 
 	/**
 	 * <p>
-	 * Creates a sub progress monitor that will consume the given number of
-	 * ticks from the receiver. It is not necessary to call
-	 * <code>beginTask</code> or <code>done</code> on the result. However, the
-	 * resulting progress monitor will not report any work after the first call
-	 * to done() or before ticks are allocated. Ticks may be allocated by
-	 * calling beginTask or setWorkRemaining.
+	 * Creates a sub progress monitor that will consume the given number of ticks
+	 * from the receiver. It is not necessary to call <code>beginTask</code> or
+	 * <code>done</code> on the result. However, the resulting progress monitor will
+	 * not report any work after the first call to done() or before ticks are
+	 * allocated. Ticks may be allocated by calling beginTask or setWorkRemaining.
 	 * </p>
 	 * 
 	 * <p>
-	 * Each SubMonitor only has one active child at a time. Each time newChild()
-	 * is called, the result becomes the new active child and any unused
-	 * progress from the previously-active child is consumed.
+	 * Each SubMonitor only has one active child at a time. Each time newChild() is
+	 * called, the result becomes the new active child and any unused progress from
+	 * the previously-active child is consumed.
 	 * </p>
 	 * 
 	 * <p>
 	 * This is property makes it unnecessary to call done() on a SubMonitor
-	 * instance, since child monitors are automatically cleaned up the next time
-	 * the parent is touched.
+	 * instance, since child monitors are automatically cleaned up the next time the
+	 * parent is touched.
 	 * </p>
 	 * 
 	 * <pre>
@@ -844,10 +829,8 @@ public final class SubMonitor extends AbstractMonitor {
 	 * </code>
 	 * </pre>
 	 * 
-	 * @param totalWork
-	 *            number of ticks to consume from the receiver
-	 * @param suppressFlags
-	 *            Modus der Filterung
+	 * @param totalWork     number of ticks to consume from the receiver
+	 * @param suppressFlags Modus der Filterung
 	 * @return new sub progress monitor that may be used in place of a new
 	 *         SubMonitor
 	 */

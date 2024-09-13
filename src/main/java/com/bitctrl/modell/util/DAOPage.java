@@ -123,9 +123,10 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	 * @return die Daten oder Subpages.
 	 * @throws DAOException bei einem Fehler.
 	 */
+	@Override
 	public List<?> getElements() throws DAOException {
 		if (isSubpage()) {
-			final List<Object> subpages = new ArrayList<Object>();
+			final List<Object> subpages = new ArrayList<>();
 
 			long subFrom = from;
 			final long subCount = to - from;
@@ -175,10 +176,12 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		return dao.retrieve(criteriaWithLimit);
 	}
 
+	@Override
 	public Class<?> getLeafElementsType() {
 		return dao.getPersistentClass();
 	}
 
+	@Override
 	public DAOCriterion[] getLeafElementsCriteriaWithLimit(final int index) {
 		final DAOCriterion[] criteriaWithLimit = new DAOCriterion[criteria.length + 1];
 		System.arraycopy(criteria, 0, criteriaWithLimit, 0, criteria.length);
@@ -195,6 +198,7 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		return (int) (to - from);
 	}
 
+	@Override
 	public int getLeafElementsCount() {
 		return getPageSize();
 	}
@@ -228,8 +232,7 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		if (this == obj) {
 			return true;
 		}
-		if (obj instanceof DAOPage) {
-			final DAOPage other = (DAOPage) obj;
+		if (obj instanceof final DAOPage other) {
 			return Objects.equals(dao.getClass(), other.dao.getClass()) && from == other.from && to == other.to;
 		}
 		return false;
@@ -245,6 +248,7 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	 * 
 	 * Vergleicht gegen nur die Werte von {@code from} dieser und der anderen Page.
 	 */
+	@Override
 	public int compareTo(final DAOPage o) {
 		return Long.compare(from, o.from);
 	}

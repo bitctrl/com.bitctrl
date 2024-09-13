@@ -38,22 +38,27 @@ public abstract class AbstractCommand implements Command {
 	private final EventListenerList listener = new EventListenerList();
 	private boolean canceled = false;
 
+	@Override
 	public void exec() {
 		new Thread(this, toString()).start();
 	}
 
+	@Override
 	public void cancel() {
 		canceled = true;
 	}
 
+	@Override
 	public boolean isCanceled() {
 		return canceled;
 	}
 
+	@Override
 	public void addCommandFinishedListener(final CommandFinishedListener l) {
 		listener.add(CommandFinishedListener.class, l);
 	}
 
+	@Override
 	public void removeCommandFinishedListener(final CommandFinishedListener l) {
 		listener.remove(CommandFinishedListener.class, l);
 	}
@@ -61,18 +66,13 @@ public abstract class AbstractCommand implements Command {
 	/**
 	 * Informiert die angemeldeten Listener über das Ende des Befehls.
 	 * 
-	 * @param successful
-	 *            {@code true}, wenn der Befehl erfolgreich beendet wurde.
-	 * @param message
-	 *            eine Vollzugsmittuilung oder Fehlernachricht.
+	 * @param successful {@code true}, wenn der Befehl erfolgreich beendet wurde.
+	 * @param message    eine Vollzugsmittuilung oder Fehlernachricht.
 	 */
-	protected void fireCommandFinished(final boolean successful,
-			final String message) {
-		final CommandFinishedEvent e = new CommandFinishedEvent(this,
-				successful, message);
+	protected void fireCommandFinished(final boolean successful, final String message) {
+		final CommandFinishedEvent e = new CommandFinishedEvent(this, successful, message);
 
-		for (final CommandFinishedListener l : listener
-				.getListeners(CommandFinishedListener.class)) {
+		for (final CommandFinishedListener l : listener.getListeners(CommandFinishedListener.class)) {
 			l.commandFinished(e);
 		}
 	}

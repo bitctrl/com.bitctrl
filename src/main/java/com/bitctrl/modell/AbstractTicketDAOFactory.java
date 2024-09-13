@@ -36,6 +36,7 @@ public abstract class AbstractTicketDAOFactory extends AbstractDAOFactory implem
 
 	private DAOTicket ticket;
 
+	@Override
 	public DAOTicket getTicket() {
 		return ticket;
 	}

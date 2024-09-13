@@ -39,8 +39,7 @@ public interface BeanListener extends EventListener {
 	/**
 	 * Informiert einen Listener über die Propertyänderung an einer Bean.
 	 * 
-	 * @param e
-	 *            das Event.
+	 * @param e das Event.
 	 */
 	void beanChanged(BeanEvent e);
 

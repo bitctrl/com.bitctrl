@@ -39,7 +39,7 @@ public class DAOEvent extends EventObject {
 	private static final long serialVersionUID = 1;
 
 	/** Die Typen einer Änderung. */
-	public static enum Type {
+	public enum Type {
 
 		/** Hinzufügen. */
 		Add,

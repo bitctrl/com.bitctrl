@@ -45,23 +45,20 @@ import java.util.jar.JarFile;
 public final class Classpath {
 
 	/**
-	 * Sucht alle Klassen aus einem Jar-File heraus. Optional kann die Suche mit
-	 * dem Package-Namen eingeschränkt werden.
+	 * Sucht alle Klassen aus einem Jar-File heraus. Optional kann die Suche mit dem
+	 * Package-Namen eingeschränkt werden.
 	 * 
-	 * @param jar
-	 *            ein Jar-File.
-	 * @param packageName
-	 *            das Package desses Klassen gesucht werden sollen. Subpackages
-	 *            werden mit einbezogen. Wenn {@code null}, dann werden alle
-	 *            Klassen ohne Einschränkung gesucht.
+	 * @param jar         ein Jar-File.
+	 * @param packageName das Package desses Klassen gesucht werden sollen.
+	 *                    Subpackages werden mit einbezogen. Wenn {@code null}, dann
+	 *                    werden alle Klassen ohne Einschränkung gesucht.
 	 * @return die Liste der enthaltenen Klassen.
 	 */
-	public static List<Class<?>> findClasses(final JarFile jar,
-			final String packageName) {
+	public static List<Class<?>> findClasses(final JarFile jar, final String packageName) {
 		Enumeration<JarEntry> enumeration;
 		Set<Class<?>> classes;
 
-		classes = new HashSet<Class<?>>();
+		classes = new HashSet<>();
 		enumeration = jar.entries();
 		while (enumeration.hasMoreElements()) {
 			String filename;
@@ -73,8 +70,7 @@ public final class Classpath {
 				try {
 					Class<?> c;
 
-					c = Class.forName(filename, false, ClassLoader
-							.getSystemClassLoader());
+					c = Class.forName(filename, false, ClassLoader.getSystemClassLoader());
 					if (packageName != null) {
 						if (c.getPackage().getName().startsWith(packageName)) {
 							classes.add(c);
@@ -88,34 +84,29 @@ public final class Classpath {
 			}
 		}
 
-		return new ArrayList<Class<?>>(classes);
+		return new ArrayList<>(classes);
 	}
 
 	/**
 	 * Sucht alle Klassen in einem Package heraus.
 	 * 
-	 * @param packageName
-	 *            der Name eines Packages.
-	 * @param recursively
-	 *            {@code true}, wenn das Package rekursiv durchsucht werden
-	 *            soll.
+	 * @param packageName der Name eines Packages.
+	 * @param recursively {@code true}, wenn das Package rekursiv durchsucht werden
+	 *                    soll.
 	 * @return die Liste der gefundenen Klasse.
 	 */
-	public static List<Class<?>> findClasses(final String packageName,
-			final boolean recursively) {
+	public static List<Class<?>> findClasses(final String packageName, final boolean recursively) {
 		final ArrayList<File> directories;
 		final Enumeration<URL> resources;
 		final Set<Class<?>> classes;
 
-		classes = new HashSet<Class<?>>();
+		classes = new HashSet<>();
 
 		try {
-			resources = ClassLoader.getSystemResources(packageName.replace('.',
-					'/'));
-			directories = new ArrayList<File>();
+			resources = ClassLoader.getSystemResources(packageName.replace('.', '/'));
+			directories = new ArrayList<>();
 			while (resources.hasMoreElements()) {
-				directories.add(new File(URLDecoder.decode(resources
-						.nextElement().getPath(), "UTF-8")));
+				directories.add(new File(URLDecoder.decode(resources.nextElement().getPath(), "UTF-8")));
 			}
 
 			for (final File directory : directories) {
@@ -126,8 +117,7 @@ public final class Classpath {
 				if (path.contains(".jar!")) {
 					JarFile jar;
 
-					jar = new JarFile(path.substring(path.indexOf("file:") + 6,
-							path.indexOf(".jar!") + 4));
+					jar = new JarFile(path.substring(path.indexOf("file:") + 6, path.indexOf(".jar!") + 4));
 					classes.addAll(findClasses(jar, packageName));
 				} else {
 					files = directory.listFiles();
@@ -140,32 +130,20 @@ public final class Classpath {
 								if (filename.endsWith(".class")) {
 									final String classpath;
 
-									classpath = packageName
-											+ '.'
-											+ filename.substring(0, filename
-													.length() - 6);
-									classes
-											.add(Class
-													.forName(
-															classpath,
-															false,
-															ClassLoader
-																	.getSystemClassLoader()));
+									classpath = packageName + '.' + filename.substring(0, filename.length() - 6);
+									classes.add(Class.forName(classpath, false, ClassLoader.getSystemClassLoader()));
 								}
 							} else if (recursively && file.isDirectory()) {
-								classes.addAll(findClasses(packageName + "."
-										+ file.getName(), true));
+								classes.addAll(findClasses(packageName + "." + file.getName(), true));
 							}
 						}
 					}
 				}
 			}
-		} catch (final Exception ex) {
-			System.err.println(ex);
-		} catch (final Error err) {
+		} catch (final Exception | Error err) {
 			System.err.println(err);
 		}
-		return new ArrayList<Class<?>>(classes);
+		return new ArrayList<>(classes);
 	}
 
 	private Classpath() {

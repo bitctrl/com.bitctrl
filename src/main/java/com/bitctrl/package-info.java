@@ -30,4 +30,3 @@
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
 package com.bitctrl;
-

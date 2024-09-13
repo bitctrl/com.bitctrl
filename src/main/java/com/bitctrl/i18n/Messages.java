@@ -37,20 +37,17 @@ import java.util.Locale;
 public final class Messages {
 
 	/**
-	 * Ersetzt in einer Meldung die enthaltenen Variablen und gibt sie
-	 * lokalisiert zurück. Eine Meldung mit Variablen hat die Form <code>text {0} text {1}"</code>
-	 * . <code>{...}</code> wird durch den Inhalt der übergebenen Argumente
-	 * ersetzt.
+	 * Ersetzt in einer Meldung die enthaltenen Variablen und gibt sie lokalisiert
+	 * zurück. Eine Meldung mit Variablen hat die Form
+	 * <code>text {0} text {1}"</code> . <code>{...}</code> wird durch den Inhalt
+	 * der übergebenen Argumente ersetzt.
 	 * 
-	 * @param key
-	 *            der Typ der Meldung.
-	 * @param arguments
-	 *            die Argumente, mit denen die Variaben in der Meldung ersetzt
-	 *            werden sollen.
+	 * @param key       der Typ der Meldung.
+	 * @param arguments die Argumente, mit denen die Variaben in der Meldung ersetzt
+	 *                  werden sollen.
 	 * @return die lokalisierte Meldung.
 	 */
-	public static String get(final MessageHandler key,
-			final Object... arguments) {
+	public static String get(final MessageHandler key, final Object... arguments) {
 		final String txt = key.getResourceBundle().getString(key.name());
 
 		if (arguments != null) {
@@ -61,22 +58,18 @@ public final class Messages {
 	}
 
 	/**
-	 * Ersetzt in einer Meldung die enthaltenen Variablen und gibt sie
-	 * lokalisiert zurück. Eine Meldung mit Variablen hat die Form <code>text {0} text {1}"</code>
-	 * . <code>{...}</code> wird durch den Inhalt der übergebenen Argumente
-	 * ersetzt.
+	 * Ersetzt in einer Meldung die enthaltenen Variablen und gibt sie lokalisiert
+	 * zurück. Eine Meldung mit Variablen hat die Form
+	 * <code>text {0} text {1}"</code> . <code>{...}</code> wird durch den Inhalt
+	 * der übergebenen Argumente ersetzt.
 	 * 
-	 * @param key
-	 *            der Typ der Meldung.
-	 * @param locale
-	 *            die Sprache der Meldung.
-	 * @param arguments
-	 *            die Argumente, mit denen die Variaben in der Meldung ersetzt
-	 *            werden sollen.
+	 * @param key       der Typ der Meldung.
+	 * @param locale    die Sprache der Meldung.
+	 * @param arguments die Argumente, mit denen die Variaben in der Meldung ersetzt
+	 *                  werden sollen.
 	 * @return die lokalisierte Meldung.
 	 */
-	public static String get(final MessageHandler2 key, final Locale locale,
-			final Object... arguments) {
+	public static String get(final MessageHandler2 key, final Locale locale, final Object... arguments) {
 		final String txt = key.getResourceBundle(locale).getString(key.name());
 
 		if (arguments != null) {

@@ -30,10 +30,8 @@ package com.bitctrl.util.resultset;
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
  * 
- * @param <T>
- *            der Typ des individuellen Ergebnis, z.B. Long
- * @param <B>
- *            der Typ des zugrunde liegenden Datensatzes, z.B. SQLRow
+ * @param <T> der Typ des individuellen Ergebnis, z.B. Long
+ * @param <B> der Typ des zugrunde liegenden Datensatzes, z.B. SQLRow
  */
 public interface IIndividualResult<T, B> {
 
@@ -45,11 +43,11 @@ public interface IIndividualResult<T, B> {
 	T getCurrentValue();
 
 	/**
-	 * Liefert den kompletten Datensatz, aus dem getCurrentValue() extrahiert
-	 * wurde. Die Methode dient dazu, in Systemen, auf denen man sich nicht auf
-	 * einen individuellen Datenpunkt anmelden kann, das zugrundeliegende
-	 * Datenobjekt zu bekommen (z.B. eine Data oder ResultData im Datenverteiler
-	 * oder eine SQL-Row bei einer Datenbank.
+	 * Liefert den kompletten Datensatz, aus dem getCurrentValue() extrahiert wurde.
+	 * Die Methode dient dazu, in Systemen, auf denen man sich nicht auf einen
+	 * individuellen Datenpunkt anmelden kann, das zugrundeliegende Datenobjekt zu
+	 * bekommen (z.B. eine Data oder ResultData im Datenverteiler oder eine SQL-Row
+	 * bei einer Datenbank.
 	 * 
 	 * @return der Basiswert.
 	 */

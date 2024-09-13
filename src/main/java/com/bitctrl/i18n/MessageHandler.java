@@ -48,9 +48,8 @@ public interface MessageHandler {
 	 * Gibt das Resource-Bundle für diesen Message-Handler in der entsprechenden
 	 * Sprache zurück.
 	 * 
-	 * @param locale
-	 *            Die Sprache in der das Resource-Bundle zurückgegeben werden
-	 *            soll.
+	 * @param locale Die Sprache in der das Resource-Bundle zurückgegeben werden
+	 *               soll.
 	 * 
 	 * @return Das Resource-Bundle.
 	 */
@@ -67,11 +66,12 @@ public interface MessageHandler {
 	String name();
 
 	/**
-	 * Gibt die Nachricht als Text zurück. Eventuell vorhandene Platzhalter
-	 * werden nicht ersetzt und bleiben erhalten.
+	 * Gibt die Nachricht als Text zurück. Eventuell vorhandene Platzhalter werden
+	 * nicht ersetzt und bleiben erhalten.
 	 * 
 	 * @return die Nachricht.
 	 */
+	@Override
 	String toString();
 
 }

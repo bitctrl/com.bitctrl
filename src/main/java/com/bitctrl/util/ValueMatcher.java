@@ -29,7 +29,6 @@ package com.bitctrl.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import com.bitctrl.Constants;
@@ -41,16 +40,14 @@ import com.bitctrl.Constants;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <T>
- *            der Typ der zu prüfenden Werte.
+ * @param <T> der Typ der zu prüfenden Werte.
  */
 public interface ValueMatcher<T> {
 
 	/**
 	 * Für Instanzen dieser Klasse matchen alle Werte.
 	 * 
-	 * @param <T>
-	 *            der Typ der zu prüfenden Werte.
+	 * @param <T> der Typ der zu prüfenden Werte.
 	 */
 	static class AlwaysMatcher<T> implements ValueMatcher<T> {
 
@@ -59,6 +56,7 @@ public interface ValueMatcher<T> {
 		 * 
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean match(final T value) {
 			return true;
 		}
@@ -68,8 +66,7 @@ public interface ValueMatcher<T> {
 	/**
 	 * Für Instanzen dieser Klasse matchen alle Werte ungleich {@code null}.
 	 * 
-	 * @param <T>
-	 *            der Typ der zu prüfenden Werte.
+	 * @param <T> der Typ der zu prüfenden Werte.
 	 */
 	static class NotNullMatcher<T> implements ValueMatcher<T> {
 
@@ -78,6 +75,7 @@ public interface ValueMatcher<T> {
 		 * 
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean match(final T value) {
 			return value != null;
 		}
@@ -85,46 +83,43 @@ public interface ValueMatcher<T> {
 	}
 
 	/**
-	 * Instanzen dieser Klassen prüfen anhand einer {@link Collection} oder
-	 * eines Feldes, ob Werte matchen. Alle in der Menge enthalten Werte
-	 * matchen, alle nicht enthaltenen matchen nicht.
+	 * Instanzen dieser Klassen prüfen anhand einer {@link Collection} oder eines
+	 * Feldes, ob Werte matchen. Alle in der Menge enthalten Werte matchen, alle
+	 * nicht enthaltenen matchen nicht.
 	 * 
-	 * @param <T>
-	 *            der Typ der zu prüfenden Werte.
+	 * @param <T> der Typ der zu prüfenden Werte.
 	 */
 	static class CollectionValueMatcher<T> implements ValueMatcher<T> {
 
 		private final Collection<T> collection;
 
 		/**
-		 * Verwendet die übergebene {@link Collection} zum matchen. Es wird nur
-		 * die Referenz der {@link Collection} benutzt und keine Kopien
-		 * erstellt.
+		 * Verwendet die übergebene {@link Collection} zum matchen. Es wird nur die
+		 * Referenz der {@link Collection} benutzt und keine Kopien erstellt.
 		 * 
-		 * @param collection
-		 *            eine beliebige Collection.
+		 * @param collection eine beliebige Collection.
 		 */
 		public CollectionValueMatcher(final Collection<T> collection) {
 			this.collection = collection;
 		}
 
 		/**
-		 * Verwendet eine Feld zum matchen. Das Feld intern als
-		 * {@link java.util.List} gehalten.
+		 * Verwendet eine Feld zum matchen. Das Feld intern als {@link java.util.List}
+		 * gehalten.
 		 * 
-		 * @param values
-		 *            ein beliebiges Feld.
+		 * @param values ein beliebiges Feld.
 		 */
 		public CollectionValueMatcher(final T... values) {
 			collection = Arrays.asList(values);
 		}
 
 		/**
-		 * Gibt {@code true}, wenn der Wert in der {@code Collection} enthalten
-		 * ist und {@code false}, wenn der Wert nicht enthalten ist.
+		 * Gibt {@code true}, wenn der Wert in der {@code Collection} enthalten ist und
+		 * {@code false}, wenn der Wert nicht enthalten ist.
 		 * 
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean match(final T value) {
 			return collection.contains(value);
 		}
@@ -146,11 +141,9 @@ public interface ValueMatcher<T> {
 	 * Für Instanzen dieser Klasse matchen alle Werte, für die alle gekapselten
 	 * {@link ValueMatcher} matchen.
 	 * 
-	 * @param <T>
-	 *            der Typ der zu prüfenden Werte.
+	 * @param <T> der Typ der zu prüfenden Werte.
 	 */
-	static class ComplexMatcher<T> extends ArrayList<ValueMatcher<T>> implements
-			ValueMatcher<T> {
+	static class ComplexMatcher<T> extends ArrayList<ValueMatcher<T>> implements ValueMatcher<T> {
 
 		private static final long serialVersionUID = 1L;
 
@@ -160,10 +153,10 @@ public interface ValueMatcher<T> {
 		 * Gibt nur dann {@code false} zurück, wenn mindestens ein registrierter
 		 * {@code ValueMatcher} nicht matcht.
 		 */
+		@Override
 		public boolean match(final T value) {
-			final Iterator<ValueMatcher<T>> iterator = iterator();
-			while (iterator.hasNext()) {
-				if (!iterator.next().match(value)) {
+			for (ValueMatcher<T> element : this) {
+				if (!element.match(value)) {
 					return false;
 				}
 			}
@@ -181,9 +174,10 @@ public interface ValueMatcher<T> {
 		/**
 		 * {@inheritDoc}
 		 * 
-		 * Gibt {@code true} zurück, wenn der Wert ungleich {@code null} und
-		 * ungleich {@code ""} ist.
+		 * Gibt {@code true} zurück, wenn der Wert ungleich {@code null} und ungleich
+		 * {@code ""} ist.
 		 */
+		@Override
 		public boolean match(final String value) {
 			return value != null && value.length() > 0;
 		}
@@ -201,28 +195,29 @@ public interface ValueMatcher<T> {
 		 * Gibt {@code true} zurück, wenn der Wert eine gültige E-Mail-Adresse
 		 * darstellt.
 		 */
+		@Override
 		public boolean match(final String value) {
-			return value != null
-					&& Pattern.matches(Constants.REGEX_MAIL, value);
+			return value != null && Pattern.matches(Constants.REGEX_MAIL, value);
 		}
 	}
 
 	/**
-	 * Für Instanzen dieser Klasse matchen alle Werte, die zu gültige Password
-	 * (mind 6 Zeichen, 2 davon digits) darstellen.
+	 * Für Instanzen dieser Klasse matchen alle Werte, die zu gültige Password (mind
+	 * 6 Zeichen, 2 davon digits) darstellen.
 	 */
 	static class PasswdMatcher implements ValueMatcher<String> {
 
+		@Override
 		public boolean match(final String value) {
-		return value != null && Pattern.matches("^[a-zA-Z0-9]{6,}$", value) //$NON-NLS-1$
-				&& Pattern.matches(".*[0-9].*[0-9].*", value); //$NON-NLS-1$
+			return value != null && Pattern.matches("^[a-zA-Z0-9]{6,}$", value) //$NON-NLS-1$
+					&& Pattern.matches(".*[0-9].*[0-9].*", value); //$NON-NLS-1$
 
 		}
 	}
 
 	/**
-	 * Für Instanzen dieser Klasse matchen alle Werte, die mit einem
-	 * festgelegten regulären matchen.
+	 * Für Instanzen dieser Klasse matchen alle Werte, die mit einem festgelegten
+	 * regulären matchen.
 	 */
 	static class RegExMatcher implements ValueMatcher<String> {
 
@@ -231,8 +226,7 @@ public interface ValueMatcher<T> {
 		/**
 		 * Legt den regulären Ausdruck fest, gegen den geprüft werden soll.
 		 * 
-		 * @param regex
-		 *            ein regulärer Ausdruck.
+		 * @param regex ein regulärer Ausdruck.
 		 */
 		public RegExMatcher(final String regex) {
 			this.regex = regex;
@@ -241,9 +235,10 @@ public interface ValueMatcher<T> {
 		/**
 		 * {@inheritDoc}
 		 * 
-		 * Gibt {@code true} zurück, wenn der Wert mit dem festgelegtem
-		 * regulären Ausdruck matcht.
+		 * Gibt {@code true} zurück, wenn der Wert mit dem festgelegtem regulären
+		 * Ausdruck matcht.
 		 */
+		@Override
 		public boolean match(final String value) {
 			return value != null && Pattern.matches(regex, value);
 		}
@@ -253,8 +248,7 @@ public interface ValueMatcher<T> {
 	 * Für Instanzen dieser Klasse matchen alle Werte, die in einem festgelegten
 	 * Intervall liegen. Die Intervallgrenzen gehören mit zu dem Intervall.
 	 * 
-	 * @param <T>
-	 *            der Typ der zu prüfenden Werte.
+	 * @param <T> der Typ der zu prüfenden Werte.
 	 */
 	static class RangeMatcher<T> implements ValueMatcher<T> {
 
@@ -264,10 +258,8 @@ public interface ValueMatcher<T> {
 		/**
 		 * Definiert das Intervall.
 		 * 
-		 * @param min
-		 *            das Minimum des Intervalls.
-		 * @param max
-		 *            das Maximum des Intervalls.
+		 * @param min das Minimum des Intervalls.
+		 * @param max das Maximum des Intervalls.
 		 */
 		public RangeMatcher(final Comparable<T> min, final Comparable<T> max) {
 			this.min = min;
@@ -277,12 +269,12 @@ public interface ValueMatcher<T> {
 		/**
 		 * {@inheritDoc}
 		 * 
-		 * Gibt {@code true} zurück, wenn der Wert innerhalb des definierten
-		 * Intervalls oder auf einer seiner Grenzen liegt.
+		 * Gibt {@code true} zurück, wenn der Wert innerhalb des definierten Intervalls
+		 * oder auf einer seiner Grenzen liegt.
 		 */
+		@Override
 		public boolean match(final T value) {
-			return value != null && min.compareTo(value) <= 0
-					&& max.compareTo(value) >= 0;
+			return value != null && min.compareTo(value) <= 0 && max.compareTo(value) >= 0;
 		}
 	}
 
@@ -290,8 +282,7 @@ public interface ValueMatcher<T> {
 	 * Gibt {@code true} zurück, wenn der übergebene Wert matcht und {@code
 	 * false}, wenn er nicht matcht.
 	 * 
-	 * @param value
-	 *            ein beliebiger Wert.
+	 * @param value ein beliebiger Wert.
 	 * @return ob der Wert matcht.
 	 */
 	boolean match(T value);

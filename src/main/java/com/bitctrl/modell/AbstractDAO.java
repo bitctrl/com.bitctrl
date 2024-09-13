@@ -59,14 +59,17 @@ public abstract class AbstractDAO<T, ID> implements DAO<T, ID> {
 		keyClass = (Class<ID>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 	}
 
+	@Override
 	public Class<T> getPersistentClass() {
 		return persistentClass;
 	}
 
+	@Override
 	public Class<ID> getKeyClass() {
 		return keyClass;
 	}
 
+	@Override
 	public OrderDAOCriterion[] getDefaultOrder() {
 		return defaultOrder != null ? defaultOrder : new OrderDAOCriterion[0];
 	}
@@ -80,10 +83,12 @@ public abstract class AbstractDAO<T, ID> implements DAO<T, ID> {
 		this.defaultOrder = defaultOrder;
 	}
 
+	@Override
 	public void addDAOListener(final DAOListener l) {
 		listenerList.add(DAOListener.class, l);
 	}
 
+	@Override
 	public void removeDAOListener(final DAOListener l) {
 		listenerList.remove(DAOListener.class, l);
 	}

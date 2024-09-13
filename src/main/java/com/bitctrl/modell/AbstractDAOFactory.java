@@ -37,7 +37,7 @@ import java.util.Map;
 @Deprecated(since = "3.0.0", forRemoval = true)
 public abstract class AbstractDAOFactory implements DAOFactory {
 
-	private final Map<Class<?>, DAO<?, ?>> daoCache = new HashMap<Class<?>, DAO<?, ?>>();
+	private final Map<Class<?>, DAO<?, ?>> daoCache = new HashMap<>();
 
 	/**
 	 * {@inheritDoc}
@@ -48,6 +48,7 @@ public abstract class AbstractDAOFactory implements DAOFactory {
 	 * 
 	 * @see #doFindDAO(Class)
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> DAO<T, ?> findDAO(final Class<T> type) {
 		if (!daoCache.containsKey(type)) {
@@ -72,6 +73,7 @@ public abstract class AbstractDAOFactory implements DAOFactory {
 	 * 
 	 * Prüft ob {@link #findDAO(Class)} einen Wert ungleich {@code null} zurückgibt.
 	 */
+	@Override
 	public boolean isDataObject(final Object object) {
 		return findDAO(object.getClass()) != null;
 	}

@@ -47,6 +47,7 @@ public interface TicketDAOFactory extends DAOFactory {
 	 * 
 	 * Ändert den Rückgabewert auf {@link TicketDAO}.
 	 */
+	@Override
 	<T> TicketDAO<T, ?> findDAO(Class<T> type);
 
 }

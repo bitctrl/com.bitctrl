@@ -51,15 +51,14 @@ public class Triple<A, B, C> {
 	 * @return das erzeugte Triple
 	 */
 	public static final <A, B, C> Triple<A, B, C> create(final A a, final B b, final C c) {
-		return new Triple<A, B, C>(a, b, c);
+		return new Triple<>(a, b, c);
 	}
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (!(obj instanceof Triple<?, ?, ?>)) {
+		if (!(obj instanceof final Triple<?, ?, ?> o2)) {
 			return false;
 		}
-		final Triple<?, ?, ?> o2 = (Triple<?, ?, ?>) obj;
 		return equals(a, o2.a) && equals(b, o2.b) && equals(c, o2.c);
 	}
 

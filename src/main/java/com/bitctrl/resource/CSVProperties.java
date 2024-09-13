@@ -41,7 +41,7 @@ public class CSVProperties {
 	private char escape = '"';
 	private String newline = "\r\n";
 	private boolean firstLineHeader = false;
-	private List<String> headers = new ArrayList<String>();
+	private List<String> headers = new ArrayList<>();
 
 	/**
 	 * Gibt das Trennzeichen der Spalten zurück.
@@ -55,16 +55,14 @@ public class CSVProperties {
 	/**
 	 * Legt das Trennzeichen für Spalten fest.
 	 * 
-	 * @param delimiter
-	 *            das Trennzeichen.
+	 * @param delimiter das Trennzeichen.
 	 */
 	public void setDelimiter(final char delimiter) {
 		this.delimiter = delimiter;
 	}
 
 	/**
-	 * Gibt das Zeichen zurück, mit dem Felder optional eingeschlossen sein
-	 * können.
+	 * Gibt das Zeichen zurück, mit dem Felder optional eingeschlossen sein können.
 	 * 
 	 * @return das Escapezeichen.
 	 */
@@ -75,8 +73,7 @@ public class CSVProperties {
 	/**
 	 * Legt fest mit welchem Zeichen Felder optional eingeschlossen sein können.
 	 * 
-	 * @param escape
-	 *            das Escapezeichen.
+	 * @param escape das Escapezeichen.
 	 */
 	public void setEscape(final char escape) {
 		this.escape = escape;
@@ -85,8 +82,7 @@ public class CSVProperties {
 	/**
 	 * Flag, ob die erste Zeile als Spaltenüberschrift interpretiert wird.
 	 * 
-	 * @return {@code true}, wenn die erste Zeile die Spaltenüberschriften
-	 *         enthält.
+	 * @return {@code true}, wenn die erste Zeile die Spaltenüberschriften enthält.
 	 */
 	public boolean isFirstLineHeader() {
 		return firstLineHeader;
@@ -95,9 +91,8 @@ public class CSVProperties {
 	/**
 	 * Flag, ob die erste Zeile als Spaltenüberschrift interpretiert wird.
 	 * 
-	 * @param firstLineHeader
-	 *            {@code true}, wenn die erste Zeile die Spaltenüberschriften
-	 *            enthält.
+	 * @param firstLineHeader {@code true}, wenn die erste Zeile die
+	 *                        Spaltenüberschriften enthält.
 	 */
 	public void setFirstLineHeader(final boolean firstLineHeader) {
 		this.firstLineHeader = firstLineHeader;
@@ -115,18 +110,16 @@ public class CSVProperties {
 	/**
 	 * Legt die Spaltenüberschriften fest.
 	 * 
-	 * @param header
-	 *            die Spaltenüberschrifen.
+	 * @param header die Spaltenüberschrifen.
 	 */
 	public void setHeader(final List<String> header) {
-		this.headers = new ArrayList<String>(header);
+		this.headers = new ArrayList<>(header);
 	}
 
 	/**
 	 * Bestimmt zu einer Spaltenüberschrift den Spaltenindex.
 	 * 
-	 * @param header
-	 *            der gesuchte Spaltenname.
+	 * @param header der gesuchte Spaltenname.
 	 * @return der dazugehörige Spaltenindex.
 	 */
 	public int getColumnIndex(final String header) {
@@ -136,8 +129,7 @@ public class CSVProperties {
 	/**
 	 * Bestimmt zu einem Spaltenindex die Spaltenüberschrift.
 	 * 
-	 * @param index
-	 *            der gesuchte Spaltenindex.
+	 * @param index der gesuchte Spaltenindex.
 	 * @return der dazugehörige Spaltenname.
 	 */
 	public String getHeader(final int index) {
@@ -145,10 +137,10 @@ public class CSVProperties {
 	}
 
 	/**
-	 * Gibt die zu verwendende Zeichenkette für den Zeilenumbruch zurück.
-	 * Funktionen die CSV-Daten lesen, sollten sich tolerant gegenüber dem
-	 * tatsächlichen Zeilenumbruch verhalten. Funktionen die CSV-Daten
-	 * schreiben, müssen den angegebenen Zeilenumbruch verwenden.
+	 * Gibt die zu verwendende Zeichenkette für den Zeilenumbruch zurück. Funktionen
+	 * die CSV-Daten lesen, sollten sich tolerant gegenüber dem tatsächlichen
+	 * Zeilenumbruch verhalten. Funktionen die CSV-Daten schreiben, müssen den
+	 * angegebenen Zeilenumbruch verwenden.
 	 * 
 	 * @return der Zeilenumbruch.
 	 */
@@ -159,8 +151,7 @@ public class CSVProperties {
 	/**
 	 * Legt den zu verwendenden Zeilenumbruch fest.
 	 * 
-	 * @param newline
-	 *            der gewünschte Zeilenumbruch.
+	 * @param newline der gewünschte Zeilenumbruch.
 	 * @see #getNewline()
 	 */
 	public void setNewline(final String newline) {

@@ -97,7 +97,7 @@ public final class DAOPaging {
 			throw new IllegalArgumentException("Page size must be greater than 0.");
 		}
 
-		final List<DAOPage> pages = new ArrayList<DAOPage>();
+		final List<DAOPage> pages = new ArrayList<>();
 		final long count = dao.count(criteria);
 
 		if (pageSize < count && createSubpages) {

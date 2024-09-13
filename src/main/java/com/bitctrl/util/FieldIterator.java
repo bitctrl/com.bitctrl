@@ -34,8 +34,7 @@ import java.util.NoSuchElementException;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <T>
- *            der Feldtyp.
+ * @param <T> der Feldtyp.
  * 
  * @deprecated use foreach loop
  */
@@ -48,17 +47,18 @@ public class FieldIterator<T> implements Iterator<T> {
 	/**
 	 * Initialisiert das Objekt, indem die Referenz gesichert wird.
 	 * 
-	 * @param data
-	 *            das Feld.
+	 * @param data das Feld.
 	 */
 	public FieldIterator(final T... data) {
 		this.data = data;
 	}
 
+	@Override
 	public boolean hasNext() {
 		return data != null ? cursor < data.length : false;
 	}
 
+	@Override
 	public T next() {
 		if (!hasNext()) {
 			throw new NoSuchElementException();
@@ -71,6 +71,7 @@ public class FieldIterator<T> implements Iterator<T> {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}

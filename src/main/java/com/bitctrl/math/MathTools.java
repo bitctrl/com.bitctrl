@@ -37,16 +37,12 @@ public final class MathTools {
 	 * Testet ob die zwei Werte ungefähr gleich sind. Die maximal erlaubte
 	 * Abweichung wird als dritter Parameter angegeben.
 	 * 
-	 * @param a
-	 *            ein Wert.
-	 * @param b
-	 *            ein zweiter Wert.
-	 * @param precision
-	 *            die maximal erlaubte Abweichung, z.&nbsp;B. 0.001.
+	 * @param a         ein Wert.
+	 * @param b         ein zweiter Wert.
+	 * @param precision die maximal erlaubte Abweichung, z.&nbsp;B. 0.001.
 	 * @return {@code true}, wenn die beiden Werte ungefähr gleich sind.
 	 */
-	public static boolean ca(final double a, final double b,
-			final double precision) {
+	public static boolean ca(final double a, final double b, final double precision) {
 		if (Math.abs(a - b) < precision) {
 			return true;
 		}
@@ -58,12 +54,9 @@ public final class MathTools {
 	 * Testet ob die zwei Werte ungefähr gleich sind. Die maximal erlaubte
 	 * Abweichung wird als dritter Parameter angegeben.
 	 * 
-	 * @param a
-	 *            ein Wert.
-	 * @param b
-	 *            ein zweiter Wert.
-	 * @param precision
-	 *            die maximal erlaubte Abweichung, z.&nbsp;B. 0.001.
+	 * @param a         ein Wert.
+	 * @param b         ein zweiter Wert.
+	 * @param precision die maximal erlaubte Abweichung, z.&nbsp;B. 0.001.
 	 * @return {@code true}, wenn die beiden Werte ungefähr gleich sind.
 	 */
 	public static boolean ca(final float a, final float b, final float precision) {

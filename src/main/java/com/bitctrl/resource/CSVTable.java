@@ -48,8 +48,8 @@ import java.util.regex.Pattern;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * TODO Schreiben implementieren 
- * TODO Weitere CSV-Eigenschaften hinzufügen
+ *         TODO Schreiben implementieren TODO Weitere CSV-Eigenschaften
+ *         hinzufügen
  */
 public class CSVTable {
 
@@ -61,16 +61,13 @@ public class CSVTable {
 	private List<String> header;
 	private String delimiter = DEFAULT_DELIMITER;
 	private Scanner lineScanner;
-	private long lineCounter = 0;
 
 	/**
 	 * Öffnet eine CSV-Datei unter Verwendung der Standardeinstellungen.
 	 * 
-	 * @param in
-	 *            der Eingabestrom.
-	 * @param firstLineIsHeader
-	 *            {@code true}, wenn die erste Zeile die Spaltenüberschriften
-	 *            enthält.
+	 * @param in                der Eingabestrom.
+	 * @param firstLineIsHeader {@code true}, wenn die erste Zeile die
+	 *                          Spaltenüberschriften enthält.
 	 */
 	public CSVTable(final InputStream in, final boolean firstLineIsHeader) {
 		scanner = new Scanner(in, Charset.defaultCharset().name());
@@ -81,10 +78,9 @@ public class CSVTable {
 	/**
 	 * Verwendet einen String als CSV-"Datei".
 	 * 
-	 * @param source
-	 *            die Eingangsdaten.
-	 * @param firstLineIsHeader
-	 *            {@code true}, wenn die erste Zeile die Spaltenüberschriften
+	 * @param source            die Eingangsdaten.
+	 * @param firstLineIsHeader {@code true}, wenn die erste Zeile die
+	 *                          Spaltenüberschriften
 	 */
 	public CSVTable(final String source, final boolean firstLineIsHeader) {
 		scanner = new Scanner(source);
@@ -162,8 +158,8 @@ public class CSVTable {
 	}
 
 	/**
-	 * Gibt die aktuelle Spalte als {@code int} zurück und rückt den
-	 * Spaltencursor weiter.
+	 * Gibt die aktuelle Spalte als {@code int} zurück und rückt den Spaltencursor
+	 * weiter.
 	 * 
 	 * @return der Spalteninhalt.
 	 */
@@ -181,15 +177,14 @@ public class CSVTable {
 		if (scanner.hasNextLine()) {
 			lineScanner = new Scanner(scanner.nextLine());
 			lineScanner.useDelimiter(delimiter);
-			++lineCounter;
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Gibt die aktuelle Spalte als {@code long} zurück und rückt den
-	 * Spaltencursor weiter.
+	 * Gibt die aktuelle Spalte als {@code long} zurück und rückt den Spaltencursor
+	 * weiter.
 	 * 
 	 * @return der Spalteninhalt.
 	 */
@@ -200,8 +195,7 @@ public class CSVTable {
 	/**
 	 * Legt das Trennzeichen der Spalten fest.
 	 * 
-	 * @param delimiter
-	 *            ein Trennzeichen.
+	 * @param delimiter ein Trennzeichen.
 	 */
 	public void setDelimiter(final String delimiter) {
 		this.delimiter = delimiter;
@@ -209,7 +203,7 @@ public class CSVTable {
 
 	private void setHeader() {
 		if (isFirstLineIsHeader() && header == null) {
-			header = new ArrayList<String>();
+			header = new ArrayList<>();
 			if (nextLine()) {
 				while (hasNext()) {
 					header.add(next());

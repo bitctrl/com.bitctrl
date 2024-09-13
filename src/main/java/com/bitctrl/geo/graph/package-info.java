@@ -31,7 +31,6 @@
  * genau einen Knoten von dem sie ausgeht und einen Knoten zu dem sie hinführt.
  * Ist eine Kante gerichtet, spricht man einem Bogen. Knoten besitzen eine
  * beliebig lange Liste von Ausgangsbögen und eine beliebige lange Liste von
- * Eingangsbögen. Jede der beiden Bögenlisten kann leer sein.  
+ * Eingangsbögen. Jede der beiden Bögenlisten kann leer sein.
  */
 package com.bitctrl.geo.graph;
-

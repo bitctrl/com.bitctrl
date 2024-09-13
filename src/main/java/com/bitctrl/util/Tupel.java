@@ -53,8 +53,7 @@ public class Tupel<S1, S2> {
 		if (obj == this) {
 			return true;
 		}
-		if (obj instanceof Tupel<?, ?>) {
-			final Tupel<?, ?> other = (Tupel<?, ?>) obj;
+		if (obj instanceof final Tupel<?, ?> other) {
 			boolean equals = true;
 			equals &= first != null && first.equals(other.first) || first == other.first;
 			equals &= second != null && second.equals(other.second) || second == other.second;

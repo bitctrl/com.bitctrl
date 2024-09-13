@@ -39,24 +39,21 @@ public abstract class AbstractCronJob implements Runnable {
 	private CronPattern pattern;
 
 	/**
-	 * Erzeugt einen neuen Cron-Job mit Standardnamen. Der Name des Jobs wird
-	 * durch die Job-ID gebildet.
+	 * Erzeugt einen neuen Cron-Job mit Standardnamen. Der Name des Jobs wird durch
+	 * die Job-ID gebildet.
 	 * 
-	 * @param pattern
-	 *            ein Cron-Pattern.
+	 * @param pattern ein Cron-Pattern.
 	 */
 	public AbstractCronJob(final CronPattern pattern) {
 		this(null, pattern);
 	}
 
 	/**
-	 * Erzeugt einen neuen Cron-Job. Die ID des Cron-Jobs wird fortlaufend
-	 * beginnend bei 1 gebildet.
+	 * Erzeugt einen neuen Cron-Job. Die ID des Cron-Jobs wird fortlaufend beginnend
+	 * bei 1 gebildet.
 	 * 
-	 * @param name
-	 *            der Name des Cron-Jobs.
-	 * @param pattern
-	 *            ein Cron-Pattern.
+	 * @param name    der Name des Cron-Jobs.
+	 * @param pattern ein Cron-Pattern.
 	 */
 	public AbstractCronJob(final String name, final CronPattern pattern) {
 		this.pattern = pattern;
@@ -82,8 +79,7 @@ public abstract class AbstractCronJob implements Runnable {
 	/**
 	 * Ändert das Pattern des Cron-Jobs.
 	 * 
-	 * @param pattern
-	 *            ein Cron-Pattern.
+	 * @param pattern ein Cron-Pattern.
 	 */
 	public void setPattern(final CronPattern pattern) {
 		this.pattern = pattern;

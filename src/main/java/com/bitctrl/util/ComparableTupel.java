@@ -15,16 +15,15 @@ import java.util.Comparator;
  * 
  * @author BitCtrl Systems GmbH, schnepel
  * 
- * @param <S1>
- *            Typ des ersten Elements des Tupels
- * @param <S2>
- *            Typ des zweiten Elements des Tupels
+ * @param <S1> Typ des ersten Elements des Tupels
+ * @param <S2> Typ des zweiten Elements des Tupels
  */
 @SuppressWarnings("unchecked")
 public class ComparableTupel<S1 extends Comparable<S1>, S2 extends Comparable<S2>> extends ComparatorTupel<S1, S2> {
 
 	private static class ComparableComparator<T extends Comparable<T>> implements Comparator<T> {
 
+		@Override
 		public int compare(final T a, final T b) {
 			if (a == b) {
 				return 0;
@@ -42,8 +41,7 @@ public class ComparableTupel<S1 extends Comparable<S1>, S2 extends Comparable<S2
 	/**
 	 * Gibt einen {@link Comparator} für {@link Comparable Comparables} zurück.
 	 * 
-	 * @param <T>
-	 *            Der {@link Comparable} Typ
+	 * @param <T> Der {@link Comparable} Typ
 	 * @return der {@link Comparator}
 	 */
 	public static <T extends Comparable<T>> Comparator<T> comparator() {
@@ -60,10 +58,8 @@ public class ComparableTupel<S1 extends Comparable<S1>, S2 extends Comparable<S2
 	/**
 	 * Konstruktor mit spezifischen Werten.
 	 * 
-	 * @param first
-	 *            der erste Wert des Tupels
-	 * @param second
-	 *            der zweite Wert des Tupels
+	 * @param first  der erste Wert des Tupels
+	 * @param second der zweite Wert des Tupels
 	 */
 	public ComparableTupel(final S1 first, final S2 second) {
 		super(first, second, COMPARATOR, COMPARATOR);

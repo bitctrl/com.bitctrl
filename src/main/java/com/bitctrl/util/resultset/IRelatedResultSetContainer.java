@@ -34,16 +34,14 @@ package com.bitctrl.util.resultset;
 public interface IRelatedResultSetContainer {
 
 	/**
-	 * Callback, wenn entweder alle Ergebnisse da sind oder der Timeout
-	 * abgelaufen ist.
+	 * Callback, wenn entweder alle Ergebnisse da sind oder der Timeout abgelaufen
+	 * ist.
 	 * 
-	 * Innerhalb des Callbacks kann man noch die individuellen Ergebnisse der
-	 * Werte feststellen, also welche Ergebnisse vor Ablauf des Timeouts kamen
-	 * und welche fehlten. Nach der R�ckkehr wird die Ergebnismenge
-	 * zur�ckgesetzt.
+	 * Innerhalb des Callbacks kann man noch die individuellen Ergebnisse der Werte
+	 * feststellen, also welche Ergebnisse vor Ablauf des Timeouts kamen und welche
+	 * fehlten. Nach der R�ckkehr wird die Ergebnismenge zur�ckgesetzt.
 	 * 
-	 * @param timeout
-	 *            true - Timeout abgelaufen
+	 * @param timeout true - Timeout abgelaufen
 	 */
 	void resultSetComplete(boolean timeout);
 }

@@ -34,8 +34,7 @@ import java.util.Iterator;
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
  * 
- * @param <T>
- *            der Typ der verwalteten Objekte
+ * @param <T> der Typ der verwalteten Objekte
  */
 public class LinearBuffer<T> implements Collection<T> {
 
@@ -47,22 +46,20 @@ public class LinearBuffer<T> implements Collection<T> {
 	/**
 	 * Legt ein Schieberegister mit bestimmter Größe an.
 	 * 
-	 * @param size
-	 *            die Größe in Anzahl Elementen. Muss größer 0 sein, sonst
-	 *            {@link IllegalArgumentException}.
+	 * @param size die Größe in Anzahl Elementen. Muss größer 0 sein, sonst
+	 *             {@link IllegalArgumentException}.
 	 */
 	public LinearBuffer(final int size) {
 		super();
 		if (size < 1) {
-			throw new IllegalArgumentException(
-					"Size must be at least 1 element.");
+			throw new IllegalArgumentException("Size must be at least 1 element.");
 		}
 		buffer = (T[]) new Object[size];
 	}
 
 	/**
-	 * Rotiert den Inhalt um eins nach rechts. Beispiel: Vor Aufruf: A - B - C
-	 * Nach Aufruf: C - A - B
+	 * Rotiert den Inhalt um eins nach rechts. Beispiel: Vor Aufruf: A - B - C Nach
+	 * Aufruf: C - A - B
 	 */
 	public void rotateRight() {
 		int loop;
@@ -74,8 +71,8 @@ public class LinearBuffer<T> implements Collection<T> {
 	}
 
 	/**
-	 * Schiebt den Inhalt um eins nach rechts. Beispiel: Vor Aufruf: A - B - C
-	 * Nach Aufruf: null - A - B
+	 * Schiebt den Inhalt um eins nach rechts. Beispiel: Vor Aufruf: A - B - C Nach
+	 * Aufruf: null - A - B
 	 */
 	public void shiftRight() {
 		rotateRight();
@@ -85,9 +82,9 @@ public class LinearBuffer<T> implements Collection<T> {
 	/**
 	 * Fügt ein Element an Position 0 hinzu.
 	 * 
-	 * @param element
-	 *            das Element
+	 * @param element das Element
 	 */
+	@Override
 	public boolean add(final T element) {
 		rotateRight();
 		buffer[0] = element;
@@ -99,6 +96,7 @@ public class LinearBuffer<T> implements Collection<T> {
 	 * 
 	 * @return die Größe in Anzahl Elemente
 	 */
+	@Override
 	public int size() {
 		return buffer.length;
 	}
@@ -158,7 +156,7 @@ public class LinearBuffer<T> implements Collection<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		return new Iterator<T>() {
+		return new Iterator<>() {
 
 			private int pos = 0;
 

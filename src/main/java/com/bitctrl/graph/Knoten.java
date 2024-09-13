@@ -11,8 +11,8 @@ public interface Knoten {
 	Bogen WURZEL_BOGEN = new Bogen() {
 
 		/**
-		 * Als Spezialfall hat der Wurzelbogen weder Anfangs- noch Endknoten.
-		 * Die entsprechenden Methode wirft deswegen eine
+		 * Als Spezialfall hat der Wurzelbogen weder Anfangs- noch Endknoten. Die
+		 * entsprechenden Methode wirft deswegen eine
 		 * {@link UnsupportedOperationException}.
 		 */
 		@Override
@@ -21,8 +21,8 @@ public interface Knoten {
 		}
 
 		/**
-		 * Als Spezialfall hat der Wurzelbogen weder Anfangs- noch Endknoten.
-		 * Die entsprechenden Methode wirft deswegen eine
+		 * Als Spezialfall hat der Wurzelbogen weder Anfangs- noch Endknoten. Die
+		 * entsprechenden Methode wirft deswegen eine
 		 * {@link UnsupportedOperationException}.
 		 */
 		@Override
@@ -48,24 +48,23 @@ public interface Knoten {
 	};
 
 	/**
-	 * Gibt einen Iterator über alle außen inzidenten, also ausgehenden, Bögen
-	 * des Knoten zurück.
+	 * Gibt einen Iterator über alle außen inzidenten, also ausgehenden, Bögen des
+	 * Knoten zurück.
 	 * 
 	 * @return einen Ausgangsbogeniterator.
 	 */
 	Iterable<Bogen> ausgangsBogenIterator();
 
 	/**
-	 * Gibt einen Iterator über alle innen inzidenten, also eingehenden, Bögen
-	 * des Knoten zurück.
+	 * Gibt einen Iterator über alle innen inzidenten, also eingehenden, Bögen des
+	 * Knoten zurück.
 	 * 
 	 * @return einen Eingangsbogeniterator.
 	 */
 	Iterable<Bogen> eingangsBogenIterator();
 
 	/**
-	 * Gibt einen Iterator über alle überhaupt inzidenten Bögen des Knoten
-	 * zurück.
+	 * Gibt einen Iterator über alle überhaupt inzidenten Bögen des Knoten zurück.
 	 * 
 	 * @return einen Iterator über die inzidenten Bögen.
 	 */
@@ -74,18 +73,16 @@ public interface Knoten {
 	/**
 	 * Gibt den Stützbogen dieses Knotens zurück.
 	 * 
-	 * @return der Stüzbogen oder <code>null</code>, wenn es keinen Stützbogen
-	 *         gibt.
+	 * @return der Stüzbogen oder <code>null</code>, wenn es keinen Stützbogen gibt.
 	 */
 	Bogen getStuetzBogen();
 
 	/**
 	 * Legt den Stützbogen des Knotens fest.
 	 * 
-	 * @param stuetzBogen
-	 *            ein Bogen, der zu diesen Knoten führt, der
-	 *            {@link #WURZEL_BOGEN} oder <code>null</code>, um keinen
-	 *            Stützbogen festzulegen.
+	 * @param stuetzBogen ein Bogen, der zu diesen Knoten führt, der
+	 *                    {@link #WURZEL_BOGEN} oder <code>null</code>, um keinen
+	 *                    Stützbogen festzulegen.
 	 */
 	void setStuetzBogen(final Bogen stuetzBogen);
 
@@ -101,8 +98,7 @@ public interface Knoten {
 	 * Legt das Potential des Knotens fest. Das Potential kann z.&nbsp;B. als
 	 * Entfernung zum Starknoten interpretriert werden.
 	 * 
-	 * @param potential
-	 *            das Knotenpotential.
+	 * @param potential das Knotenpotential.
 	 */
 	void setPotential(double potential);
 

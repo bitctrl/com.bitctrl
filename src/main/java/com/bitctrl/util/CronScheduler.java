@@ -32,9 +32,9 @@ import java.util.Map;
 import com.bitctrl.Constants;
 
 /**
- * Ein einfacher Scheduler für {@link AbstractCronJob}s. "Einfach" heißt, dass beim
- * ausführen von Aktionen nicht geprüft wird, ob ein Cron-Job noch läuft. Ein
- * einmal gestarteter Cron-Job wird "vergessen" und darauf vertraut, dass er
+ * Ein einfacher Scheduler für {@link AbstractCronJob}s. "Einfach" heißt, dass
+ * beim ausführen von Aktionen nicht geprüft wird, ob ein Cron-Job noch läuft.
+ * Ein einmal gestarteter Cron-Job wird "vergessen" und darauf vertraut, dass er
  * sich rechtzeitig vor dem nächsten Zyklus beendet und überhaupt irgendwann
  * beendet.
  * 
@@ -49,9 +49,8 @@ public class CronScheduler {
 		}
 
 		/**
-		 * Prüft zyklisch ob und welche Cron-Jobs ausgeführt werden müssen und
-		 * führt sie auch aus. Jeder Cron-Job wird in einem eigenen Thread
-		 * ausgeführt.
+		 * Prüft zyklisch ob und welche Cron-Jobs ausgeführt werden müssen und führt sie
+		 * auch aus. Jeder Cron-Job wird in einem eigenen Thread ausgeführt.
 		 * 
 		 * {@inheritDoc}
 		 */
@@ -83,10 +82,8 @@ public class CronScheduler {
 
 				// Führe alle Cron-Jobs aus, die jetzt dran sind
 				for (final AbstractCronJob job : jobs.values()) {
-					if (job.getPattern() != null
-							&& job.getPattern().match(currentTime)) {
-						new Thread(job, job.getName() + ", gestartet: "
-								+ Timestamp.absoluteTime(currentTime)).start();
+					if (job.getPattern() != null && job.getPattern().match(currentTime)) {
+						new Thread(job, job.getName() + ", gestartet: " + Timestamp.absoluteTime(currentTime)).start();
 					}
 				}
 			} while (true);
@@ -94,7 +91,7 @@ public class CronScheduler {
 
 	}
 
-	private final Map<Long, AbstractCronJob> jobs = new HashMap<Long, AbstractCronJob>();
+	private final Map<Long, AbstractCronJob> jobs = new HashMap<>();
 	private final boolean daemon;
 	private SchedulerThread thread;
 	private boolean started = false;
@@ -111,20 +108,17 @@ public class CronScheduler {
 	/**
 	 * Erzeugt einen Scheduler.
 	 * 
-	 * @param daemon
-	 *            {@code true}, wenn der Scheduler-Thread als Daemon laufen
-	 *            soll.
+	 * @param daemon {@code true}, wenn der Scheduler-Thread als Daemon laufen soll.
 	 */
 	public CronScheduler(final boolean daemon) {
 		this.daemon = daemon;
 	}
 
 	/**
-	 * Nimmt einen neuen Cron-Job in die Jobliste auf. Existiert bereits ein Job
-	 * mit der selben Job-ID, dann wird dieser überschrieben.
+	 * Nimmt einen neuen Cron-Job in die Jobliste auf. Existiert bereits ein Job mit
+	 * der selben Job-ID, dann wird dieser überschrieben.
 	 * 
-	 * @param job
-	 *            ein Cron-Job
+	 * @param job ein Cron-Job
 	 * @return die Id des geplanten Cron-Jobs (entspricht
 	 *         {@link AbstractCronJob#getId()}).
 	 */
@@ -136,11 +130,10 @@ public class CronScheduler {
 	}
 
 	/**
-	 * Entfernt einen Job aus der Jobliste. Existiert kein Job mit der ID,
-	 * passiert nichts.
+	 * Entfernt einen Job aus der Jobliste. Existiert kein Job mit der ID, passiert
+	 * nichts.
 	 * 
-	 * @param jobId
-	 *            eine Job-ID.
+	 * @param jobId eine Job-ID.
 	 */
 	public void deschedule(final long jobId) {
 		synchronized (jobs) {
@@ -149,11 +142,10 @@ public class CronScheduler {
 	}
 
 	/**
-	 * Gibt den Cron-Job mit einer bestimmten ID zurück. Existiert unter der ID
-	 * kein Job, wird {@code null} zurückgegeben.
+	 * Gibt den Cron-Job mit einer bestimmten ID zurück. Existiert unter der ID kein
+	 * Job, wird {@code null} zurückgegeben.
 	 * 
-	 * @param jobId
-	 *            eine Job-ID.
+	 * @param jobId eine Job-ID.
 	 * @return der Cron-Job oder {@code null}.
 	 */
 	public AbstractCronJob getCronJob(final long jobId) {
@@ -163,14 +155,13 @@ public class CronScheduler {
 	}
 
 	/**
-	 * Startet den Scheduler. Es wird zyklisch geprüft, welche Cron-Jobs
-	 * ausgeführt werden müssen. Auszuführende Jobs werden entsprechend jeweils
-	 * in einem eigenen Thread gestartet.
+	 * Startet den Scheduler. Es wird zyklisch geprüft, welche Cron-Jobs ausgeführt
+	 * werden müssen. Auszuführende Jobs werden entsprechend jeweils in einem
+	 * eigenen Thread gestartet.
 	 */
 	public final synchronized void start() {
 		if (started) {
-			throw new IllegalStateException(
-					"Der Cron-Scheduler wurde bereits gestartet.");
+			throw new IllegalStateException("Der Cron-Scheduler wurde bereits gestartet.");
 		}
 
 		thread = new SchedulerThread();
@@ -185,8 +176,7 @@ public class CronScheduler {
 	 */
 	public final synchronized void stop() {
 		if (!started) {
-			throw new IllegalStateException(
-					"Der Cron-Scheduler wurde nicht gestartet.");
+			throw new IllegalStateException("Der Cron-Scheduler wurde nicht gestartet.");
 		}
 
 		thread.interrupt();
@@ -213,23 +203,21 @@ public class CronScheduler {
 
 	/**
 	 * Läßt den aktuellen Thread für die angegebene Zeit schlafen. Diese Methode
-	 * kann von abgeleiteten Klassen überschrieben werden um eigene
-	 * Pausemethoden zu implementieren. Die Standardimplementierung verwendet
+	 * kann von abgeleiteten Klassen überschrieben werden um eigene Pausemethoden zu
+	 * implementieren. Die Standardimplementierung verwendet
 	 * {@link Thread#sleep(long)}.
 	 * 
-	 * @param millis
-	 *            die Länge der gewünschten Pause in Millisekunden.
-	 * @throws InterruptedException
-	 *             wenn das Sleep unterbrochen wurde.
+	 * @param millis die Länge der gewünschten Pause in Millisekunden.
+	 * @throws InterruptedException wenn das Sleep unterbrochen wurde.
 	 */
 	public void sleep(final long millis) throws InterruptedException {
 		Thread.sleep(millis);
 	}
 
 	/**
-	 * Gibt die aktuelle Zeit zurück. Diese Methode kann von abgeleiteten
-	 * Klassen überschrieben werden um eigene Zeitbestimmung zu implementieren.
-	 * Die Standardimplementierung verwendet {@link System#currentTimeMillis()}.
+	 * Gibt die aktuelle Zeit zurück. Diese Methode kann von abgeleiteten Klassen
+	 * überschrieben werden um eigene Zeitbestimmung zu implementieren. Die
+	 * Standardimplementierung verwendet {@link System#currentTimeMillis()}.
 	 * 
 	 * @return die aktuelle Zeit in Millisekunden.
 	 */

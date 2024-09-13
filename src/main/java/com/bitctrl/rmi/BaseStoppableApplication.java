@@ -41,6 +41,7 @@ public class BaseStoppableApplication implements StoppableApplication {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void exit() throws RemoteException {
 		try {
 			RemoteTools.unbind(getServiceName());
@@ -55,6 +56,7 @@ public class BaseStoppableApplication implements StoppableApplication {
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getServiceName() {
 		return getClass().getName();
 	}

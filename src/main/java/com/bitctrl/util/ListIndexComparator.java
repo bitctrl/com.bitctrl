@@ -9,8 +9,7 @@ import java.util.List;
  * 
  * @author BitCtrl Systems GmbH, schnepel
  * 
- * @param <T>
- *            der Typ der Listenelemente
+ * @param <T> der Typ der Listenelemente
  */
 public class ListIndexComparator<T> implements Comparator<T> {
 
@@ -19,13 +18,13 @@ public class ListIndexComparator<T> implements Comparator<T> {
 	/**
 	 * Konstruktor.
 	 * 
-	 * @param list
-	 *            die zu verwendende Liste
+	 * @param list die zu verwendende Liste
 	 */
 	public ListIndexComparator(final List<T> list) {
 		this.list = list;
 	}
 
+	@Override
 	public int compare(final T o1, final T o2) {
 		return list.indexOf(o1) - list.indexOf(o2);
 	}

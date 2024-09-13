@@ -29,7 +29,6 @@ package com.bitctrl.util.jar;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URL;
@@ -55,8 +54,8 @@ public final class JarTools {
 		private final File out;
 
 		/**
-		 * Erzeugt einen {@code JarAnalyzer} der alle Jar-Files rekursiv
-		 * analysiert und das Ergebnis in ein File {@code jar.txt} schreibt.
+		 * Erzeugt einen {@code JarAnalyzer} der alle Jar-Files rekursiv analysiert und
+		 * das Ergebnis in ein File {@code jar.txt} schreibt.
 		 * 
 		 * @throws IOException
 		 */
@@ -66,11 +65,10 @@ public final class JarTools {
 		}
 
 		/**
-		 * Erzeugt einen {@code JarAnalyzer} der ein bestimmtes Jar-File
-		 * analisiert und das Ergebnis auf der Konsole ausgibt.
+		 * Erzeugt einen {@code JarAnalyzer} der ein bestimmtes Jar-File analisiert und
+		 * das Ergebnis auf der Konsole ausgibt.
 		 * 
-		 * @param file
-		 *            der Pfad zu einem Jar-File.
+		 * @param file der Pfad zu einem Jar-File.
 		 * @throws IOException
 		 */
 		public JarAnalyzer(final String file) throws IOException {
@@ -96,8 +94,8 @@ public final class JarTools {
 		}
 
 		/**
-		 * Durchsucht eine Verzeichnisstruktur rekursiv nach Jar-Files und
-		 * übergibt deren Informationen an {@link #printInfo(JarFile)}.
+		 * Durchsucht eine Verzeichnisstruktur rekursiv nach Jar-Files und übergibt
+		 * deren Informationen an {@link #printInfo(JarFile)}.
 		 * 
 		 * @param parentFile
 		 * @throws IOException
@@ -107,11 +105,11 @@ public final class JarTools {
 
 			files = parentFile.listFiles();
 			if (files != null) {
-				for (int i = 0; i < files.length; i++) {
-					if (files[i].getName().endsWith(".jar")) {
-						printInfo(new JarFile(files[i]));
-					} else if (files[i].isDirectory()) {
-						findJarsAndPrintInfo(files[i]);
+				for (final File file : files) {
+					if (file.getName().endsWith(".jar")) {
+						printInfo(new JarFile(file));
+					} else if (file.isDirectory()) {
+						findJarsAndPrintInfo(file);
 					}
 				}
 			}
@@ -120,8 +118,7 @@ public final class JarTools {
 		/**
 		 * Schreibt die Informationen zu einem Jar-File in einen Dateistrom.
 		 * 
-		 * @param jar
-		 *            ein Jar-File.
+		 * @param jar ein Jar-File.
 		 * @throws IOException
 		 */
 		public void printInfo(final JarFile jar) throws IOException {
@@ -129,7 +126,8 @@ public final class JarTools {
 			final Attributes attributes;
 			final Iterator<Object> iterator;
 
-			try (BufferedWriter buf = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(out, true), Charset.defaultCharset().name()))) {
+			try (BufferedWriter buf = new BufferedWriter(
+					new OutputStreamWriter(new FileOutputStream(out, true), Charset.defaultCharset().name()))) {
 				manifest = jar.getManifest();
 				attributes = manifest.getMainAttributes();
 				iterator = attributes.keySet().iterator();
@@ -154,14 +152,13 @@ public final class JarTools {
 
 	/**
 	 * Kleines Hilfsprogramm, um die Eigenschaften eines JAR-Files aus dem
-	 * Manifest-File zu lesen. Wird ein Startparameter übergeben, wird dieser
-	 * als Pfad zu einem JAR-File interpretiert und dessen Eigenschaften auf der
-	 * Konsole ausgegeben. Wird kein Startparameter angegeben, wird rekursiv vom
+	 * Manifest-File zu lesen. Wird ein Startparameter übergeben, wird dieser als
+	 * Pfad zu einem JAR-File interpretiert und dessen Eigenschaften auf der Konsole
+	 * ausgegeben. Wird kein Startparameter angegeben, wird rekursiv vom
 	 * Startverzeichnis nach JAR-Files gesucht und dessen Eigenschaften auf der
 	 * Konsole und in ein File jar.txt ausgegeben.
 	 * 
-	 * @param args
-	 *            nichts oder der Pfad zu einem JAR-File.
+	 * @param args nichts oder der Pfad zu einem JAR-File.
 	 */
 	public static void main(final String[] args) {
 		try {
@@ -180,12 +177,11 @@ public final class JarTools {
 	 * Versionsdaten werden aus dem Manifest-File des Jar-Files in dem sich die
 	 * Klasse befindet ausgelesen.
 	 * <p>
-	 * Befindet sich die Klasse nicht in einem Jar-File, enthält das Jar-File
-	 * kein Manifest-File oder fehlen die entsprechenden Einträge im Manifest,
-	 * dann erfolgt keinerlei Ausgabe.
+	 * Befindet sich die Klasse nicht in einem Jar-File, enthält das Jar-File kein
+	 * Manifest-File oder fehlen die entsprechenden Einträge im Manifest, dann
+	 * erfolgt keinerlei Ausgabe.
 	 * 
-	 * @param clazz
-	 *            die Klasse die zum Finden des Manifest-Files verwendet wird.
+	 * @param clazz die Klasse die zum Finden des Manifest-Files verwendet wird.
 	 */
 	public static void printVersionInfo(final Class<?> clazz) {
 		try {
@@ -213,16 +209,14 @@ public final class JarTools {
 
 	/**
 	 * Gibt Daten zur aktuellen Version einer Klasse zurück. Die Versionsdaten
-	 * werden aus dem Manifest-File des Jar-Files in dem sich die Klasse
-	 * befindet ausgelesen.
+	 * werden aus dem Manifest-File des Jar-Files in dem sich die Klasse befindet
+	 * ausgelesen.
 	 * 
-	 * @param clazz
-	 *            die Klasse die zum Finden des Manifest-Files verwendet wird.
+	 * @param clazz die Klasse die zum Finden des Manifest-Files verwendet wird.
 	 * @return die Versionsinformation.
-	 * @throws IllegalArgumentException
-	 *             wenn die Klasse sich nicht in einem Jar-File befindet oder
-	 *             das Jar-File bzw. das Manifest-File nicht gelesen werden
-	 *             können.
+	 * @throws IllegalArgumentException wenn die Klasse sich nicht in einem Jar-File
+	 *                                  befindet oder das Jar-File bzw. das
+	 *                                  Manifest-File nicht gelesen werden können.
 	 */
 	public static VersionInfo getVersionInfo(final Class<?> clazz) {
 		try {

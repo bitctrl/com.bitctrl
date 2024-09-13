@@ -39,6 +39,7 @@ public abstract class AbstractTicketDAO<T, ID> extends AbstractDAO<T, ID> implem
 
 	private DAOTicket ticket;
 
+	@Override
 	public DAOTicket getTicket() {
 		return ticket;
 	}
