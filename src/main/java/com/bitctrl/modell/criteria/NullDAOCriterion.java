@@ -30,16 +30,16 @@ package com.bitctrl.modell.criteria;
  * 
  * @author BitCtrl Systems GmbH, Görlitz
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class NullDAOCriterion implements DAOCriterion {
 
 	private final String propertyName;
 
 	/**
-	 * Erstellt ein Kriterium dass einen auf {@code null} zu pruefenden
-	 * Spaltennamen repraesentiert.
+	 * Erstellt ein Kriterium dass einen auf {@code null} zu pruefenden Spaltennamen
+	 * repraesentiert.
 	 * 
-	 * @param property
-	 *            die auf {@code null} zu prüfende Property.
+	 * @param property die auf {@code null} zu prüfende Property.
 	 */
 	public NullDAOCriterion(final String property) {
 		propertyName = property;

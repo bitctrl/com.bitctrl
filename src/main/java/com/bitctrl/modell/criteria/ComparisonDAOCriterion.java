@@ -31,6 +31,7 @@ package com.bitctrl.modell.criteria;
  * 
  * @author BitCtrl Systems GmbH, Krosse
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class ComparisonDAOCriterion implements DAOCriterion {
 
 	/**
@@ -70,8 +71,7 @@ public class ComparisonDAOCriterion implements DAOCriterion {
 		/**
 		 * case insensitive like.
 		 * 
-		 * TODOo Eventuell als eigenes Kriterium definieren, da nur für String
-		 *       sinnvoll.
+		 * TODOo Eventuell als eigenes Kriterium definieren, da nur für String sinnvoll.
 		 */
 		ILIKE,
 
@@ -85,54 +85,42 @@ public class ComparisonDAOCriterion implements DAOCriterion {
 	/**
 	 * Konstruktor.
 	 * 
-	 * @param propertyName
-	 *            Propertyname der Bean
-	 * @param type
-	 *            Typ des Vergleichsoperators
-	 * @param values
-	 *            Werte fuer Vergleichsoperation
+	 * @param propertyName Propertyname der Bean
+	 * @param type         Typ des Vergleichsoperators
+	 * @param values       Werte fuer Vergleichsoperation
 	 */
-	public ComparisonDAOCriterion(final String propertyName,
-			final RelationalTypes type, final Object... values) {
+	public ComparisonDAOCriterion(final String propertyName, final RelationalTypes type, final Object... values) {
 		this(propertyName, type, false, values);
 	}
 
 	/**
 	 * Konstruktor.
 	 * 
-	 * @param propertyName
-	 *            Propertyname der Bean.
-	 * @param type
-	 *            Typ des Vergleichsoperators.
-	 * @param not
-	 *            Wenn der Ausdruck verneint werden soll.
-	 * @param values
-	 *            Werte fuer Vergleichsoperation.
+	 * @param propertyName Propertyname der Bean.
+	 * @param type         Typ des Vergleichsoperators.
+	 * @param not          Wenn der Ausdruck verneint werden soll.
+	 * @param values       Werte fuer Vergleichsoperation.
 	 * 
-	 *            XXX: Ursprünglich war der Datentyp boolean in dem Konstruktor
-	 *            verwendet, aber wegen Bug
-	 *            https://bugs.eclipse.org/bugs/show_bug.cgi?id=384562 war der
-	 *            Konstruktor für den Eclipse Compiler nicht mehr eindeutig. Als
-	 *            Workaround verwenden wir einfach die Klasse Boolean statt
-	 *            boolean.
+	 *                     XXX: Ursprünglich war der Datentyp boolean in dem
+	 *                     Konstruktor verwendet, aber wegen Bug
+	 *                     https://bugs.eclipse.org/bugs/show_bug.cgi?id=384562 war
+	 *                     der Konstruktor für den Eclipse Compiler nicht mehr
+	 *                     eindeutig. Als Workaround verwenden wir einfach die
+	 *                     Klasse Boolean statt boolean.
 	 */
-	public ComparisonDAOCriterion(final String propertyName,
-			final RelationalTypes type, final Boolean not,
+	public ComparisonDAOCriterion(final String propertyName, final RelationalTypes type, final Boolean not,
 			final Object... values) {
 		this.propertyName = propertyName;
 		this.type = type;
 		this.values = values;
 		this.not = not;
 
-		if (this.values == null || type != RelationalTypes.IN
-				&& this.values.length == 0) {
-			throw new IllegalArgumentException(
-					"Values parameter can not be null or empty");
+		if (this.values == null || type != RelationalTypes.IN && this.values.length == 0) {
+			throw new IllegalArgumentException("Values parameter can not be null or empty");
 		}
 
 		if (this.type == RelationalTypes.BETWEEN && this.values.length != 2) {
-			throw new IllegalArgumentException(
-					"Values parameter need two objects for type between");
+			throw new IllegalArgumentException("Values parameter need two objects for type between");
 		}
 	}
 
@@ -166,8 +154,8 @@ public class ComparisonDAOCriterion implements DAOCriterion {
 	/**
 	 * Gibt an ob dieser Ausdruck verneitn werden soll.
 	 * 
-	 * @return <code>true</code> wenn dieser Ausdruck verneint werden soll,
-	 *         sonst <code>false</code>.
+	 * @return <code>true</code> wenn dieser Ausdruck verneint werden soll, sonst
+	 *         <code>false</code>.
 	 */
 	public boolean isNot() {
 		return not;

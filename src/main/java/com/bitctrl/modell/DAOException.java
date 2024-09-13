@@ -33,6 +33,7 @@ package com.bitctrl.modell;
  * 
  * @author BitCtrl Systems GmbH, Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class DAOException extends Exception {
 
 	private static final long serialVersionUID = 1L;
@@ -47,8 +48,7 @@ public class DAOException extends Exception {
 	/**
 	 * Initialisiert die Exception.
 	 * 
-	 * @param message
-	 *            ein Meldungstext.
+	 * @param message ein Meldungstext.
 	 */
 	public DAOException(final String message) {
 		super(message);
@@ -57,8 +57,7 @@ public class DAOException extends Exception {
 	/**
 	 * Initialisiert die Exception.
 	 * 
-	 * @param cause
-	 *            der Grund für die Exception.
+	 * @param cause der Grund für die Exception.
 	 */
 	public DAOException(final Throwable cause) {
 		super(cause);
@@ -67,10 +66,8 @@ public class DAOException extends Exception {
 	/**
 	 * Initialisiert die Exception.
 	 * 
-	 * @param message
-	 *            ein Meldungstext.
-	 * @param cause
-	 *            der Grund für die Exception.
+	 * @param message ein Meldungstext.
+	 * @param cause   der Grund für die Exception.
 	 */
 	public DAOException(final String message, final Throwable cause) {
 		super(message, cause);

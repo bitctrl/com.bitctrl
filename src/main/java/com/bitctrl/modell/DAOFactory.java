@@ -31,25 +31,23 @@ package com.bitctrl.modell;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface DAOFactory {
 
 	/**
 	 * Sucht anhand der Klasse die dazugehörige DAO.
 	 * 
-	 * @param <T>
-	 *            der Typ der DAO.
-	 * @param type
-	 *            die Typklasse der DAO-Objekte.
-	 * @return die DAO zum Typ oder {@code null}, wenn keine passende DAO
-	 *         gefunden werden konnte.
+	 * @param <T>  der Typ der DAO.
+	 * @param type die Typklasse der DAO-Objekte.
+	 * @return die DAO zum Typ oder {@code null}, wenn keine passende DAO gefunden
+	 *         werden konnte.
 	 */
 	<T> DAO<T, ?> findDAO(Class<T> type);
 
 	/**
 	 * Prüft ob zu einem Objekt eine DAO existiert.
 	 * 
-	 * @param object
-	 *            ein beliebiges Objekt.
+	 * @param object ein beliebiges Objekt.
 	 * @return {@code true}, wenn es zu dem Objekt eine DAO gibt.
 	 */
 	boolean isDataObject(Object object);

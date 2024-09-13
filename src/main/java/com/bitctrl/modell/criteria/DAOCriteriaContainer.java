@@ -7,6 +7,7 @@ import java.util.Collection;
  * 
  * @author BitCtrl Systems GmbH, krosse
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface DAOCriteriaContainer extends DAOCriterion {
 
 	/**
@@ -19,16 +20,14 @@ public interface DAOCriteriaContainer extends DAOCriterion {
 	/**
 	 * Hinzufügen eines neuen DAOCriterion
 	 * 
-	 * @param criterion
-	 *            neues {@link DAOCriterion}
+	 * @param criterion neues {@link DAOCriterion}
 	 */
 	public void addDAOCriterion(DAOCriterion criterion);
 
 	/**
 	 * Entfernen des angegebenen {@link DAOCriterion}
 	 * 
-	 * @param criterion
-	 *            zu entferndes Element
+	 * @param criterion zu entferndes Element
 	 */
 	public void removeDAOCriterion(DAOCriterion criterion);
 }

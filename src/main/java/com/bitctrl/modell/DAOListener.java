@@ -33,13 +33,13 @@ import java.util.EventListener;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface DAOListener extends EventListener {
 
 	/**
 	 * Wird aufgerufen, wenn sich die Daten eines DAO geändert haben.
 	 * 
-	 * @param e
-	 *            das eingetroffene Event.
+	 * @param e das eingetroffene Event.
 	 */
 	void dataChanged(DAOEvent e);
 

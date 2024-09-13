@@ -34,6 +34,7 @@ import java.util.Map;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public abstract class AbstractDAOFactory implements DAOFactory {
 
 	private final Map<Class<?>, DAO<?, ?>> daoCache = new HashMap<Class<?>, DAO<?, ?>>();
@@ -41,9 +42,9 @@ public abstract class AbstractDAOFactory implements DAOFactory {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * Gibt falls möglich die gesuchte DAO aus dem Cache zurück. Falls die
-	 * gesuchte DAO noch nicht im Cache vorliegt, wird sie mit
-	 * {@link #doFindDAO(Class)} bestimmt.
+	 * Gibt falls möglich die gesuchte DAO aus dem Cache zurück. Falls die gesuchte
+	 * DAO noch nicht im Cache vorliegt, wird sie mit {@link #doFindDAO(Class)}
+	 * bestimmt.
 	 * 
 	 * @see #doFindDAO(Class)
 	 */
@@ -58,12 +59,10 @@ public abstract class AbstractDAOFactory implements DAOFactory {
 	/**
 	 * Wird von {@link #findDAO(Class)} aus deligiert.
 	 * 
-	 * @param <T>
-	 *            der Typ der DAO.
-	 * @param type
-	 *            die Typklasse der DAO-Objekte.
-	 * @return die DAO zum Typ oder {@code null}, wenn keine passende DAO
-	 *         gefunden werden konnte.
+	 * @param <T>  der Typ der DAO.
+	 * @param type die Typklasse der DAO-Objekte.
+	 * @return die DAO zum Typ oder {@code null}, wenn keine passende DAO gefunden
+	 *         werden konnte.
 	 * @see #findDAO(Class)
 	 */
 	protected abstract <T> DAO<T, ?> doFindDAO(Class<T> type);
@@ -71,8 +70,7 @@ public abstract class AbstractDAOFactory implements DAOFactory {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * Prüft ob {@link #findDAO(Class)} einen Wert ungleich {@code null}
-	 * zurückgibt.
+	 * Prüft ob {@link #findDAO(Class)} einen Wert ungleich {@code null} zurückgibt.
 	 */
 	public boolean isDataObject(final Object object) {
 		return findDAO(object.getClass()) != null;

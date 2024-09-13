@@ -33,11 +33,12 @@ package com.bitctrl.modell;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface DAOTicket {
 
 	/**
-	 * Gibt die DAO-Factory zurück, die exklusiv für dieses Ticket verwendet
-	 * werden muss.
+	 * Gibt die DAO-Factory zurück, die exklusiv für dieses Ticket verwendet werden
+	 * muss.
 	 * 
 	 * @return die DAO-Factory für dieses Ticket.
 	 */
@@ -46,10 +47,8 @@ public interface DAOTicket {
 	/**
 	 * Import ein Objekt, welches in einem anderen Ticket angelegt wurde.
 	 * 
-	 * @param object
-	 *            ein "fremdes" Objekt.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @param object ein "fremdes" Objekt.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	void importFromOtherTicket(final Object object) throws DAOException;
 
@@ -57,13 +56,10 @@ public interface DAOTicket {
 	 * Sucht das übergebene Objekt in der Session des Tickets. Der Zustand des
 	 * übergebenen Objekts wird dann in das der Ticketsession kopiert.
 	 * 
-	 * @param <T>
-	 *            der Typ des Objekts um Rückgabewert anzupassen. *
-	 * @param object
-	 *            ein Objekt.
+	 * @param <T>    der Typ des Objekts um Rückgabewert anzupassen. *
+	 * @param object ein Objekt.
 	 * @return das Objekt auf das der Schlüssel passt.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	<T> T merge(final T object) throws DAOException;
 
@@ -83,19 +79,16 @@ public interface DAOTicket {
 	 * Startet eine neue Transaktion. Alle nachfolgenden Operationen werden in
 	 * dieser Transaktion ausgeführt.
 	 * 
-	 * @throws DAOException
-	 *             bei einem Fehler beim Anlegend er Transaktion.
+	 * @throws DAOException bei einem Fehler beim Anlegend er Transaktion.
 	 * @see #commitTransaction()
 	 * @see #rollbackTransaction()
 	 */
 	void beginTransaction() throws DAOException;
 
 	/**
-	 * Beendet die aktuelle Transaktion und schreibt alle gepufferten
-	 * Operationen.
+	 * Beendet die aktuelle Transaktion und schreibt alle gepufferten Operationen.
 	 * 
-	 * @throws DAOException
-	 *             bei einem Fehler beim Ausführen der Transaktion.
+	 * @throws DAOException bei einem Fehler beim Ausführen der Transaktion.
 	 * @see #beginTransaction()
 	 * @see #rollbackTransaction()
 	 */
@@ -104,8 +97,7 @@ public interface DAOTicket {
 	/**
 	 * Führt ein Rollback auf der aktuellen Transaktion aus.
 	 * 
-	 * @throws DAOException
-	 *             bei einem Fehler beim Rollback der Transaktion
+	 * @throws DAOException bei einem Fehler beim Rollback der Transaktion
 	 * @see #beginTransaction()
 	 * @see #commitTransaction()
 	 */

@@ -9,6 +9,7 @@ import java.util.Set;
  * 
  * @author BitCtrl Systems GmbH, krosse
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 abstract class BaseDAOCriteriaContainer implements DAOCriteriaContainer {
 
 	private final Set<DAOCriterion> criterias = new HashSet<DAOCriterion>();

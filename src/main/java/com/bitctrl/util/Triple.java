@@ -5,13 +5,11 @@ package com.bitctrl.util;
  * 
  * @author BitCtrl Systems GmbH, schnepel
  * 
- * @param <A>
- *            type of first object
- * @param <B>
- *            type of second object
- * @param <C>
- *            type of third object
+ * @param <A> type of first object
+ * @param <B> type of second object
+ * @param <C> type of third object
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class Triple<A, B, C> {
 	/**
 	 * the first object
@@ -31,12 +29,9 @@ public class Triple<A, B, C> {
 	/**
 	 * Constructs a Triple of objects of different types.
 	 * 
-	 * @param a
-	 *            the first object
-	 * @param b
-	 *            the second object
-	 * @param c
-	 *            the third object
+	 * @param a the first object
+	 * @param b the second object
+	 * @param c the third object
 	 */
 	public Triple(final A a, final B b, final C c) {
 		this.a = a;
@@ -47,18 +42,12 @@ public class Triple<A, B, C> {
 	/**
 	 * Constructs a Triple of objects of different types.
 	 * 
-	 * @param <A>
-	 *            type of first object
-	 * @param <B>
-	 *            type of second object
-	 * @param <C>
-	 *            type of third object
-	 * @param a
-	 *            the first object
-	 * @param b
-	 *            the second object
-	 * @param c
-	 *            the third object
+	 * @param <A> type of first object
+	 * @param <B> type of second object
+	 * @param <C> type of third object
+	 * @param a   the first object
+	 * @param b   the second object
+	 * @param c   the third object
 	 * @return das erzeugte Triple
 	 */
 	public static final <A, B, C> Triple<A, B, C> create(final A a, final B b, final C c) {
