@@ -41,23 +41,19 @@ public class DefaultComparator implements Comparator<Object> {
 	 * {@inheritDoc}
 	 * 
 	 * Falls beide Objekte {@link Comparable} implementieren und
-	 * zuweisungskompatibel sind ({@link Class#isAssignableFrom(Class)}), dann
-	 * wird die {@code compare()}-Methode von {@code o1} zum Vergleich
-	 * verwendet. Anderfalls werden beide Objekte in Strings überführt ({@code
+	 * zuweisungskompatibel sind ({@link Class#isAssignableFrom(Class)}), dann wird
+	 * die {@code compare()}-Methode von {@code o1} zum Vergleich verwendet.
+	 * Anderfalls werden beide Objekte in Strings überführt ({@code
 	 * toString()}) und dann die Strings miteinander verglichen.
 	 */
+	@Override
 	public int compare(final Object o1, final Object o2) {
-		if (o1 instanceof Comparable
-				&& o2 instanceof Comparable
-				&& (o1.getClass().isAssignableFrom(o2.getClass()) || o2
-						.getClass().isAssignableFrom(o1.getClass()))) {
-			final Comparable c1 = (Comparable) o1;
-			final Comparable c2 = (Comparable) o2;
+		if (o1 instanceof final Comparable c1 && o2 instanceof final Comparable c2
+				&& (o1.getClass().isAssignableFrom(o2.getClass()) || o2.getClass().isAssignableFrom(o1.getClass()))) {
 			return c1.compareTo(c2);
 		}
 
-		return String.CASE_INSENSITIVE_ORDER.compare(o1.toString(), o2
-				.toString());
+		return String.CASE_INSENSITIVE_ORDER.compare(o1.toString(), o2.toString());
 	}
 
 }

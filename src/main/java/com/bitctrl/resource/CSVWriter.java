@@ -64,13 +64,12 @@ public class CSVWriter extends CSVProperties {
 	/**
 	 * Verwendet einen {@link java.io.InputStream} als Quelle für CSV-Daten.
 	 * 
-	 * @param out
-	 *            ein Eingabestrom, z.&nbsp;B. von einem File.
+	 * @param out ein Eingabestrom, z.&nbsp;B. von einem File.
 	 */
 	public CSVWriter(final OutputStream out) {
 		try {
 			this.out = new OutputStreamWriter(out, Charset.defaultCharset().name());
-		} catch (UnsupportedEncodingException e) {
+		} catch (final UnsupportedEncodingException e) {
 			throw new IllegalStateException("Kann nicht passieren", e);
 		}
 	}
@@ -78,8 +77,7 @@ public class CSVWriter extends CSVProperties {
 	/**
 	 * Parst einen String als CSV-Daten.
 	 * 
-	 * @param out
-	 *            ein String, z.&nbsp; der Inhalt eines Files.
+	 * @param out ein String, z.&nbsp; der Inhalt eines Files.
 	 */
 	public CSVWriter(final StringWriter out) {
 		this.out = out;
@@ -90,26 +88,22 @@ public class CSVWriter extends CSVProperties {
 	}
 
 	/**
-	 * Schreibt die Liste als einen Datensatz in das File. Jedes Listenelement
-	 * wird als ein Feld interpretiert.
+	 * Schreibt die Liste als einen Datensatz in das File. Jedes Listenelement wird
+	 * als ein Feld interpretiert.
 	 * 
-	 * @param record
-	 *            der zu schreibende Datensatz.
-	 * @throws IOException
-	 *             bei Fehlern beim Schreiben ins File.
+	 * @param record der zu schreibende Datensatz.
+	 * @throws IOException bei Fehlern beim Schreiben ins File.
 	 */
 	public void write(final List<String> record) throws IOException {
 		write(record.toArray(new String[record.size()]));
 	}
 
 	/**
-	 * Schreibt das Feld als einen Datensatz in das File. Jedes Feldelement wird
-	 * als eine (CSV-)Feld interpretiert.
+	 * Schreibt das Feld als einen Datensatz in das File. Jedes Feldelement wird als
+	 * eine (CSV-)Feld interpretiert.
 	 * 
-	 * @param record
-	 *            der zu schreibende Datensatz.
-	 * @throws IOException
-	 *             bei Fehlern beim Schreiben ins File.
+	 * @param record der zu schreibende Datensatz.
+	 * @throws IOException bei Fehlern beim Schreiben ins File.
 	 */
 	public void write(final String... record) throws IOException {
 		for (final String field : record) {
@@ -119,13 +113,11 @@ public class CSVWriter extends CSVProperties {
 	}
 
 	/**
-	 * Schreibt das Feld als einen Datensatz in das File. Jedes Feldelement wird
-	 * als eine (CSV-)Feld interpretiert.
+	 * Schreibt das Feld als einen Datensatz in das File. Jedes Feldelement wird als
+	 * eine (CSV-)Feld interpretiert.
 	 * 
-	 * @param record
-	 *            der zu schreibende Datensatz.
-	 * @throws IOException
-	 *             bei Fehlern beim Schreiben ins File.
+	 * @param record der zu schreibende Datensatz.
+	 * @throws IOException bei Fehlern beim Schreiben ins File.
 	 */
 	public void writeOhneEscape(final String... record) throws IOException {
 		for (final String field : record) {

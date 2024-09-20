@@ -45,10 +45,8 @@ public class Interval implements Cloneable {
 	/**
 	 * Konstruiert ein Zeitintervall mit dem angegebenen Grenzen.
 	 * 
-	 * @param start
-	 *            Start des Intervalls
-	 * @param end
-	 *            Ende des Intervalls
+	 * @param start Start des Intervalls
+	 * @param end   Ende des Intervalls
 	 */
 	public Interval(final long start, final long end) {
 		this(start, end, true);
@@ -57,20 +55,15 @@ public class Interval implements Cloneable {
 	/**
 	 * Konstruiert ein Intervall mit dem angegebenen Grenzen.
 	 * 
-	 * @param start
-	 *            Start des Intervalls
-	 * @param end
-	 *            Ende des Intervalls
-	 * @param timestamp
-	 *            handelt es sich um ein zeitliches Intervall?
+	 * @param start     Start des Intervalls
+	 * @param end       Ende des Intervalls
+	 * @param timestamp handelt es sich um ein zeitliches Intervall?
 	 */
 	public Interval(final long start, final long end, final boolean timestamp) {
 		if (start > end) {
 			throw new IllegalArgumentException(
-					"Das Ende des Intervalls darf nicht vor dessen Start liegen (start="
-							+ Timestamp.absoluteTime(start) + " / " + start
-							+ ", ende=" + Timestamp.absoluteTime(end) + " / "
-							+ end + ").");
+					"Das Ende des Intervalls darf nicht vor dessen Start liegen (start=" + Timestamp.absoluteTime(start)
+							+ " / " + start + ", ende=" + Timestamp.absoluteTime(end) + " / " + end + ").");
 		}
 
 		this.start = start;
@@ -89,42 +82,36 @@ public class Interval implements Cloneable {
 	}
 
 	/**
-	 * Prüft ob ein anderes Intervall in diesem Intervall enhalten ist,
-	 * inklusive der Intervallgrenzen.
+	 * Prüft ob ein anderes Intervall in diesem Intervall enhalten ist, inklusive
+	 * der Intervallgrenzen.
 	 * 
-	 * @param interval
-	 *            ein Intervall.
-	 * @return {@code true}, wenn das andere Intervall innerhalb dieses
-	 *         Intervalls liegt oder mit ihm identisch ist.
+	 * @param interval ein Intervall.
+	 * @return {@code true}, wenn das andere Intervall innerhalb dieses Intervalls
+	 *         liegt oder mit ihm identisch ist.
 	 */
 	public boolean contains(final Interval interval) {
 		return contains(interval.start) && contains(interval.end);
 	}
 
 	/**
-	 * Prüft ob ein Wert im Intervall enhalten ist, inklusive der
-	 * Intervallgrenzen.
+	 * Prüft ob ein Wert im Intervall enhalten ist, inklusive der Intervallgrenzen.
 	 * 
-	 * @param value
-	 *            Ein Wert
-	 * @return {@code true}, wenn der Wert innerhalb des Intervalls oder auf
-	 *         einer der Intervallgrenzen liegt
+	 * @param value Ein Wert
+	 * @return {@code true}, wenn der Wert innerhalb des Intervalls oder auf einer
+	 *         der Intervallgrenzen liegt
 	 */
 	public boolean contains(final long value) {
 		return start <= value && value <= end;
 	}
 
 	/**
-	 * Zwei Intervalle sind gleich, wenn sie den selben Start- und Endwert
-	 * besitzen.
+	 * Zwei Intervalle sind gleich, wenn sie den selben Start- und Endwert besitzen.
 	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean equals(final Object obj) {
-		if (obj instanceof Interval) {
-			final Interval intervall = (Interval) obj;
-
+		if (obj instanceof final Interval intervall) {
 			return start == intervall.start && end == intervall.end;
 		}
 
@@ -169,33 +156,27 @@ public class Interval implements Cloneable {
 	}
 
 	/**
-	 * Prüft ob sich zwei Intervalle schneiden. Zwei Intervalle schneiden sich,
-	 * wenn sie mindestens einen Punkt gemeinsam haben (exklusive den
-	 * Intervallgrenzen) und ein Intervall nicht das andere enthält.
+	 * Prüft ob sich zwei Intervalle schneiden. Zwei Intervalle schneiden sich, wenn
+	 * sie mindestens einen Punkt gemeinsam haben (exklusive den Intervallgrenzen)
+	 * und ein Intervall nicht das andere enthält.
 	 * 
-	 * @param interval
-	 *            Ein anderes Intervall
-	 * @return {@code true}, wenn sich dieses Intervall mit dem anderen
-	 *         schneidet
+	 * @param interval Ein anderes Intervall
+	 * @return {@code true}, wenn sich dieses Intervall mit dem anderen schneidet
 	 */
 	public boolean intersect(final Interval interval) {
-		return (!contains(interval) && !interval.contains(this))
-				&& (interval.isWithin(start) || interval.isWithin(end)
-						|| isWithin(interval.start) || isWithin(interval.end));
+		return (!contains(interval) && !interval.contains(this)) && (interval.isWithin(start) || interval.isWithin(end)
+				|| isWithin(interval.start) || isWithin(interval.end));
 	}
 
 	/**
-	 * Prüft ob sich zwei Intervalle berühren. Zwei Intervalle berühren sich,
-	 * wenn sie mindestens einen Punkt gemeinsam haben (inklusive den
-	 * Intervallgrenzen).
+	 * Prüft ob sich zwei Intervalle berühren. Zwei Intervalle berühren sich, wenn
+	 * sie mindestens einen Punkt gemeinsam haben (inklusive den Intervallgrenzen).
 	 * 
-	 * @param interval
-	 *            ein anderes Interval.
+	 * @param interval ein anderes Interval.
 	 * @return {@code true}, wenn dieses Intervall das andere berührt.
 	 */
 	public boolean touch(final Interval interval) {
-		return interval.contains(start) || interval.contains(end)
-				|| contains(interval.start) || contains(interval.end);
+		return interval.contains(start) || interval.contains(end) || contains(interval.start) || contains(interval.end);
 	}
 
 	/**
@@ -211,10 +192,9 @@ public class Interval implements Cloneable {
 	 * Prüft ob sich ein anderes Intervall innerhalb der Intervallgrenzen dieses
 	 * Intervalls befindet.
 	 * 
-	 * @param interval
-	 *            ein Intervall.
-	 * @return {@code true}, wenn das andere Intervall innerhalb dieses
-	 *         Intervalls liegt, aber nicht mit ihm identisch ist.
+	 * @param interval ein Intervall.
+	 * @return {@code true}, wenn das andere Intervall innerhalb dieses Intervalls
+	 *         liegt, aber nicht mit ihm identisch ist.
 	 */
 	public boolean isWithin(final Interval interval) {
 		return isWithin(interval.start) && isWithin(interval.end);
@@ -223,18 +203,17 @@ public class Interval implements Cloneable {
 	/**
 	 * Prüft ob sich ein Wert innerhalb der Intervallgrenzen befindet.
 	 * 
-	 * @param value
-	 *            Ein Wert
-	 * @return {@code true}, wenn der Wert innerhalb des Intervalls, aber nicht
-	 *         auf einer der Intervallgrenzen liegt
+	 * @param value Ein Wert
+	 * @return {@code true}, wenn der Wert innerhalb des Intervalls, aber nicht auf
+	 *         einer der Intervallgrenzen liegt
 	 */
 	public boolean isWithin(final long value) {
 		return start < value && value < end;
 	}
 
 	/**
-	 * Gibt das Intervall als für den Menschen lesbaren Text zurück. Handelt es
-	 * sich um ein Zeitintervall, werden die Zeitstempel als Datum und Uhrzeit
+	 * Gibt das Intervall als für den Menschen lesbaren Text zurück. Handelt es sich
+	 * um ein Zeitintervall, werden die Zeitstempel als Datum und Uhrzeit
 	 * formatiert.
 	 * 
 	 * {@inheritDoc}
@@ -242,8 +221,7 @@ public class Interval implements Cloneable {
 	@Override
 	public String toString() {
 		if (timestamp) {
-			return "[" + Timestamp.absoluteTime(start) + ", "
-					+ Timestamp.absoluteTime(end) + "]";
+			return "[" + Timestamp.absoluteTime(start) + ", " + Timestamp.absoluteTime(end) + "]";
 		}
 		return "[" + start + ", " + end + "]";
 	}

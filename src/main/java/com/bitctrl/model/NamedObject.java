@@ -32,8 +32,7 @@ public class NamedObject extends ModelElement {
 	 * <p>
 	 * <em>bound property</em>.
 	 * 
-	 * @param name
-	 *            der neue Objektname.
+	 * @param name der neue Objektname.
 	 * 
 	 */
 	public void setName(final String name) {

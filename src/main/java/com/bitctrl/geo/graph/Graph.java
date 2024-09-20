@@ -31,34 +31,29 @@ package com.bitctrl.geo.graph;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <N>
- *            der Typ der Knoten.
- * @param <E>
- *            der Typ der Kanten.
+ * @param <N> der Typ der Knoten.
+ * @param <E> der Typ der Kanten.
  */
 public interface Graph<N extends Node, E extends Edge> {
 
 	/**
 	 * Fügt einen neuen Knoten ohne Verbindung in den Graphen ein.
 	 * 
-	 * @param node
-	 *            der neue Knoten.
+	 * @param node der neue Knoten.
 	 */
 	void addNode(N node);
 
 	/**
 	 * Entfernt den angegebenen Knoten aus dem Graphen.
 	 * 
-	 * @param node
-	 *            ein Knoten des Graph.
+	 * @param node ein Knoten des Graph.
 	 */
 	void removeNode(N node);
 
 	/**
 	 * Prüft ob ein bestimmter Knoten im Graph enthalten ist.
 	 * 
-	 * @param node
-	 *            ein Knoten.
+	 * @param node ein Knoten.
 	 * @return {@code true}, wenn der Knoten im Graph enthalten ist.
 	 */
 	boolean containsNode(N node);
@@ -73,37 +68,30 @@ public interface Graph<N extends Node, E extends Edge> {
 	/**
 	 * Fügt eine neue Kanten zwischen zwei Knoten in den Graphen ein.
 	 * 
-	 * @param edge
-	 *            die neue Kante.
+	 * @param edge die neue Kante.
 	 */
 	void insertEdge(E edge);
 
 	/**
 	 * Entfernt die angegebene Kante aus dem Graphen.
 	 * 
-	 * @param edge
-	 *            eine Kante des Graphen.
+	 * @param edge eine Kante des Graphen.
 	 */
 	void removeEdge(E edge);
 
 	/**
-	 * Prüft ob der Graph eine Kante zwischen den beiden angegebenen Knoten
-	 * besitzt.
+	 * Prüft ob der Graph eine Kante zwischen den beiden angegebenen Knoten besitzt.
 	 * 
-	 * @param edge
-	 *            eine Kante.
+	 * @param edge eine Kante.
 	 * @return {@code true}, wenn der Graph die Kante enthält.
 	 */
 	boolean containsEdge(E edge);
 
 	/**
-	 * Prüft ob der Graph eine Kante zwischen den beiden angegebenen Knoten
-	 * besitzt.
+	 * Prüft ob der Graph eine Kante zwischen den beiden angegebenen Knoten besitzt.
 	 * 
-	 * @param source
-	 *            der Startknoten der Kante.
-	 * @param target
-	 *            der Endknoten der Kante.
+	 * @param source der Startknoten der Kante.
+	 * @param target der Endknoten der Kante.
 	 * @return {@code true}, wenn der Graph die Kante enthält.
 	 */
 	boolean containsEdge(N source, N target);
@@ -118,8 +106,7 @@ public interface Graph<N extends Node, E extends Edge> {
 	/**
 	 * Gibt einen Iterator der Ausgangsbögen eines Knotens zurück.
 	 * 
-	 * @param node
-	 *            ein Konten im Graph.
+	 * @param node ein Konten im Graph.
 	 * @return der Ausgangsbogeniterator.
 	 */
 	Iterable<Edge> outEdges(N node);
@@ -127,8 +114,7 @@ public interface Graph<N extends Node, E extends Edge> {
 	/**
 	 * Gibt einen Iterator der Eingangsbögen eines Knotens zurück.
 	 * 
-	 * @param node
-	 *            ein Konten im Graph.
+	 * @param node ein Konten im Graph.
 	 * @return der Eingangsbogeniterator.
 	 */
 	Iterable<Edge> inEdges(N node);
@@ -136,8 +122,7 @@ public interface Graph<N extends Node, E extends Edge> {
 	/**
 	 * Gibt einen Iterator über inzidenten Kanten eines Knoten zurück.
 	 * 
-	 * @param node
-	 *            ein Knoten im Graph.
+	 * @param node ein Knoten im Graph.
 	 * @return der Iterator der inzidenten Kanten.
 	 */
 	Iterable<Edge> incidentEdges(N node);

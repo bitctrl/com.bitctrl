@@ -14,8 +14,7 @@ public class ListElementChangedEvent<T> extends EventObject {
 	private final T element;
 	private final T previous;
 
-	public ListElementChangedEvent(final Object source, final int index,
-			final T element, final T previous) {
+	public ListElementChangedEvent(final Object source, final int index, final T element, final T previous) {
 		super(source);
 
 		this.index = index;

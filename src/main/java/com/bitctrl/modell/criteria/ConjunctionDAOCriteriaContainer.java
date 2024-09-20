@@ -5,6 +5,7 @@ package com.bitctrl.modell.criteria;
  * 
  * @author BitCtrl Systems GmbH, krosse
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class ConjunctionDAOCriteriaContainer extends BaseDAOCriteriaContainer {
 
 	public ConjunctionDAOCriteriaContainer(final DAOCriterion... criterion) {

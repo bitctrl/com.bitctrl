@@ -31,6 +31,7 @@ package com.bitctrl.modell.criteria;
  * 
  * @author BitCtrl Systems GmbH, Goerlitz
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface DAOCriterion {
 
 	// tagging interface

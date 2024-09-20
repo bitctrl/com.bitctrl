@@ -31,15 +31,15 @@ package com.bitctrl.modell;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <T>
- *            der Typ der Datenobjekte.
- * @param <ID>
- *            der Schlüssel für die Datenobjekte.
+ * @param <T>  der Typ der Datenobjekte.
+ * @param <ID> der Schlüssel für die Datenobjekte.
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public abstract class AbstractTicketDAO<T, ID> extends AbstractDAO<T, ID> implements TicketDAO<T, ID> {
 
 	private DAOTicket ticket;
 
+	@Override
 	public DAOTicket getTicket() {
 		return ticket;
 	}
@@ -50,8 +50,7 @@ public abstract class AbstractTicketDAO<T, ID> extends AbstractDAO<T, ID> implem
 	 * <em>Hinweis:</em> Das Ticket kann nur einmal gesetzt und dann nicht mehr
 	 * verändert werden.
 	 * 
-	 * @param ticket
-	 *            das Ticket, welches die DAO verwendet soll.
+	 * @param ticket das Ticket, welches die DAO verwendet soll.
 	 */
 	public void setTicket(final DAOTicket ticket) {
 		if (this.ticket != null) {

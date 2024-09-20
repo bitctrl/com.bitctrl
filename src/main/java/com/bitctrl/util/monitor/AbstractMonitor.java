@@ -7,16 +7,16 @@ public abstract class AbstractMonitor implements IMonitor {
 
 	private Set<IMonitorProgressListener> listeners = null;
 
-	public synchronized final void addMonitorListener(
-			final IMonitorProgressListener listener) {
+	@Override
+	public synchronized final void addMonitorListener(final IMonitorProgressListener listener) {
 		if (null == listeners) {
-			listeners = new HashSet<IMonitorProgressListener>();
+			listeners = new HashSet<>();
 		}
 		listeners.add(listener);
 	}
 
-	public synchronized final void removeMonitorListener(
-			final IMonitorProgressListener listener) {
+	@Override
+	public synchronized final void removeMonitorListener(final IMonitorProgressListener listener) {
 		if (null != listener) {
 			listeners.remove(listener);
 			if (listeners.isEmpty()) {
@@ -25,8 +25,7 @@ public abstract class AbstractMonitor implements IMonitor {
 		}
 	}
 
-	protected synchronized final void notifyMonitorListeners(
-			final double progress) {
+	protected synchronized final void notifyMonitorListeners(final double progress) {
 		if (null != listeners) {
 			for (final IMonitorProgressListener listener : listeners) {
 				listener.progress(progress);

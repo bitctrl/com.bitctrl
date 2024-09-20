@@ -19,10 +19,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up JDK 1.8 for Github deployment
+    - name: Set up JDK 17 for Github deployment
       uses: actions/setup-java@v4
       with:
-        java-version: 8.0.302+8
+        java-version: 17
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
@@ -58,10 +58,10 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
         
       
-    - name: Set up JDK 1.8 for NERZ-Snapshot-Deployment
+    - name: Set up JDK 17 for NERZ-Snapshot-Deployment
       uses: actions/setup-java@v4
       with:
-        java-version: 8.0.302+8
+        java-version: 17
         distribution: 'temurin'
         server-id: nerz-snapshots 
         server-username: MAVEN_USERNAME
@@ -76,10 +76,10 @@ jobs:
          MAVEN_USERNAME: ${{ secrets.NERZ_USERNAME }}
          MAVEN_PASSWORD: ${{ secrets.NERZ_TOKEN }}
          
-    - name: Set up JDK 1.8 for NERZ-Release-Deployment
+    - name: Set up JDK 17 for NERZ-Release-Deployment
       uses: actions/setup-java@v4
       with:
-        java-version: 8.0.302+8
+        java-version: 17
         distribution: 'temurin'
         server-id: nerz-releases 
         server-username: MAVEN_USERNAME

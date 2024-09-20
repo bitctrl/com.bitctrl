@@ -42,10 +42,8 @@ public class BeanEvent extends EventObject {
 	/**
 	 * Initialisert das Event.
 	 * 
-	 * @param source
-	 *            die Quelle des Events.
-	 * @param beanData
-	 *            die neuen Daten der Bean.
+	 * @param source   die Quelle des Events.
+	 * @param beanData die neuen Daten der Bean.
 	 */
 	public BeanEvent(final Object source, final Object beanData) {
 		super(source);

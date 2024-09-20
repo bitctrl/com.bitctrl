@@ -63,6 +63,7 @@ public interface NullObject {
 	 * 
 	 * @return ein Text wie "null", "nichts", "nicht vorhanden" o.&nbsp;ä.
 	 */
+	@Override
 	String toString();
 
 }

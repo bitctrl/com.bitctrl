@@ -37,17 +37,18 @@ public interface Command extends Runnable {
 
 	/**
 	 * Führt den Befehl aus. Die Methode blockiert während der Ausführung des
-	 * Befehls. Die Methode muss regelmäßig mit {@link #isCanceled()} prüfen, ob
-	 * der Befehl abgebrochen werden soll.
+	 * Befehls. Die Methode muss regelmäßig mit {@link #isCanceled()} prüfen, ob der
+	 * Befehl abgebrochen werden soll.
 	 * 
 	 * @see #isCanceled()
 	 */
+	@Override
 	void run();
 
 	/**
-	 * Führt den Befehl im Hintergrund aus. Die Methode blockiert nicht während
-	 * der Ausführung des Befehls, da die {@link #run()}-Methode dazu in einem
-	 * eigenen Thread gestartet wird.
+	 * Führt den Befehl im Hintergrund aus. Die Methode blockiert nicht während der
+	 * Ausführung des Befehls, da die {@link #run()}-Methode dazu in einem eigenen
+	 * Thread gestartet wird.
 	 * 
 	 * @see #isCanceled()
 	 */
@@ -69,16 +70,14 @@ public interface Command extends Runnable {
 	/**
 	 * Registriert einen Listener.
 	 * 
-	 * @param l
-	 *            der Listener.
+	 * @param l der Listener.
 	 */
 	void addCommandFinishedListener(CommandFinishedListener l);
 
 	/**
 	 * Meldet einen Listener wieder ab.
 	 * 
-	 * @param l
-	 *            der Listener.
+	 * @param l der Listener.
 	 */
 	void removeCommandFinishedListener(CommandFinishedListener l);
 

@@ -28,4 +28,3 @@
  * Allgemeine geometrische Hilfsklassen ohne Bezug zu einer bestimten GUI.
  */
 package com.bitctrl.geo;
-

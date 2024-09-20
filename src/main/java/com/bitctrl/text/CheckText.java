@@ -40,11 +40,9 @@ import com.bitctrl.Constants;
 public final class CheckText {
 
 	/**
-	 * Prüft ob im String ein Zeilenumbruch enthalten sind. Zeilenumbruch: \n
-	 * und \r
+	 * Prüft ob im String ein Zeilenumbruch enthalten sind. Zeilenumbruch: \n und \r
 	 * 
-	 * @param s
-	 *            Zu testender Text
+	 * @param s Zu testender Text
 	 * @return {@code true}, wenn ein Zeilenumbruch enthalten sind
 	 */
 	public static boolean containsLineBreak(final String s) {
@@ -62,11 +60,10 @@ public final class CheckText {
 	}
 
 	/**
-	 * Prüft ob im String Leerzeichen enthalten sind. Als Leerzeichen gilt neben
-	 * dem eigentlichen Leerzeichen auch Zeilenumbrüche und Tabulatoren.
+	 * Prüft ob im String Leerzeichen enthalten sind. Als Leerzeichen gilt neben dem
+	 * eigentlichen Leerzeichen auch Zeilenumbrüche und Tabulatoren.
 	 * 
-	 * @param s
-	 *            Zu testender Text
+	 * @param s Zu testender Text
 	 * @return {@code true}, wenn Leerzeichen enthalten sind
 	 * @see java.lang.Character#isWhitespace(char)
 	 */
@@ -85,11 +82,10 @@ public final class CheckText {
 	}
 
 	/**
-	 * Testet ob der String {@code null} oder ein Leerstring ist. Strings am
-	 * Anfang und Ende des Strings werden vor dem Test entfernt.
+	 * Testet ob der String {@code null} oder ein Leerstring ist. Strings am Anfang
+	 * und Ende des Strings werden vor dem Test entfernt.
 	 * 
-	 * @param s
-	 *            Ein String
+	 * @param s Ein String
 	 * @return {@code true}, wenn der String druckbar bzw. anzeigbar ist
 	 */
 	public static boolean isPrintable(final String s) {
@@ -99,7 +95,7 @@ public final class CheckText {
 
 		final String t = s.trim();
 
-		if (t.equals("")) {
+		if ("".equals(t)) {
 			return false;
 		}
 
@@ -112,14 +108,12 @@ public final class CheckText {
 	 * true}. Im Ausdruck nachdem gesucht wird, kann als Platzhalter der Stern
 	 * {@code *} verwendet werden.
 	 * 
-	 * @param expr
-	 *            der Ausdruck.
-	 * @param str
-	 *            der String in dem gesucht werden soll.
+	 * @param expr der Ausdruck.
+	 * @param str  der String in dem gesucht werden soll.
 	 * @return {@code true}, wenn der Ausdruck gefunden wurde, der Ausdruck oder
 	 *         String {@code null} ist, sonst {@code false}.
 	 */
-	public static final boolean matches(final String expr, final String str) {
+	public static boolean matches(final String expr, final String str) {
 		if (expr == null || str == null || expr.trim().length() <= 0) {
 			return true;
 		}
@@ -127,8 +121,7 @@ public final class CheckText {
 		final String tExpr = expr.trim().toLowerCase();
 		final String tStr = str.trim().toLowerCase();
 
-		final List<String> searchStrings = new ArrayList<String>(Arrays
-				.asList(tExpr.toLowerCase().split("\\*")));
+		final List<String> searchStrings = new ArrayList<>(Arrays.asList(tExpr.toLowerCase().split("\\*")));
 
 		// Leerstring wenn Platzhalter am Ende, da von String.split() ignoriert
 		if (tExpr.endsWith("*")) {

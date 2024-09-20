@@ -45,11 +45,10 @@ public class MAC implements Serializable {
 	 * Bestimmt aus einem String die MAC-Adresse. Der String muss im Format
 	 * {@code x:x:x:x:x:x} vorliegen.
 	 * 
-	 * @param address
-	 *            die Adresse als Zeichenkette
+	 * @param address die Adresse als Zeichenkette
 	 * @return die Adresse
-	 * @throws IllegalArgumentException
-	 *             die übergebene Zeichenkette konnte nicht interpretiert werden
+	 * @throws IllegalArgumentException die übergebene Zeichenkette konnte nicht
+	 *                                  interpretiert werden
 	 */
 	public static MAC valueOf(final String address) throws IllegalArgumentException {
 		if (address == null || address.length() == 0) {
@@ -73,8 +72,7 @@ public class MAC implements Serializable {
 	/**
 	 * Initialisiert die MAC-Adresse.
 	 * 
-	 * @param address
-	 *            die sechs Bytes der MAC-Adresse.
+	 * @param address die sechs Bytes der MAC-Adresse.
 	 */
 	public MAC(final byte[] address) {
 		if (address.length != 6) {
@@ -86,10 +84,9 @@ public class MAC implements Serializable {
 	/**
 	 * Verwendet {@link #valueOf(String)} zur Initialisierung der MAC-Adresse.
 	 * 
-	 * @param address
-	 *            ein String, der eine MAC-Adresse darstellt.
-	 * @throws IllegalArgumentException
-	 *             die übergebene Zeichenkette konnte nicht interpretiert werden
+	 * @param address ein String, der eine MAC-Adresse darstellt.
+	 * @throws IllegalArgumentException die übergebene Zeichenkette konnte nicht
+	 *                                  interpretiert werden
 	 */
 	public MAC(final String address) throws IllegalArgumentException {
 		this.address = valueOf(address).getAddress();
@@ -108,8 +105,7 @@ public class MAC implements Serializable {
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
-		} else if (obj instanceof MAC) {
-			final MAC o = (MAC) obj;
+		} else if (obj instanceof final MAC o) {
 			return Arrays.equals(address, o.address);
 		}
 
@@ -124,15 +120,15 @@ public class MAC implements Serializable {
 	@Override
 	public String toString() {
 		final char[] hex = Hex.encodeHex(address);
-		String s = "";
+		final StringBuilder s = new StringBuilder();
 		for (int i = 0; i < hex.length; ++i) {
-			s += hex[i];
+			s.append(hex[i]);
 			if (i % 2 == 1 && i < hex.length - 1) {
 				// Nach jedem Byte (2 Hexziffern) Trenzeichen einfügen.
-				s += ':';
+				s.append(':');
 			}
 		}
 
-		return s;
+		return s.toString();
 	}
 }

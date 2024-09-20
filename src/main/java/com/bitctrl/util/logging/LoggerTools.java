@@ -47,19 +47,16 @@ import java.util.logging.SimpleFormatter;
 public final class LoggerTools {
 
 	/** Der Name der Property, die das Logverzeichnis enthält. */
-	public static final String CONFIG_LOG_DIR = String
-			.valueOf("common.log.dir");
+	public static final String CONFIG_LOG_DIR = String.valueOf("common.log.dir");
 
 	/** Der Name der Property, die den Loglevel enthält. */
-	public static final String CONFIG_LOG_LEVEL = String
-			.valueOf("common.log.level");
+	public static final String CONFIG_LOG_LEVEL = String.valueOf("common.log.level");
 
 	/**
 	 * Ein Datum/Uhrzeit Formatierer für Logfiles, dieser schreibt auch die
 	 * Millisekunden. Übernommen aus UZSHLIB/BcFunc.
 	 */
-	private static final SimpleDateFormat logFileDateFormatter = new SimpleDateFormat(
-			"dd.MM.yyyy HH:mm:ss.SSS");
+	private static final SimpleDateFormat logFileDateFormatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
 
 	private static final int MAX_FILE_SIZE = 1024 * 1024; // 1 MB
 	private static final int MAX_FILE_COUNT = 10;
@@ -68,25 +65,23 @@ public final class LoggerTools {
 	 * Setzt rekursiv alle Meldungen einer Exception-Kette (
 	 * {@link Throwable#getCause()}) zusammen.
 	 * 
-	 * @param t
-	 *            eine Exception.
-	 * @return die Kette aller Meldungen in der Form
-	 *         "[Meldung] &gt; [Meldung].cause &gt; [Meldung].cause.cause".
+	 * @param t eine Exception.
+	 * @return die Kette aller Meldungen in der Form "[Meldung] &gt; [Meldung].cause
+	 *         &gt; [Meldung].cause.cause".
 	 */
 	public static String getMessages(final Throwable t) {
-		String msg = t.getLocalizedMessage();
+		final StringBuilder msg = new StringBuilder().append(t.getLocalizedMessage());
 		if (t.getCause() != null && t.getCause() != t) {
-			msg += " > " + getMessages(t.getCause());
+			msg.append(" > ").append(getMessages(t.getCause()));
 		}
-		return msg;
+		return msg.toString();
 	}
 
 	/**
 	 * Gibt den Stack Trace einer Exception als String zurück. Mit {@code new
 	 * Exception()} kann der aktuelle Stack Trace erfragt werden.
 	 * 
-	 * @param e
-	 *            eine Exception oder ein Error.
+	 * @param e eine Exception oder ein Error.
 	 * @return der Stack Trace.
 	 */
 	public static String getStackTrace(final Throwable e) {
@@ -100,8 +95,7 @@ public final class LoggerTools {
 	 * Bestimmt die Position im Code einer Exception. Angegeben wird der
 	 * Klassenname, der Methodenname und die Zeilennummer.
 	 * 
-	 * @param e
-	 *            eine Exception oder ein Error.
+	 * @param e eine Exception oder ein Error.
 	 * @return die Aufrufposition der Betriebsmeldung
 	 */
 	public static String getCallPosition(final Throwable e) {
@@ -109,10 +103,8 @@ public final class LoggerTools {
 
 		if (e.getStackTrace().length > 1) {
 			final StackTraceElement traceElement = e.getStackTrace()[1];
-			s = traceElement.getClassName() + "."
-					+ traceElement.getMethodName() + "("
-					+ traceElement.getFileName() + ": "
-					+ traceElement.getLineNumber() + ")";
+			s = traceElement.getClassName() + "." + traceElement.getMethodName() + "(" + traceElement.getFileName()
+					+ ": " + traceElement.getLineNumber() + ")";
 		} else {
 			s = "Aufrufposition nicht ermittelbar!";
 		}
@@ -120,17 +112,14 @@ public final class LoggerTools {
 	}
 
 	/**
-	 * Liegt das verzeichnis fest, in dem Log-Files abgelegt werden soll.
-	 * Existiert das Verzeichnis nicht, wird es angelegt.
+	 * Liegt das verzeichnis fest, in dem Log-Files abgelegt werden soll. Existiert
+	 * das Verzeichnis nicht, wird es angelegt.
 	 * 
-	 * @param dir
-	 *            ein Verzeichnis.
-	 * @param applicationName
-	 *            der Name der Appliktion.
+	 * @param dir             ein Verzeichnis.
+	 * @param applicationName der Name der Appliktion.
 	 * @return {@code true}, wenn die Operation erfolgreich war.
 	 */
-	public static boolean setLogDirectory(final String dir,
-			final String applicationName) {
+	public static boolean setLogDirectory(final String dir, final String applicationName) {
 		FileHandler handler;
 		String path;
 
@@ -153,9 +142,7 @@ public final class LoggerTools {
 			handler.setFormatter(new SimpleFormatter());
 			Logger.getLogger("").addHandler(handler);
 			return true;
-		} catch (final SecurityException ex) {
-			return false;
-		} catch (final IOException ex) {
+		} catch (final SecurityException | IOException ex) {
 			return false;
 		}
 	}
@@ -163,15 +150,14 @@ public final class LoggerTools {
 	/**
 	 * Legt den Log-Level des Root-Loggers und dessen Handler fest.
 	 * 
-	 * @param level
-	 *            der neue Log-Level.
+	 * @param level der neue Log-Level.
 	 */
 	public static void setLoggerLevel(final Level level) {
 		Handler[] handler;
 
 		Logger.getLogger("").setLevel(level);
 		handler = Logger.getLogger("").getHandlers();
-		for (int i = 0; i < handler.length; i++) {
+		for (final Handler element : handler) {
 			handler[0].setLevel(level);
 		}
 	}
@@ -179,31 +165,25 @@ public final class LoggerTools {
 	/**
 	 * Prüft ob der Logger Ausgaben auf einem bestimmten Level macht.
 	 * 
-	 * @param logger
-	 *            ein Logger.
-	 * @param level
-	 *            der zu prüfende Level.
-	 * @return <code>true</code>, wenn der Logger Ausgaben auf dem angegebenen
-	 *         Level macht.
+	 * @param logger ein Logger.
+	 * @param level  der zu prüfende Level.
+	 * @return <code>true</code>, wenn der Logger Ausgaben auf dem angegebenen Level
+	 *         macht.
 	 */
 	public static boolean isLogable(final Logger logger, final Level level) {
 		return isLogable(logger, level, null);
 	}
 
 	/**
-	 * Prüft ob der Logger Ausgaben auf einem bestimmten Level, mit einem
-	 * bestimmten Handler macht. Ist der Handler <code>null</code>, wird nur der
-	 * Level geprüft.
+	 * Prüft ob der Logger Ausgaben auf einem bestimmten Level, mit einem bestimmten
+	 * Handler macht. Ist der Handler <code>null</code>, wird nur der Level geprüft.
 	 * 
-	 * @param logger
-	 *            ein Logger.
-	 * @param level
-	 *            der zu prüfende Level.
-	 * @param handlerClazz
-	 *            der zu prüfende Handler oder <code>null</code>.
-	 * @return <code>true</code>, wenn der Logger Ausgaben auf dem angegebenen
-	 *         Level mit dem angegebenen Handler macht. Wenn der Handler
-	 *         <code>null</code> ist, wird er ignoriert.
+	 * @param logger       ein Logger.
+	 * @param level        der zu prüfende Level.
+	 * @param handlerClazz der zu prüfende Handler oder <code>null</code>.
+	 * @return <code>true</code>, wenn der Logger Ausgaben auf dem angegebenen Level
+	 *         mit dem angegebenen Handler macht. Wenn der Handler <code>null</code>
+	 *         ist, wird er ignoriert.
 	 */
 	public static boolean isLogable(final Logger logger, final Level level,
 			final Class<? extends Handler> handlerClazz) {
@@ -229,12 +209,12 @@ public final class LoggerTools {
 	}
 
 	/**
-	 * Liefert einen Datum/Uhrzeit Formatierer für Logfiles, dieser schreibt
-	 * auch die Millisekunden. Übernommen aus UZSHLIB/BcFunc.
+	 * Liefert einen Datum/Uhrzeit Formatierer für Logfiles, dieser schreibt auch
+	 * die Millisekunden. Übernommen aus UZSHLIB/BcFunc.
 	 * 
 	 * @return logFileDateFormatter der Formatter
 	 */
-	public static final SimpleDateFormat getLogFileDateFormatter() {
+	public static SimpleDateFormat getLogFileDateFormatter() {
 		return logFileDateFormatter;
 	}
 

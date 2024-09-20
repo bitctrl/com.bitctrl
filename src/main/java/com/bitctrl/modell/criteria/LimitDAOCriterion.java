@@ -31,6 +31,7 @@ package com.bitctrl.modell.criteria;
  * 
  * @author BitCtrl Systems GmbH, Görlitz
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class LimitDAOCriterion implements DAOCriterion {
 
 	private final long offset;
@@ -39,11 +40,9 @@ public class LimitDAOCriterion implements DAOCriterion {
 	/**
 	 * Initialisiert das Criteria mit dem Offset und der Anzahl Datenobjekte.
 	 * 
-	 * @param offset
-	 *            der Offset (inklusive) ab dem die Ergebnisse geliefert werden
-	 *            sollen.
-	 * @param limit
-	 *            die maximale Anzahl an Ergebnissen.
+	 * @param offset der Offset (inklusive) ab dem die Ergebnisse geliefert werden
+	 *               sollen.
+	 * @param limit  die maximale Anzahl an Ergebnissen.
 	 */
 	public LimitDAOCriterion(final long offset, final int limit) {
 		this.offset = offset;
@@ -51,31 +50,29 @@ public class LimitDAOCriterion implements DAOCriterion {
 	}
 
 	/**
-	 * Initialisiert das Criteria mit dem Offset und der maximal möglichen
-	 * Anzahl Datenobjekte.
+	 * Initialisiert das Criteria mit dem Offset und der maximal möglichen Anzahl
+	 * Datenobjekte.
 	 * 
-	 * @param offset
-	 *            der Offset (inklusive) ab dem die Ergebnisse geliefert werden
-	 *            sollen.
+	 * @param offset der Offset (inklusive) ab dem die Ergebnisse geliefert werden
+	 *               sollen.
 	 */
 	public LimitDAOCriterion(final long offset) {
 		this(offset, Integer.MAX_VALUE);
 	}
 
 	/**
-	 * Initialisiert das Criteria mit dem Offset des ersten Elements und der
-	 * Anzahl Datenobjekte.
+	 * Initialisiert das Criteria mit dem Offset des ersten Elements und der Anzahl
+	 * Datenobjekte.
 	 * 
-	 * @param limit
-	 *            die maximale Anzahl an Ergebnissen.
+	 * @param limit die maximale Anzahl an Ergebnissen.
 	 */
 	public LimitDAOCriterion(final int limit) {
 		this(0, limit);
 	}
 
 	/**
-	 * Liefert den Offset, ab dem Datenobjekte geliefert werden sollen. Das
-	 * Element, welches der Offset addressiert, ist im Ergebnis enthalten.
+	 * Liefert den Offset, ab dem Datenobjekte geliefert werden sollen. Das Element,
+	 * welches der Offset addressiert, ist im Ergebnis enthalten.
 	 * 
 	 * @return der Offset.
 	 */
@@ -84,8 +81,7 @@ public class LimitDAOCriterion implements DAOCriterion {
 	}
 
 	/**
-	 * Liefert das Limit, also die maximale Anzahl von Datenobjekten im
-	 * Ergebnis.
+	 * Liefert das Limit, also die maximale Anzahl von Datenobjekten im Ergebnis.
 	 * 
 	 * @return das Limit.
 	 */
@@ -95,8 +91,7 @@ public class LimitDAOCriterion implements DAOCriterion {
 
 	@Override
 	public String toString() {
-		return getClass().getName() + "[offset=" + offset + ", limit=" + limit
-				+ "]";
+		return getClass().getName() + "[offset=" + offset + ", limit=" + limit + "]";
 	}
 
 }

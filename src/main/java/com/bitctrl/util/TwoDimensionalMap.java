@@ -8,11 +8,11 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 
 /**
  * Provides a two-dimensional map.
@@ -20,12 +20,9 @@ import java.util.Map.Entry;
  * The data entry matrix are automatically filled up so that every row
  * respective every column has the same size.
  * 
- * @param <R>
- *            the key type for the rows
- * @param <C>
- *            the key type for the columns
- * @param <D>
- *            the value type
+ * @param <R> the key type for the rows
+ * @param <C> the key type for the columns
+ * @param <D> the value type
  * 
  * @author BitCtrl Systems GmbH, schnepel
  */
@@ -34,7 +31,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 
 	private final Map<R, Integer> rows;
 	private final Map<C, Integer> columns;
-	private final ArrayList<ArrayList<D>> data = new ArrayList<ArrayList<D>>();
+	private final ArrayList<ArrayList<D>> data = new ArrayList<>();
 	private final boolean orderedRows;
 	private final boolean orderedColumns;
 
@@ -42,41 +39,39 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		this.orderedRows = orderedRows;
 		this.orderedColumns = orderedColumns;
 		if (orderedRows) {
-			rows = new TreeMap<R, Integer>();
+			rows = new TreeMap<>();
 		} else {
-			rows = new LinkedHashMap<R, Integer>();
+			rows = new LinkedHashMap<>();
 		}
 		if (orderedColumns) {
-			columns = new TreeMap<C, Integer>();
+			columns = new TreeMap<>();
 		} else {
-			columns = new LinkedHashMap<C, Integer>();
+			columns = new LinkedHashMap<>();
 		}
 	}
 
 	/**
-	 * Erezeugt eine neue {@link TwoDimensionalMap} mit eigenen
-	 * {@link Comparator}en für Zeilen und Spalten. Wird als {@link Comparator}
-	 * <code>null</code> übergeben, dann wird nicht sortiert.
+	 * Erezeugt eine neue {@link TwoDimensionalMap} mit eigenen {@link Comparator}en
+	 * für Zeilen und Spalten. Wird als {@link Comparator} <code>null</code>
+	 * übergeben, dann wird nicht sortiert.
 	 * 
-	 * @param rowComparator
-	 *            der Comparator die Zeilen der Map
-	 * @param columnComparator
-	 *            der Comparator die Spalten der Map
+	 * @param rowComparator    der Comparator die Zeilen der Map
+	 * @param columnComparator der Comparator die Spalten der Map
 	 */
 	public TwoDimensionalMap(final Comparator<R> rowComparator, final Comparator<C> columnComparator) {
 		if (rowComparator != null) {
-			rows = new TreeMap<R, Integer>(rowComparator);
+			rows = new TreeMap<>(rowComparator);
 			orderedRows = true;
 		} else {
-			rows = new LinkedHashMap<R, Integer>();
+			rows = new LinkedHashMap<>();
 			orderedRows = false;
 		}
 
 		if (columnComparator != null) {
-			columns = new TreeMap<C, Integer>(columnComparator);
+			columns = new TreeMap<>(columnComparator);
 			orderedColumns = true;
 		} else {
-			columns = new LinkedHashMap<C, Integer>();
+			columns = new LinkedHashMap<>();
 			orderedColumns = false;
 		}
 
@@ -84,6 +79,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 
 	// row stuff ...
 
+	@Override
 	public Set<R> getRowKeys() {
 		final Set<R> keySet = rows.keySet();
 		if (orderedRows) {
@@ -92,6 +88,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return Collections.unmodifiableSet(keySet);
 	}
 
+	@Override
 	public Collection<D> getRow(final R row) {
 		return Collections.unmodifiableCollection(getRowInternal(row));
 	}
@@ -102,7 +99,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 			addRow(row);
 			rIndex = rows.get(row);
 		}
-		final ArrayList<D> retData = new ArrayList<D>(columns.size());
+		final ArrayList<D> retData = new ArrayList<>(columns.size());
 		final ArrayList<D> rData = data.get(rIndex);
 		for (final Integer cIndex : columns.values()) {
 			retData.add(rData.get(cIndex));
@@ -110,13 +107,15 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return retData;
 	}
 
+	@Override
 	public void addRow(final R row) {
-		final ArrayList<D> retData = new ArrayList<D>(columns.size());
+		final ArrayList<D> retData = new ArrayList<>(columns.size());
 		rows.put(row, rows.size());
 		retData.addAll(Collections.nCopies(columns.size(), (D) null));
 		data.add(retData);
 	}
 
+	@Override
 	public Collection<? extends D> removeRow(final R row) {
 		final Integer rIndex = rows.remove(row);
 		if (null == rIndex) {
@@ -138,6 +137,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 
 	// column stuff ...
 
+	@Override
 	public Set<C> getColumnKeys() {
 		final Set<C> keySet = columns.keySet();
 		if (orderedColumns) {
@@ -146,6 +146,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return Collections.unmodifiableSet(keySet);
 	}
 
+	@Override
 	public Collection<D> getColumn(final C column) {
 		return Collections.unmodifiableCollection(getColumnInternal(column));
 	}
@@ -156,13 +157,14 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 			addColumn(column);
 			cIndex = columns.get(column);
 		}
-		final ArrayList<D> cData = new ArrayList<D>(rows.size());
+		final ArrayList<D> cData = new ArrayList<>(rows.size());
 		for (final Integer rIndex : rows.values()) {
 			cData.add(data.get(rIndex).get(cIndex));
 		}
 		return cData;
 	}
 
+	@Override
 	public void addColumn(final C column) {
 		columns.put(column, columns.size());
 		for (final ArrayList<D> rowsData : data) {
@@ -176,7 +178,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 			throw new NoSuchElementException();
 		}
 		ArrayList<D> cData = null;
-		cData = new ArrayList<D>(rows.size());
+		cData = new ArrayList<>(rows.size());
 		for (final ArrayList<D> rowsData : data) {
 			cData.add(rowsData.remove(cIndex.intValue()));
 		}
@@ -195,6 +197,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 
 	// other stuff ...
 
+	@Override
 	public D put(final R row, final C column, final D value) {
 		Integer cIndex = columns.get(column);
 		if (null == cIndex) {
@@ -209,6 +212,7 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return this.data.get(rIndex).set(cIndex, value);
 	}
 
+	@Override
 	public D get(final R row, final C column) {
 		Integer cIndex = columns.get(column);
 		if (null == cIndex) {
@@ -223,8 +227,9 @@ public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensional
 		return this.data.get(rIndex).get(cIndex);
 	}
 
+	@Override
 	public Collection<D> values() {
-		final ArrayList<D> values = new ArrayList<D>(rows.size() * columns.size());
+		final ArrayList<D> values = new ArrayList<>(rows.size() * columns.size());
 		for (final ArrayList<D> ld : data) {
 			values.addAll(ld);
 		}

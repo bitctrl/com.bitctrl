@@ -34,8 +34,7 @@ import java.util.List;
  * 
  * @author BitCtrl Systems GmbH, Schumann
  * 
- * @param <T>
- *            der Typ der geänderten Liste
+ * @param <T> der Typ der geänderten Liste
  */
 public class ListChangedEvent<T> extends EventObject {
 
@@ -48,16 +47,11 @@ public class ListChangedEvent<T> extends EventObject {
 	/**
 	 * Initialisierung.
 	 * 
-	 * @param source
-	 *            die Quelle des Events.
-	 * @param indexFrom
-	 *            der erste Index der Änderungen
-	 * @param indexTo
-	 *            der letzte Index der Änderungen
-	 * @param added
-	 *            die Liste der hinzugefügten Elemente
-	 * @param removed
-	 *            die Liste der entfernten Elemente
+	 * @param source    die Quelle des Events.
+	 * @param indexFrom der erste Index der Änderungen
+	 * @param indexTo   der letzte Index der Änderungen
+	 * @param added     die Liste der hinzugefügten Elemente
+	 * @param removed   die Liste der entfernten Elemente
 	 */
 	public ListChangedEvent(final Object source, final int indexFrom, final int indexTo, final List<T> added,
 			final List<T> removed) {

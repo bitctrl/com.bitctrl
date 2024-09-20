@@ -14,10 +14,8 @@ import java.util.Comparator;
  * 
  * @author BitCtrl Systems GmbH, schnepel
  * 
- * @param <S1>
- *            der Typ des ersten Elements des Tupels
- * @param <S2>
- *            der Typ des zweiten Elements des Tupels
+ * @param <S1> der Typ des ersten Elements des Tupels
+ * @param <S2> der Typ des zweiten Elements des Tupels
  * @see ComparableTupel#comparator()
  */
 public class ComparatorTupel<S1, S2> extends Tupel<S1, S2> implements Comparable<ComparatorTupel<S1, S2>> {
@@ -45,6 +43,7 @@ public class ComparatorTupel<S1, S2> extends Tupel<S1, S2> implements Comparable
 		this.compSecond = compSecond;
 	}
 
+	@Override
 	public int compareTo(final ComparatorTupel<S1, S2> o) {
 		final int ret = compFirst.compare(getFirst(), o.getFirst());
 		if (0 != ret) {

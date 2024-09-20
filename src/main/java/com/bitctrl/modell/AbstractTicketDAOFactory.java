@@ -31,11 +31,12 @@ package com.bitctrl.modell;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
-public abstract class AbstractTicketDAOFactory extends AbstractDAOFactory
-		implements TicketDAOFactory {
+@Deprecated(since = "3.0.0", forRemoval = true)
+public abstract class AbstractTicketDAOFactory extends AbstractDAOFactory implements TicketDAOFactory {
 
 	private DAOTicket ticket;
 
+	@Override
 	public DAOTicket getTicket() {
 		return ticket;
 	}
@@ -46,8 +47,7 @@ public abstract class AbstractTicketDAOFactory extends AbstractDAOFactory
 	 * <em>Hinweis:</em> Das Ticket kann nur einmal gesetzt und dann nicht mehr
 	 * verändert werden.
 	 * 
-	 * @param ticket
-	 *            das Ticket, welches die Factory verwendet soll.
+	 * @param ticket das Ticket, welches die Factory verwendet soll.
 	 */
 	public void setTicket(final DAOTicket ticket) {
 		if (this.ticket != null) {

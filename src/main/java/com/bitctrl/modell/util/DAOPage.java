@@ -44,6 +44,7 @@ import com.bitctrl.modell.criteria.LimitDAOCriterion;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 
 	/** Die DAO bei der Daten bei Bedarf abgerufen werden. */
@@ -67,27 +68,20 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	private final boolean showPageName;
 
 	/**
-	 * Initialisiert die Seite mit den notwendigen Informationen zum späteren
-	 * Abruf der Daten.
+	 * Initialisiert die Seite mit den notwendigen Informationen zum späteren Abruf
+	 * der Daten.
 	 * 
-	 * @param dao
-	 *            die DAO bei der Daten bei Bedarf abgerufen werden.
-	 * @param count
-	 *            die Gesamtanzahl der Elemente.
-	 * @param pageSize
-	 *            die maximale Anzahl der Elemente pro Seite.
-	 * @param showPageName
-	 *            Flag, ob {@link #toString()} nur den Bereich oder auch den
-	 *            Namen der Page zurückgeben soll. Der Name der Page wird anhand
-	 *            des Typs bzw. der BeanInfo bestimmt.
-	 * @param from
-	 *            der Index ab dem Daten abgerufen werden sollen (inklusive, ab
-	 *            0).
-	 * @param to
-	 *            der Index bis zu dem Daten abgerufen werden sollen (exklusive,
-	 *            ab 0).
-	 * @param criteria
-	 *            die Kritierien für den Datenabruf.
+	 * @param dao          die DAO bei der Daten bei Bedarf abgerufen werden.
+	 * @param count        die Gesamtanzahl der Elemente.
+	 * @param pageSize     die maximale Anzahl der Elemente pro Seite.
+	 * @param showPageName Flag, ob {@link #toString()} nur den Bereich oder auch
+	 *                     den Namen der Page zurückgeben soll. Der Name der Page
+	 *                     wird anhand des Typs bzw. der BeanInfo bestimmt.
+	 * @param from         der Index ab dem Daten abgerufen werden sollen
+	 *                     (inklusive, ab 0).
+	 * @param to           der Index bis zu dem Daten abgerufen werden sollen
+	 *                     (exklusive, ab 0).
+	 * @param criteria     die Kritierien für den Datenabruf.
 	 */
 	protected DAOPage(final DAO<?, ?> dao, final long count, final int pageSize, final boolean showPageName,
 			final long from, final long to, final DAOCriterion... criteria) {
@@ -110,9 +104,9 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	}
 
 	/**
-	 * Flag, ob diese Page Datenelemente oder weitere Pages als Kinder besitzt.
-	 * Eine Subpage liefert mit {@link #getElements()} weitere {@link DAOPage}
-	 * Objekte zurück. Ein normale Page liefert die Datenelemente.
+	 * Flag, ob diese Page Datenelemente oder weitere Pages als Kinder besitzt. Eine
+	 * Subpage liefert mit {@link #getElements()} weitere {@link DAOPage} Objekte
+	 * zurück. Ein normale Page liefert die Datenelemente.
 	 * 
 	 * @return {@code true}, wenn die Page eine Subpage ist.
 	 */
@@ -127,12 +121,12 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	 * zurück.
 	 * 
 	 * @return die Daten oder Subpages.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @throws DAOException bei einem Fehler.
 	 */
+	@Override
 	public List<?> getElements() throws DAOException {
 		if (isSubpage()) {
-			final List<Object> subpages = new ArrayList<Object>();
+			final List<Object> subpages = new ArrayList<>();
 
 			long subFrom = from;
 			final long subCount = to - from;
@@ -171,8 +165,7 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	 * eingebauten weiteren {@link DAOPage}s.
 	 * 
 	 * @return die Liste der ermittelten Elemente
-	 * @throws DAOException
-	 *             die Elemente konnten nicht abgerufen werden
+	 * @throws DAOException die Elemente konnten nicht abgerufen werden
 	 */
 	public List<?> getAllElements() throws DAOException {
 		// Kopie der Kriterien plus einmal Platz für Limitkriterium
@@ -183,10 +176,12 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		return dao.retrieve(criteriaWithLimit);
 	}
 
+	@Override
 	public Class<?> getLeafElementsType() {
 		return dao.getPersistentClass();
 	}
 
+	@Override
 	public DAOCriterion[] getLeafElementsCriteriaWithLimit(final int index) {
 		final DAOCriterion[] criteriaWithLimit = new DAOCriterion[criteria.length + 1];
 		System.arraycopy(criteria, 0, criteriaWithLimit, 0, criteria.length);
@@ -203,6 +198,7 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		return (int) (to - from);
 	}
 
+	@Override
 	public int getLeafElementsCount() {
 		return getPageSize();
 	}
@@ -236,8 +232,7 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 		if (this == obj) {
 			return true;
 		}
-		if (obj instanceof DAOPage) {
-			final DAOPage other = (DAOPage) obj;
+		if (obj instanceof final DAOPage other) {
 			return Objects.equals(dao.getClass(), other.dao.getClass()) && from == other.from && to == other.to;
 		}
 		return false;
@@ -251,9 +246,9 @@ public class DAOPage implements DAOElementContainer, Comparable<DAOPage> {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * Vergleicht gegen nur die Werte von {@code from} dieser und der anderen
-	 * Page.
+	 * Vergleicht gegen nur die Werte von {@code from} dieser und der anderen Page.
 	 */
+	@Override
 	public int compareTo(final DAOPage o) {
 		return Long.compare(from, o.from);
 	}

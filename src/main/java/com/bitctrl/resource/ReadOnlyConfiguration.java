@@ -53,16 +53,14 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Öffnet eine neue Gruppe.
 	 * 
-	 * @param name
-	 *            der Name der Gruppe.
+	 * @param name der Name der Gruppe.
 	 */
 	void beginGroup(final String name);
 
 	/**
 	 * Öffnet ein neues Feld zum Lesen.
 	 * 
-	 * @param name
-	 *            der Name des Felds.
+	 * @param name der Name des Felds.
 	 * @return die Länge des Felds.
 	 */
 	int beginReadArray(final String name);
@@ -70,24 +68,21 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Schließt ein offenes Feld.
 	 * 
-	 * @param name
-	 *            der Name des Felds.
+	 * @param name der Name des Felds.
 	 */
 	void endArray(final String name);
 
 	/**
 	 * Schließt eine offene Gruppe.
 	 * 
-	 * @param name
-	 *            der Name der Gruppe.
+	 * @param name der Name der Gruppe.
 	 */
 	void endGroup(final String name);
 
 	/**
 	 * Entspricht {@code getBoolean(key, DEFAULT_BOOLEAN)}.
 	 * 
-	 * @param key
-	 *            ein Schlüssel;
+	 * @param key ein Schlüssel;
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden
 	 *         {@link #DEFAULT_BOOLEAN}.
 	 * @see #getBoolean(String, boolean)
@@ -98,11 +93,9 @@ public interface ReadOnlyConfiguration {
 	 * Gibt den Wert der unter dem Schlü;ssel hinterlegt ist als booleschen Wert
 	 * zurück.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param defaultValue
-	 *            ein Wert der zurückgegeben wird, wenn unter dem Schlüssel kein
-	 *            Wert hinterlegt ist.
+	 * @param key          der Schlüssel.
+	 * @param defaultValue ein Wert der zurückgegeben wird, wenn unter dem Schlüssel
+	 *                     kein Wert hinterlegt ist.
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden, der angegebene
 	 *         Standardwert.
 	 */
@@ -111,8 +104,7 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Entspricht {@code getDouble(key, DEFAULT_DOUBLE)}.
 	 * 
-	 * @param key
-	 *            ein Schlüssel;
+	 * @param key ein Schlüssel;
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden
 	 *         {@link #DEFAULT_DOUBLE}.
 	 * @see #getDouble(String, double)
@@ -123,11 +115,9 @@ public interface ReadOnlyConfiguration {
 	 * Gibt den Wert der unter dem Schlüssel hinterlegt ist als Gleitkommazahl
 	 * zurück.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param defaultValue
-	 *            ein Wert der zurückgegeben wird, wenn unter dem Schlüssel kein
-	 *            Wert hinterlegt ist.
+	 * @param key          der Schlüssel.
+	 * @param defaultValue ein Wert der zurückgegeben wird, wenn unter dem Schlüssel
+	 *                     kein Wert hinterlegt ist.
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden, der angegebene
 	 *         Standardwert.
 	 */
@@ -136,10 +126,8 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Entspricht {@code getInt(key, DEFAULT_INT)}.
 	 * 
-	 * @param key
-	 *            ein Schlüssel;
-	 * @return der hinterlegt Wert oder, falls nicht vorhanden
-	 *         {@link #DEFAULT_INT}.
+	 * @param key ein Schlüssel;
+	 * @return der hinterlegt Wert oder, falls nicht vorhanden {@link #DEFAULT_INT}.
 	 * @see #getInt(String, int)
 	 */
 	int getInt(final String key);
@@ -147,11 +135,9 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Gibt den Wert der unter dem Schlüssel hinterlegt ist als Ganzzahl zurück.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param defaultValue
-	 *            ein Wert der zurückgegeben wird, wenn unter dem Schlüssel kein
-	 *            Wert hinterlegt ist.
+	 * @param key          der Schlüssel.
+	 * @param defaultValue ein Wert der zurückgegeben wird, wenn unter dem Schlüssel
+	 *                     kein Wert hinterlegt ist.
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden, der angegebene
 	 *         Standardwert.
 	 */
@@ -160,8 +146,7 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Entspricht {@code getInt(key, DEFAULT_LONG)}.
 	 * 
-	 * @param key
-	 *            ein Schlüssel;
+	 * @param key ein Schlüssel;
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden
 	 *         {@link #DEFAULT_LONG}.
 	 * @see #getLong(String, long)
@@ -171,11 +156,9 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Gibt den Wert der unter dem Schlüssel hinterlegt ist als Ganzzahl zurück.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param defaultValue
-	 *            ein Wert der zurückgegeben wird, wenn unter dem Schlüssel kein
-	 *            Wert hinterlegt ist.
+	 * @param key          der Schlüssel.
+	 * @param defaultValue ein Wert der zurückgegeben wird, wenn unter dem Schlüssel
+	 *                     kein Wert hinterlegt ist.
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden, der angegebene
 	 *         Standardwert.
 	 */
@@ -184,8 +167,7 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Entspricht {@code getString(key, DEFAULT_STRING)}.
 	 * 
-	 * @param key
-	 *            ein Schlüssel;
+	 * @param key ein Schlüssel;
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden
 	 *         {@link #DEFAULT_STRING}.
 	 * @see #getString(String, String)
@@ -195,11 +177,9 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Gibt den Wert der unter dem Schlüssel hinterlegt ist als String zurück.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param defaultValue
-	 *            ein Wert der zurückgegeben wird, wenn unter dem Schlüssel kein
-	 *            Wert hinterlegt ist.
+	 * @param key          der Schlüssel.
+	 * @param defaultValue ein Wert der zurückgegeben wird, wenn unter dem Schlüssel
+	 *                     kein Wert hinterlegt ist.
 	 * @return der hinterlegt Wert oder, falls nicht vorhanden, der angegebene
 	 *         Standardwert.
 	 */
@@ -208,8 +188,7 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Legt den Index des aktuellen Feldes fest.
 	 * 
-	 * @param index
-	 *            der neue Index.
+	 * @param index der neue Index.
 	 */
 	void setArrayIndex(final int index);
 
@@ -223,8 +202,7 @@ public interface ReadOnlyConfiguration {
 	/**
 	 * Prüft ob ein Schlüssel in der Schlüsselmenge enthalten ist.
 	 * 
-	 * @param key
-	 *            ein beliebiger String.
+	 * @param key ein beliebiger String.
 	 * @return {@code true}, wenn der String ein gültiger Schlüssel ist.
 	 */
 	boolean containsKey(String key);

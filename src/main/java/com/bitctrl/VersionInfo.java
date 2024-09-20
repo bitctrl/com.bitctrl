@@ -46,8 +46,7 @@ public class VersionInfo {
 	/**
 	 * Liest die Beschreibung aus dem Manifest-File.
 	 * 
-	 * @param manifest
-	 *            ein Manifestfile.
+	 * @param manifest ein Manifestfile.
 	 * @see Attributes.Name#IMPLEMENTATION_TITLE
 	 * @see Attributes.Name#IMPLEMENTATION_VERSION
 	 * @see Attributes.Name#IMPLEMENTATION_VENDOR
@@ -66,17 +65,12 @@ public class VersionInfo {
 	/**
 	 * Erzeugt eine Beschreibung.
 	 * 
-	 * @param title
-	 *            der Name der Applikation oder der Bibliothek.
-	 * @param version
-	 *            die Versionsnummer.
-	 * @param vendor
-	 *            das Unternehmen.
-	 * @param vendorUrl
-	 *            die Internetseite des Unternehmens.
+	 * @param title     der Name der Applikation oder der Bibliothek.
+	 * @param version   die Versionsnummer.
+	 * @param vendor    das Unternehmen.
+	 * @param vendorUrl die Internetseite des Unternehmens.
 	 */
-	public VersionInfo(final String title, final String version,
-			final String vendor, final String vendorUrl) {
+	public VersionInfo(final String title, final String version, final String vendor, final String vendorUrl) {
 		this.title = title;
 		this.version = version;
 		this.vendor = vendor;
@@ -84,8 +78,8 @@ public class VersionInfo {
 	}
 
 	/**
-	 * Gibt die Versionsnummer als {@code ReleaseInfo} zurück. Dies ist nur
-	 * möglich, wenn die Versionsnummer einer Releasenummer entspricht.
+	 * Gibt die Versionsnummer als {@code ReleaseInfo} zurück. Dies ist nur möglich,
+	 * wenn die Versionsnummer einer Releasenummer entspricht.
 	 * 
 	 * @return das Release.
 	 */
@@ -110,7 +104,7 @@ public class VersionInfo {
 	public URL getURL() {
 		try {
 			return new URL(getVendorUrl());
-		} catch (MalformedURLException ex) {
+		} catch (final MalformedURLException ex) {
 			throw new IllegalStateException(ex);
 		}
 	}

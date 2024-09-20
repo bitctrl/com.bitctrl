@@ -60,28 +60,30 @@ public class BaseEdge implements Edge {
 	/**
 	 * Initialisiert die Kante mit ihren Knoten.
 	 * 
-	 * @param source
-	 *            der Startknoten.
-	 * @param target
-	 *            der Endknoten.
+	 * @param source der Startknoten.
+	 * @param target der Endknoten.
 	 */
 	public BaseEdge(final BaseNode source, final BaseNode target) {
 		this.source = source;
 		this.target = target;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public Node getSource() {
 		return source;
 	}
 
+	@Override
 	public Node getTarget() {
 		return target;
 	}
 
+	@Override
 	public void setName(final String name) {
 		this.name = name;
 	}
@@ -91,8 +93,7 @@ public class BaseEdge implements Edge {
 		if (this == obj) {
 			return true;
 		}
-		if (obj instanceof Node) {
-			final Node other = (Node) obj;
+		if (obj instanceof final Node other) {
 			return getName().equals(other.getName());
 		}
 		return false;

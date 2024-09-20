@@ -37,11 +37,10 @@ import com.bitctrl.modell.criteria.OrderDAOCriterion;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <T>
- *            der Typ der Datenobjekte.
- * @param <ID>
- *            der Schlüssel für die Datenobjekte.
+ * @param <T>  der Typ der Datenobjekte.
+ * @param <ID> der Schlüssel für die Datenobjekte.
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public abstract class AbstractDAO<T, ID> implements DAO<T, ID> {
 
 	private final EventListenerList listenerList = new EventListenerList();
@@ -51,8 +50,7 @@ public abstract class AbstractDAO<T, ID> implements DAO<T, ID> {
 	private OrderDAOCriterion[] defaultOrder;
 
 	/**
-	 * Initialisiert die DAO mit dem Typ der DAO-Elemente und deren
-	 * Schlüsseltyp.
+	 * Initialisiert die DAO mit dem Typ der DAO-Elemente und deren Schlüsseltyp.
 	 */
 	@SuppressWarnings("unchecked")
 	protected AbstractDAO() {
@@ -61,14 +59,17 @@ public abstract class AbstractDAO<T, ID> implements DAO<T, ID> {
 		keyClass = (Class<ID>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 	}
 
+	@Override
 	public Class<T> getPersistentClass() {
 		return persistentClass;
 	}
 
+	@Override
 	public Class<ID> getKeyClass() {
 		return keyClass;
 	}
 
+	@Override
 	public OrderDAOCriterion[] getDefaultOrder() {
 		return defaultOrder != null ? defaultOrder : new OrderDAOCriterion[0];
 	}
@@ -76,17 +77,18 @@ public abstract class AbstractDAO<T, ID> implements DAO<T, ID> {
 	/**
 	 * Legt die Defaultsortierung der Daten in der DAO fest.
 	 * 
-	 * @param defaultOrder
-	 *            die Defaultsortierung der DAO-Daten.
+	 * @param defaultOrder die Defaultsortierung der DAO-Daten.
 	 */
 	protected void setDefaultOrder(final OrderDAOCriterion... defaultOrder) {
 		this.defaultOrder = defaultOrder;
 	}
 
+	@Override
 	public void addDAOListener(final DAOListener l) {
 		listenerList.add(DAOListener.class, l);
 	}
 
+	@Override
 	public void removeDAOListener(final DAOListener l) {
 		listenerList.remove(DAOListener.class, l);
 	}
@@ -103,10 +105,8 @@ public abstract class AbstractDAO<T, ID> implements DAO<T, ID> {
 	 * Benachrichtigt alle angemeldeten Listener über Datenänderungen. Muss nach
 	 * einer Änderung der Daten der DAO aufgerufen werden.
 	 * 
-	 * @param type
-	 *            der Typ der Aktualisierung.
-	 * @param object
-	 *            das aktualisierte Objekt.
+	 * @param type   der Typ der Aktualisierung.
+	 * @param object das aktualisierte Objekt.
 	 */
 	protected synchronized void fireDataChanged(final DAOEvent.Type type, final Object object) {
 		DAOEvent e;

@@ -38,11 +38,10 @@ import com.bitctrl.modell.criteria.OrderDAOCriterion;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <T>
- *            der Typ der Datenobjekte.
- * @param <ID>
- *            der Schlüssel für die Datenobjekte.
+ * @param <T>  der Typ der Datenobjekte.
+ * @param <ID> der Schlüssel für die Datenobjekte.
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface DAO<T, ID> {
 
 	/**
@@ -63,16 +62,14 @@ public interface DAO<T, ID> {
 	 * Registriert einen Listener, der über Änderungen am DAO informiert werden
 	 * möchte.
 	 * 
-	 * @param l
-	 *            ein DAO-Listener.
+	 * @param l ein DAO-Listener.
 	 */
 	void addDAOListener(DAOListener l);
 
 	/**
 	 * Deregistiert einen Listener.
 	 * 
-	 * @param l
-	 *            ein DAO-Listener.
+	 * @param l ein DAO-Listener.
 	 */
 	void removeDAOListener(DAOListener l);
 
@@ -80,10 +77,8 @@ public interface DAO<T, ID> {
 	 * Ruft alle Objekt von der Datenquelle ab.
 	 * 
 	 * @return die Liste der vorhandenen Objekte.
-	 * @param criteria
-	 *            die DAO Kriterien, darf nicht {@code null} sein.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @param criteria die DAO Kriterien, darf nicht {@code null} sein.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	List<T> retrieve(DAOCriterion... criteria) throws DAOException;
 
@@ -91,76 +86,64 @@ public interface DAO<T, ID> {
 	 * Fügt der Datenquelle ein Objekt hinzu.
 	 * <p>
 	 * <em>Hinweis:</em> Die Datenquelle kann das Objekt beim Hinzufügen ändern,
-	 * z.&nbsp;B. die Id ausfüllen. Deshalb darf nach dem Hinzufügen nicht mit
-	 * dem übergebenen Objekt weitergearbeitet werden, sondern es muss das
+	 * z.&nbsp;B. die Id ausfüllen. Deshalb darf nach dem Hinzufügen nicht mit dem
+	 * übergebenen Objekt weitergearbeitet werden, sondern es muss das
 	 * zurückgegebene Objekt weiterverwendet werden.
 	 * 
-	 * @param object
-	 *            ein Objekt mit Schlüssel.
+	 * @param object ein Objekt mit Schlüssel.
 	 * @return das hinzugefügte Objekt.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	T add(T object) throws DAOException;
 
 	/**
 	 * Aktualisiert ein vorhandenes Objekt der Datenquelle.
 	 * 
-	 * @param object
-	 *            ein Objekt mit Schlüssel.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @param object ein Objekt mit Schlüssel.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	void update(T object) throws DAOException;
 
 	/**
-	 * Aktualisiert ein vorhandenes Objekt der Datenquelle. Zweite Objectinstanz
-	 * in der Session darf existieren
+	 * Aktualisiert ein vorhandenes Objekt der Datenquelle. Zweite Objectinstanz in
+	 * der Session darf existieren
 	 * 
-	 * @param object
-	 *            ein Objekt mit Schlüssel.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @param object ein Objekt mit Schlüssel.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	void merge(T object) throws DAOException;
 
 	/**
-	 * Löscht das angegebene Objekt aus der Datenquelle. Das betroffene Objekt
-	 * wird anhand seines Schlüssel identifiziert.
+	 * Löscht das angegebene Objekt aus der Datenquelle. Das betroffene Objekt wird
+	 * anhand seines Schlüssel identifiziert.
 	 * 
-	 * @param object
-	 *            ein Objekt mit Schlüssel.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @param object ein Objekt mit Schlüssel.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	void delete(T object) throws DAOException;
 
 	/**
 	 * Sucht das Objekt, welches zu dem angegebenen Schlüssel passt.
 	 * 
-	 * @param key
-	 *            ein Schlüssel.
+	 * @param key ein Schlüssel.
 	 * @return das Objekt auf das der Schlüssel passt.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	T findById(ID key) throws DAOException;
 
 	/**
-	 * Gibt die erwartete Anzahl Datenobjekte zurück. Wird kein Criteria
-	 * angegeben, wird die Gesamtanzahl zurückgegeben.
+	 * Gibt die erwartete Anzahl Datenobjekte zurück. Wird kein Criteria angegeben,
+	 * wird die Gesamtanzahl zurückgegeben.
 	 * 
-	 * @param criteria
-	 *            beliebige DAO-Kriterien.
+	 * @param criteria beliebige DAO-Kriterien.
 	 * @return die Anzahl gemäß der übergebenen Kriterien.
-	 * @throws DAOException
-	 *             bei einem Fehler.
+	 * @throws DAOException bei einem Fehler.
 	 */
 	long count(DAOCriterion... criteria) throws DAOException;
 
 	/**
-	 * Gibt die Standardsortierung der Datensätze zurück. Kann leer sein, wenn
-	 * es keine sinnvolle Sortierung gibt.
+	 * Gibt die Standardsortierung der Datensätze zurück. Kann leer sein, wenn es
+	 * keine sinnvolle Sortierung gibt.
 	 * 
 	 * @return die Standardsortierung oder ein leeres Array. Niemals
 	 *         <code>null</code>.
@@ -168,15 +151,13 @@ public interface DAO<T, ID> {
 	OrderDAOCriterion[] getDefaultOrder();
 
 	/**
-	 * Konvertiert die uebergebenen {@link DAOCriterion}s in ein Hibernate-
-	 * Criteria Objekt.
+	 * Konvertiert die uebergebenen {@link DAOCriterion}s in ein Hibernate- Criteria
+	 * Objekt.
 	 * 
-	 * @param isCount
-	 *            <code>true</code> wenn es sich bei der Abfrage um ein
-	 *            {@link #count(DAOCriterion...)} handelt, sonst
-	 *            <code>false</code>.
-	 * @param daoCriterias
-	 *            Die {@link DAOCriterion}s.
+	 * @param isCount      <code>true</code> wenn es sich bei der Abfrage um ein
+	 *                     {@link #count(DAOCriterion...)} handelt, sonst
+	 *                     <code>false</code>.
+	 * @param daoCriterias Die {@link DAOCriterion}s.
 	 * @return Das Hibernate-Criteria Object.
 	 */
 

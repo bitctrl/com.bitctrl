@@ -32,5 +32,5 @@
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 package com.bitctrl.modell;
-

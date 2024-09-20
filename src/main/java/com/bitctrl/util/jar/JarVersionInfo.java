@@ -58,20 +58,18 @@ public final class JarVersionInfo {
 	/**
 	 * Startet das Tool.
 	 * 
-	 * @param args
-	 *            eine Liste von Jar-Files.
+	 * @param args eine Liste von Jar-Files.
 	 */
 	public static void main(final String[] args) {
 		final boolean onlyVersion;
 		final List<String> files;
 
 		if (args.length == 0) {
-			System.out
-					.println("Usage:\n\tJarVersionInfo [-short] jarfile1 jarfile2 ...");
+			System.out.println("Usage:\n\tJarVersionInfo [-short] jarfile1 jarfile2 ...");
 		}
 
-		files = new LinkedList<String>(Arrays.asList(args));
-		if (args[0].equals("-short")) {
+		files = new LinkedList<>(Arrays.asList(args));
+		if ("-short".equals(args[0])) {
 			onlyVersion = true;
 			files.remove(0);
 		} else {
@@ -90,23 +88,18 @@ public final class JarVersionInfo {
 				attributes = manifest.getMainAttributes();
 
 				jar = new File(file).getName();
-				title = attributes
-						.getValue(Attributes.Name.IMPLEMENTATION_TITLE);
-				version = attributes
-						.getValue(Attributes.Name.IMPLEMENTATION_VERSION);
-				vendor = attributes
-						.getValue(Attributes.Name.IMPLEMENTATION_VENDOR);
+				title = attributes.getValue(Attributes.Name.IMPLEMENTATION_TITLE);
+				version = attributes.getValue(Attributes.Name.IMPLEMENTATION_VERSION);
+				vendor = attributes.getValue(Attributes.Name.IMPLEMENTATION_VENDOR);
 				url = attributes.getValue(Attributes.Name.IMPLEMENTATION_URL);
 
 				if (onlyVersion) {
 					System.out.println(jar + "," + version + "," + url);
 				} else {
-					System.out.println(jar + "," + title + "," + version + ","
-							+ vendor + "," + url);
+					System.out.println(jar + "," + title + "," + version + "," + vendor + "," + url);
 				}
 			} catch (final IOException ex) {
-				System.err
-						.println("Fehler beim Lesen eines Jar-Files: " + file);
+				System.err.println("Fehler beim Lesen eines Jar-Files: " + file);
 				ex.printStackTrace();
 			}
 		}
