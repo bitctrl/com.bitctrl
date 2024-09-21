@@ -43,11 +43,10 @@ public class IP implements Serializable {
 	 * Bestimmt aus einem String die IP-Adresse. Der String muss im Format
 	 * {@code x.x.x.x/x} vorliegen.
 	 * 
-	 * @param address
-	 *            der zu parsende String.
+	 * @param address der zu parsende String.
 	 * @return die IP-Adresse.
-	 * @throws IllegalArgumentException
-	 *             wenn der String keine gültige Adresse darstellt.
+	 * @throws IllegalArgumentException wenn der String keine gültige Adresse
+	 *                                  darstellt.
 	 */
 	public static IP valueOf(final String address) {
 		if (IP_V4) {
@@ -61,24 +60,21 @@ public class IP implements Serializable {
 
 			s = address.split("/");
 			if (s.length != 1 && s.length != 2) {
-				throw new IllegalArgumentException(
-						"Can not determine host address and subnet mask length.");
+				throw new IllegalArgumentException("Can not determine host address and subnet mask length.");
 			}
 
 			try {
 				host = parseAddress(s[0]);
 			} catch (final IllegalArgumentException ex) {
 				// Wird nur aufgefangen um die Fehlermeldung anzupassen.
-				throw new IllegalArgumentException(
-						"Can not determine host address.");
+				throw new IllegalArgumentException("Can not determine host address.");
 			}
 
 			if (s.length == 2) {
 				try {
 					maskLength = Short.valueOf(s[1]);
 				} catch (final NumberFormatException ex) {
-					throw new IllegalArgumentException(
-							"Can not determine subnet mask length.", ex);
+					throw new IllegalArgumentException("Can not determine subnet mask length.", ex);
 				}
 			} else {
 				maskLength = 0;
@@ -106,8 +102,7 @@ public class IP implements Serializable {
 
 			s = addressString.split("\\.");
 			if (s.length != 4) {
-				throw new IllegalArgumentException(
-						"Can not determine subnet address.");
+				throw new IllegalArgumentException("Can not determine subnet address.");
 			}
 			address = Long.parseLong(s[0]) << 24;
 			address |= Long.parseLong(s[1]) << 16;
@@ -127,8 +122,7 @@ public class IP implements Serializable {
 	/**
 	 * Initialisiert die IP-Adresse mit dem angegebenen Host ohne Subnetmaske.
 	 * 
-	 * @param host
-	 *            der Host.
+	 * @param host der Host.
 	 */
 	public IP(final long host) {
 		this(host, (short) 0);
@@ -137,10 +131,8 @@ public class IP implements Serializable {
 	/**
 	 * Initialisiert die IP-Adresse.
 	 * 
-	 * @param host
-	 *            die Hostadresse.
-	 * @param maskLength
-	 *            die Länge der Subnetmaske.
+	 * @param host       die Hostadresse.
+	 * @param maskLength die Länge der Subnetmaske.
 	 */
 	public IP(final long host, final short maskLength) {
 		this.host = host;
@@ -150,8 +142,7 @@ public class IP implements Serializable {
 	/**
 	 * Verwendet {@link #valueOf(String)} zur Initialisierung der IP-Adresse.
 	 * 
-	 * @param address
-	 *            ein String, der eine IP-Adresse darstellt.
+	 * @param address ein String, der eine IP-Adresse darstellt.
 	 */
 	public IP(final String address) {
 		final IP ip = valueOf(address);
@@ -160,8 +151,8 @@ public class IP implements Serializable {
 	}
 
 	/**
-	 * Gibt die IP-Adresse zurück. Zur Zeit verwendet diese Methode IPv4, dies
-	 * kann sich in späteren Versionen zu gunsten von IPv6 ändern.
+	 * Gibt die IP-Adresse zurück. Zur Zeit verwendet diese Methode IPv4, dies kann
+	 * sich in späteren Versionen zu gunsten von IPv6 ändern.
 	 * 
 	 * @return die IP-Adresse.
 	 * @see #getHostIPv4()
@@ -268,11 +259,11 @@ public class IP implements Serializable {
 
 	@Override
 	public String toString() {
-		String s = getHostAsString();
+		final StringBuilder s = new StringBuilder().append(getHostAsString());
 		if (getMaskLength() > 0) {
-			s += "/" + getMaskLength();
+			s.append("/").append(getMaskLength());
 		}
-		return s;
+		return s.toString();
 	}
 
 	/**
@@ -286,8 +277,7 @@ public class IP implements Serializable {
 		if (this == obj) {
 			return true;
 		}
-		if (obj instanceof IP) {
-			final IP o = (IP) obj;
+		if (obj instanceof final IP o) {
 			return host == o.host && maskLength == o.maskLength;
 		}
 		return false;
@@ -298,7 +288,6 @@ public class IP implements Serializable {
 	 */
 	@Override
 	public int hashCode() {
-		return Long.valueOf(host).hashCode()
-				^ Long.valueOf(maskLength).hashCode();
+		return Long.valueOf(host).hashCode() ^ Long.valueOf(maskLength).hashCode();
 	}
 }

@@ -5,11 +5,10 @@ package com.bitctrl.util;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <S1>
- *            der Typ des ersten Elements.
- * @param <S2>
- *            der Typ des zweiten Elements.
+ * @param <S1> der Typ des ersten Elements.
+ * @param <S2> der Typ des zweiten Elements.
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class Tupel<S1, S2> {
 
 	private S1 first;
@@ -25,10 +24,8 @@ public class Tupel<S1, S2> {
 	/**
 	 * Initialisierten die beiden Elemente.
 	 * 
-	 * @param first
-	 *            das erste Element.
-	 * @param second
-	 *            das zweite Element.
+	 * @param first  das erste Element.
+	 * @param second das zweite Element.
 	 */
 	public Tupel(final S1 first, final S2 second) {
 		this.first = first;
@@ -56,13 +53,10 @@ public class Tupel<S1, S2> {
 		if (obj == this) {
 			return true;
 		}
-		if (obj instanceof Tupel<?, ?>) {
-			final Tupel<?, ?> other = (Tupel<?, ?>) obj;
+		if (obj instanceof final Tupel<?, ?> other) {
 			boolean equals = true;
-			equals &= first != null && first.equals(other.first)
-					|| first == other.first;
-			equals &= second != null && second.equals(other.second)
-					|| second == other.second;
+			equals &= first != null && first.equals(other.first) || first == other.first;
+			equals &= second != null && second.equals(other.second) || second == other.second;
 			return equals;
 		}
 		return false;
@@ -71,8 +65,7 @@ public class Tupel<S1, S2> {
 
 	@Override
 	public int hashCode() {
-		return (null != first ? first.hashCode() : 0)
-				^ (null != second ? second.hashCode() : 0);
+		return (null != first ? first.hashCode() : 0) ^ (null != second ? second.hashCode() : 0);
 	}
 
 	@Override

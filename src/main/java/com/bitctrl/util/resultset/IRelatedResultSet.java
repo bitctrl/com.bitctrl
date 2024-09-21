@@ -30,20 +30,16 @@ package com.bitctrl.util.resultset;
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
  * 
- * @param <T>
- *            der Datentyp der Ergebnisse
- * @param <B>
- *            der Typ des zugrunde liegenden Datensatzes, z.B. SQLRow
+ * @param <T> der Datentyp der Ergebnisse
+ * @param <B> der Typ des zugrunde liegenden Datensatzes, z.B. SQLRow
  */
 public interface IRelatedResultSet<T, B> {
 
 	/**
 	 * Ein individuelles Element hat einen neuen Wert geliefert.
 	 * 
-	 * @param element
-	 *            das Element, welches den Wert zur Verfügung stellt.
-	 * @param wert
-	 *            der Wert
+	 * @param element das Element, welches den Wert zur Verfügung stellt.
+	 * @param wert    der Wert
 	 */
 	void neuerWert(IIndividualResult<T, B> element, T wert);
 

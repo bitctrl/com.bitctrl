@@ -37,13 +37,12 @@ import java.rmi.RemoteException;
 public interface StoppableApplication extends Remote {
 
 	/**
-	 * Wird aufgerufen, wenn die Applikation beendet werden soll. Die
-	 * Applikation kann noch Aufräumarbeiten erledigen. Am Ende der Methode muss
-	 * sich die Applikation an der RMI-Registry abmelden und sich anschließend
-	 * selbst beenden.
+	 * Wird aufgerufen, wenn die Applikation beendet werden soll. Die Applikation
+	 * kann noch Aufräumarbeiten erledigen. Am Ende der Methode muss sich die
+	 * Applikation an der RMI-Registry abmelden und sich anschließend selbst
+	 * beenden.
 	 * 
-	 * @throws RemoteException
-	 *             bei Fehlern beim RMI-Zugriff.
+	 * @throws RemoteException bei Fehlern beim RMI-Zugriff.
 	 * @see RemoteTools#unbind(String)
 	 */
 	void exit() throws RemoteException;
@@ -53,8 +52,7 @@ public interface StoppableApplication extends Remote {
 	 * RMI-Registry anmeldet.
 	 * 
 	 * @return der in der RMI-Registry eingetragene Name der Applikation.
-	 * @throws RemoteException
-	 *             bei Fehlern beim RMI-Zugriff.
+	 * @throws RemoteException bei Fehlern beim RMI-Zugriff.
 	 * @see RemoteTools#init(StoppableApplication, String[])
 	 */
 	String getServiceName() throws RemoteException;

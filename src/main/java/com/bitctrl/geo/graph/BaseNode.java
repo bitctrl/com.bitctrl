@@ -47,18 +47,19 @@ public class BaseNode implements Node {
 	/**
 	 * Initialisiert den Knoten mit seinem Namen.
 	 * 
-	 * @param name
-	 *            der Knotenname.
+	 * @param name der Knotenname.
 	 */
 	public BaseNode(final String name) {
 		this.name = name;
 	}
 
+	@Override
 	public String getName() {
 		assert name != null;
 		return name;
 	}
 
+	@Override
 	public void setName(final String name) {
 		if (name == null) {
 			throw new NullPointerException("name must not be null");
@@ -71,8 +72,7 @@ public class BaseNode implements Node {
 		if (this == obj) {
 			return true;
 		}
-		if (obj instanceof Node) {
-			final Node other = (Node) obj;
+		if (obj instanceof final Node other) {
 			return getName().equals(other.getName());
 		}
 		return false;
@@ -82,7 +82,7 @@ public class BaseNode implements Node {
 	public int hashCode() {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	/**
 	 * Gibt den Namen des Knoten zurück.
 	 * 

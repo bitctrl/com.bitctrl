@@ -37,18 +37,18 @@ import java.util.List;
  */
 public class Makro extends AbstractCommand {
 
-	private final List<Command> script = new ArrayList<Command>();
+	private final List<Command> script = new ArrayList<>();
 
 	/**
 	 * Fügt dem Makro einen auszuführenden Befehl hinzu.
 	 * 
-	 * @param cmd
-	 *            ein Befehl,
+	 * @param cmd ein Befehl,
 	 */
 	public void add(final Command cmd) {
 		script.add(cmd);
 	}
 
+	@Override
 	public void run() {
 		for (final Command cmd : script) {
 			cmd.run();

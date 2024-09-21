@@ -11,10 +11,8 @@ import java.util.List;
  * 
  * @author BitCtrl Systems GmbH, Albrecht Uhlmann
  * 
- * @param <I>
- *            Typ der Eingangsobjekte
- * @param <O>
- *            Typ der Ergebnisobjekte
+ * @param <I> Typ der Eingangsobjekte
+ * @param <O> Typ der Ergebnisobjekte
  */
 public abstract class ArrayMemberCombinator<I, O> implements Runnable {
 
@@ -27,10 +25,8 @@ public abstract class ArrayMemberCombinator<I, O> implements Runnable {
 	/**
 	 * Implementiert die Zuordnungsvorschrift
 	 * 
-	 * @param i1
-	 *            Eingabeobjekt 1
-	 * @param i2
-	 *            Eingabeobjekt 2
+	 * @param i1 Eingabeobjekt 1
+	 * @param i2 Eingabeobjekt 2
 	 * @return Ergebnisobjet vom Typ O
 	 */
 	protected abstract O combine(I i1, I i2);
@@ -38,11 +34,10 @@ public abstract class ArrayMemberCombinator<I, O> implements Runnable {
 	/**
 	 * Konstruktor übernimmt und prüft Argumente
 	 * 
-	 * @param inputs
-	 *            Feld mit Eingabedaten. Muss mindestens ein Element enthalten
-	 * @param alwaysFirst
-	 *            Wenn true, wird immer mit dem ersten Element aus inputs
-	 *            gearbeitet, ansonsten konsekutive Elemente.
+	 * @param inputs      Feld mit Eingabedaten. Muss mindestens ein Element
+	 *                    enthalten
+	 * @param alwaysFirst Wenn true, wird immer mit dem ersten Element aus inputs
+	 *                    gearbeitet, ansonsten konsekutive Elemente.
 	 */
 	public ArrayMemberCombinator(final I[] inputs, final boolean alwaysFirst) {
 		super();
@@ -50,9 +45,10 @@ public abstract class ArrayMemberCombinator<I, O> implements Runnable {
 		this.alwaysFirst = alwaysFirst;
 		assert inputs != null;
 		assert inputs.length > 0;
-		outputs = new ArrayList<O>(inputs.length - 1);
+		outputs = new ArrayList<>(inputs.length - 1);
 	}
 
+	@Override
 	public void run() {
 		synchronized (inputs) {
 			int loop;

@@ -33,24 +33,21 @@ import java.util.EventListener;
  * 
  * @author BitCtrl Systems GmbH, Schumann
  * 
- * @param <T>
- *            der Typ der Elemente in der Liste.
+ * @param <T> der Typ der Elemente in der Liste.
  */
 public interface ListChangedListener<T> extends EventListener {
 
 	/**
 	 * Wird aufgerufen, wenn sich die Liste geändert hat.
 	 * 
-	 * @param e
-	 *            das Event mit der Beschreibung der Änderung.
+	 * @param e das Event mit der Beschreibung der Änderung.
 	 */
 	void listChanged(ListChangedEvent<T> e);
 
 	/**
 	 * Wird aufgerufen, wenn sich ein Element der Liste geändert hat.
 	 * 
-	 * @param e
-	 *            das Event mit der Beschreibung der Änderung.
+	 * @param e das Event mit der Beschreibung der Änderung.
 	 */
 	void elementChanged(ListElementChangedEvent<T> e);
 

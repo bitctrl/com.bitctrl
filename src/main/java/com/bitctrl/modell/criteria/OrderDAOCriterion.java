@@ -31,6 +31,7 @@ package com.bitctrl.modell.criteria;
  * 
  * @author BitCtrl Systems GmbH, Goerlitz
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class OrderDAOCriterion implements DAOCriterion {
 
 	private final String propertyName;
@@ -39,8 +40,7 @@ public class OrderDAOCriterion implements DAOCriterion {
 	/**
 	 * Erstellt eine aufsteigende Sortierung für Ergebnisse einer DAO.
 	 * 
-	 * @param propertyName
-	 *            der Spaltenname ueber den sortiert werden soll.
+	 * @param propertyName der Spaltenname ueber den sortiert werden soll.
 	 */
 	public OrderDAOCriterion(final String propertyName) {
 		this(propertyName, true);
@@ -49,11 +49,9 @@ public class OrderDAOCriterion implements DAOCriterion {
 	/**
 	 * Erstellt eine Sortierung für Ergebnisse einer DAO.
 	 * 
-	 * @param propertyName
-	 *            der Spaltenname ueber den sortiert werden soll.
-	 * @param ascending
-	 *            <code>true</code>, wenn aufsteigend sortiert werden soll,
-	 *            sonst <code>false</code>.
+	 * @param propertyName der Spaltenname ueber den sortiert werden soll.
+	 * @param ascending    <code>true</code>, wenn aufsteigend sortiert werden soll,
+	 *                     sonst <code>false</code>.
 	 */
 	public OrderDAOCriterion(final String propertyName, final boolean ascending) {
 		this.propertyName = propertyName;
@@ -81,8 +79,7 @@ public class OrderDAOCriterion implements DAOCriterion {
 
 	@Override
 	public String toString() {
-		return getClass().getName() + "[propertyName=" + propertyName
-				+ ", ascending=" + ascending + "]";
+		return getClass().getName() + "[propertyName=" + propertyName + ", ascending=" + ascending + "]";
 	}
 
 }

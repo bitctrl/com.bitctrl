@@ -5,6 +5,11 @@
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
 
+## Version 3.0.0
+ - Update auf Java 17
+ - javax Namespace durch jakarta ersetzt
+ - DAO & Criteria Klassen deprecated
+
 ## Version 2.1.0
 
 - Publikation auf dem NERZ-Maven-Repository

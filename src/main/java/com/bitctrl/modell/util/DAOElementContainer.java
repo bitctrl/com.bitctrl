@@ -37,6 +37,7 @@ import com.bitctrl.modell.criteria.DAOCriterion;
  * 
  * @author BitCtrl Systems GmbH, Görlitz
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface DAOElementContainer {
 
 	/**
@@ -51,17 +52,14 @@ public interface DAOElementContainer {
 	 * Liefert die Anzahl der Blätterelemente.
 	 * 
 	 * @return Die Anzahl der Blätterelemente.
-	 * @throws DAOException
-	 *             Bei einem Fehler.
+	 * @throws DAOException Bei einem Fehler.
 	 */
 	int getLeafElementsCount() throws DAOException;
 
 	/**
-	 * Liefert alle Kriterien zur Ermittlung des Kindelements am übergebenen
-	 * Index.
+	 * Liefert alle Kriterien zur Ermittlung des Kindelements am übergebenen Index.
 	 * 
-	 * @param index
-	 *            Der Index.
+	 * @param index Der Index.
 	 * 
 	 * @return Die Kriterien.
 	 */
@@ -72,8 +70,7 @@ public interface DAOElementContainer {
 	 * Sub-Container sein.
 	 * 
 	 * @return Die Elemente dieses Containers
-	 * @throws DAOException
-	 *             Bei einem Fehler.
+	 * @throws DAOException Bei einem Fehler.
 	 */
 	List<?> getElements() throws DAOException;
 }

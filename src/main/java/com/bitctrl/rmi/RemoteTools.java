@@ -48,18 +48,14 @@ public final class RemoteTools {
 	/**
 	 * Registriert eine Anwendung bei der RMI-Registry.
 	 * 
-	 * @param name
-	 *            der Name unter dem die Applikation registriert werden soll.
-	 *            Der Name muss in der gesamten Registry eindeutig sein.
-	 * @param service
-	 *            die zu registrierende Applikation.
-	 * @throws RemoteException
-	 *             bei Fehlern beim RMI-Zugriff.
-	 * @throws AlreadyBoundException
-	 *             wenn unter dem Namen bereist ein Dienst registriert wurde.
+	 * @param name    der Name unter dem die Applikation registriert werden soll.
+	 *                Der Name muss in der gesamten Registry eindeutig sein.
+	 * @param service die zu registrierende Applikation.
+	 * @throws RemoteException       bei Fehlern beim RMI-Zugriff.
+	 * @throws AlreadyBoundException wenn unter dem Namen bereist ein Dienst
+	 *                               registriert wurde.
 	 */
-	public static void bind(final String name, final Remote service)
-			throws RemoteException, AlreadyBoundException {
+	public static void bind(final String name, final Remote service) throws RemoteException, AlreadyBoundException {
 		Registry registry;
 		Remote stub;
 
@@ -74,25 +70,19 @@ public final class RemoteTools {
 	 * Kommandozeilenargumente {@code [-|--|/]stop} wird die
 	 * {@link StoppableApplication#exit()}-Methode der Applikation aufgerufen.
 	 * 
-	 * @param application
-	 *            die zu registrierende Applikation.
-	 * @param args
-	 *            die Argumente der {@code main()}-Methode.
-	 * @throws RemoteException
-	 *             bei Fehlern beim RMI-Zugriff.
+	 * @param application die zu registrierende Applikation.
+	 * @param args        die Argumente der {@code main()}-Methode.
+	 * @throws RemoteException bei Fehlern beim RMI-Zugriff.
 	 */
-	public static void init(final StoppableApplication application,
-			final String[] args) throws RemoteException {
+	public static void init(final StoppableApplication application, final String[] args) throws RemoteException {
 		for (final String arg : args) {
-			if (arg.equals("stop") || arg.equals("-stop")
-					|| arg.equals("--stop") || arg.equals("/stop")) {
+			if ("stop".equals(arg) || "-stop".equals(arg) || "--stop".equals(arg) || "/stop".equals(arg)) {
 				Registry registry;
 				StoppableApplication stub;
 
 				registry = LocateRegistry.getRegistry();
 				try {
-					stub = (StoppableApplication) registry.lookup(application
-							.getServiceName());
+					stub = (StoppableApplication) registry.lookup(application.getServiceName());
 					stub.exit();
 				} catch (final NotBoundException ex) {
 					throw new IllegalStateException(ex);
@@ -112,9 +102,7 @@ public final class RemoteTools {
 		try {
 			rebind(application.getServiceName(), application);
 		} catch (final ConnectException ex) {
-			System.err
-					.println("Anwendungssteuerung per RMI steht nicht zur Verfügung: "
-							+ ex);
+			System.err.println("Anwendungssteuerung per RMI steht nicht zur Verfügung: " + ex);
 		}
 	}
 
@@ -122,16 +110,12 @@ public final class RemoteTools {
 	 * Registriert eine Anwendung bei der RMI-Registry, eine bereits vorhandene
 	 * Registrierung wird überschrieben.
 	 * 
-	 * @param name
-	 *            der Name unter dem die Applikation registriert werden soll.
-	 *            Der Name muss in der gesamten Registry eindeutig sein.
-	 * @param service
-	 *            die zu registrierende Applikation.
-	 * @throws RemoteException
-	 *             bei Fehlern beim RMI-Zugriff.
+	 * @param name    der Name unter dem die Applikation registriert werden soll.
+	 *                Der Name muss in der gesamten Registry eindeutig sein.
+	 * @param service die zu registrierende Applikation.
+	 * @throws RemoteException bei Fehlern beim RMI-Zugriff.
 	 */
-	public static void rebind(final String name, final Remote service)
-			throws RemoteException {
+	public static void rebind(final String name, final Remote service) throws RemoteException {
 		Registry registry;
 		Remote stub;
 		boolean exists;
@@ -145,8 +129,7 @@ public final class RemoteTools {
 			exists = false;
 		}
 		if (exists) {
-			System.err.println("Unter dem Namen \"" + name
-					+ "\" war bereits ein RMI-Service registriert.");
+			System.err.println("Unter dem Namen \"" + name + "\" war bereits ein RMI-Service registriert.");
 		}
 		registry.rebind(name, stub);
 	}
@@ -154,15 +137,12 @@ public final class RemoteTools {
 	/**
 	 * Meldet eine Anwendung bei der RMI-Registry wieder ab.
 	 * 
-	 * @param name
-	 *            der Name unter dem die Applikation registriert wurde.
-	 * @throws RemoteException
-	 *             bei Fehlern beim RMI-Zugriff.
-	 * @throws NotBoundException
-	 *             wenn kein Service unter dem Namen registriert wurde.
+	 * @param name der Name unter dem die Applikation registriert wurde.
+	 * @throws RemoteException   bei Fehlern beim RMI-Zugriff.
+	 * @throws NotBoundException wenn kein Service unter dem Namen registriert
+	 *                           wurde.
 	 */
-	public static void unbind(final String name) throws RemoteException,
-			NotBoundException {
+	public static void unbind(final String name) throws RemoteException, NotBoundException {
 		Registry registry;
 
 		registry = LocateRegistry.getRegistry();

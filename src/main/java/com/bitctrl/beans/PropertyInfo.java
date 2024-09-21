@@ -45,11 +45,11 @@ public interface PropertyInfo {
 	/**
 	 * Vergleicht zwei Infos anhand des Propertynamens.
 	 * 
-	 * @param other
-	 *            eine andere {@link PropertyInfo}.
+	 * @param other eine andere {@link PropertyInfo}.
 	 * @return {@code true}, wenn beide identisch sind.
 	 * @see #name()
 	 */
+	@Override
 	boolean equals(Object other);
 
 }

@@ -47,8 +47,7 @@ public class ReleaseInfo {
 	/**
 	 * Erzeugt eine Versionsnummer.
 	 * 
-	 * @param major
-	 *            das Major-Release.
+	 * @param major das Major-Release.
 	 */
 	public ReleaseInfo(final int major) {
 		this.major = major;
@@ -60,10 +59,8 @@ public class ReleaseInfo {
 	/**
 	 * Erzeugt eine Versionsnummer.
 	 * 
-	 * @param major
-	 *            das Major-Release.
-	 * @param minor
-	 *            das Minor-Release.
+	 * @param major das Major-Release.
+	 * @param minor das Minor-Release.
 	 */
 	public ReleaseInfo(final int major, final int minor) {
 		this.major = major;
@@ -75,12 +72,9 @@ public class ReleaseInfo {
 	/**
 	 * Erzeugt eine Versionsnummer.
 	 * 
-	 * @param major
-	 *            das Major-Release.
-	 * @param minor
-	 *            das Minor-Release.
-	 * @param patchLevel
-	 *            der Patch-Level.
+	 * @param major      das Major-Release.
+	 * @param minor      das Minor-Release.
+	 * @param patchLevel der Patch-Level.
 	 */
 	public ReleaseInfo(final int major, final int minor, final int patchLevel) {
 		this.major = major;
@@ -92,17 +86,12 @@ public class ReleaseInfo {
 	/**
 	 * Erzeugt eine Versionsnummer.
 	 * 
-	 * @param major
-	 *            das Major-Release.
-	 * @param minor
-	 *            das Minor-Release.
-	 * @param patchLevel
-	 *            der Patch-Level.
-	 * @param buildNumber
-	 *            die Build-Number.
+	 * @param major       das Major-Release.
+	 * @param minor       das Minor-Release.
+	 * @param patchLevel  der Patch-Level.
+	 * @param buildNumber die Build-Number.
 	 */
-	public ReleaseInfo(final int major, final int minor, final int patchLevel,
-			final int buildNumber) {
+	public ReleaseInfo(final int major, final int minor, final int patchLevel, final int buildNumber) {
 		this.major = major;
 		this.minor = minor;
 		this.patchLevel = patchLevel;
@@ -112,8 +101,7 @@ public class ReleaseInfo {
 	/**
 	 * Erzeugt eine Versionsnummer.
 	 * 
-	 * @param release
-	 *            ein String, der die Versionsnummer enthält.
+	 * @param release ein String, der die Versionsnummer enthält.
 	 */
 	public ReleaseInfo(final String release) {
 		if (Pattern.matches(PATTERN, release)) {
@@ -156,8 +144,7 @@ public class ReleaseInfo {
 			}
 			buildNumber = Integer.valueOf(release.substring(start));
 		} else {
-			throw new IllegalArgumentException(
-					"Release muss dem Muster 1[.4[.2[-15]]] entsprechen.");
+			throw new IllegalArgumentException("Release muss dem Muster 1[.4[.2[-15]]] entsprechen.");
 		}
 	}
 
@@ -198,9 +185,9 @@ public class ReleaseInfo {
 	}
 
 	/**
-	 * Gibt das Release für den Menschen lesbar zurück. Teile die nicht
-	 * angegeben sind, werden nicht ausgegeben. Fehlt z.&nbsp;B. die Build
-	 * Number wird diese auch nicht berücksichtigt.
+	 * Gibt das Release für den Menschen lesbar zurück. Teile die nicht angegeben
+	 * sind, werden nicht ausgegeben. Fehlt z.&nbsp;B. die Build Number wird diese
+	 * auch nicht berücksichtigt.
 	 * 
 	 * @return ein Text nach dem Muster 1[.4[.2[-15]]].
 	 */

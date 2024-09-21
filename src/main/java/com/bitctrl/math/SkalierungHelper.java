@@ -82,18 +82,15 @@ public class SkalierungHelper {
 	/**
 	 * Skaliert und formatiert einen Wert.
 	 * 
-	 * @param unscaledValue
-	 *            Unskalierter Wert
-	 * @param conversionFactor
-	 *            Faktor, mit dem der unskalierte Wert multipliziert wird.
+	 * @param unscaledValue    Unskalierter Wert
+	 * @param conversionFactor Faktor, mit dem der unskalierte Wert multipliziert
+	 *                         wird.
 	 * @return der Text
 	 */
-	public String format(final double unscaledValue,
-			final double conversionFactor) {
+	public String format(final double unscaledValue, final double conversionFactor) {
 		int precision = 0;
 		synchronized (integerNumberFormat) {
-			final String formatted = precesionTestFormat
-					.format(conversionFactor);
+			final String formatted = precesionTestFormat.format(conversionFactor);
 			final int kommaPosition = formatted.lastIndexOf('.');
 			if (kommaPosition >= 0) {
 				precision = formatted.length() - kommaPosition - 1;

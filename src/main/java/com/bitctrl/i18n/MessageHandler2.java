@@ -18,12 +18,12 @@ public interface MessageHandler2 extends MessageHandler {
 	 * Gibt das Resource-Bundle für diesen Message-Handler in der entsprechenden
 	 * Sprache zurück.
 	 * 
-	 * @param locale
-	 *            Die Sprache in der das Resource-Bundle zurückgegeben werden
-	 *            soll.
+	 * @param locale Die Sprache in der das Resource-Bundle zurückgegeben werden
+	 *               soll.
 	 * 
 	 * @return Das Resource-Bundle.
 	 */
+	@Override
 	ResourceBundle getResourceBundle(Locale locale);
 
 }

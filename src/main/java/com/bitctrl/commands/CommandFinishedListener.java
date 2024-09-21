@@ -39,8 +39,7 @@ public interface CommandFinishedListener extends EventListener {
 	/**
 	 * Wird aufgerufen, wenn ein Befehl beendet wurde.
 	 * 
-	 * @param e
-	 *            das Event.
+	 * @param e das Event.
 	 */
 	void commandFinished(CommandFinishedEvent e);
 

@@ -9,7 +9,7 @@ public class PortableBitmap {
 
 	private int width;
 	private int height;
-	private final HashSet<Point> data = new HashSet<Point>();
+	private final HashSet<Point> data = new HashSet<>();
 
 	public PortableBitmap() {
 		// tut nix
@@ -36,7 +36,7 @@ public class PortableBitmap {
 		final int oldWidth = this.width;
 		this.width = width;
 		if (oldWidth > width) {
-			final Collection<Point> toRemove = new ArrayList<Point>();
+			final Collection<Point> toRemove = new ArrayList<>();
 			for (final Point point : data.toArray(new Point[0])) {
 				if (point.x > width) {
 					toRemove.add(point);
@@ -54,7 +54,7 @@ public class PortableBitmap {
 		final int oldHeight = this.height;
 		this.height = height;
 		if (oldHeight > height) {
-			final Collection<Point> toRemove = new ArrayList<Point>();
+			final Collection<Point> toRemove = new ArrayList<>();
 			for (final Point point : data.toArray(new Point[0])) {
 				if (point.y > height) {
 					toRemove.add(point);

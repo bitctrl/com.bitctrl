@@ -33,12 +33,13 @@ import java.util.EventObject;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class DAOEvent extends EventObject {
 
 	private static final long serialVersionUID = 1;
 
 	/** Die Typen einer Änderung. */
-	public static enum Type {
+	public enum Type {
 
 		/** Hinzufügen. */
 		Add,
@@ -50,9 +51,9 @@ public class DAOEvent extends EventObject {
 		Delete,
 
 		/**
-		 * Unbekannte Änderung. Dieser Typ kann verwendet werden, wenn eine DAO
-		 * die Aktualisierung nicht unterscheiden kann, z.&nbsp;B. wenn sich
-		 * alle Daten der Quelle geändert haben.
+		 * Unbekannte Änderung. Dieser Typ kann verwendet werden, wenn eine DAO die
+		 * Aktualisierung nicht unterscheiden kann, z.&nbsp;B. wenn sich alle Daten der
+		 * Quelle geändert haben.
 		 */
 		Unknown;
 
@@ -64,14 +65,11 @@ public class DAOEvent extends EventObject {
 	/**
 	 * Erzeugt ein neues Event.
 	 * 
-	 * @param source
-	 *            die Quelle des Events, in der Regel eine DAO.
-	 * @param type
-	 *            der Typ des Events.
-	 * @param object
-	 *            das aktualiserte Objekt.
-	 * @deprecated Der Parameter <code>source</code> hat den falschen Typ,
-	 *             besser den anderen Konstruktor verwenden!!
+	 * @param source die Quelle des Events, in der Regel eine DAO.
+	 * @param type   der Typ des Events.
+	 * @param object das aktualiserte Objekt.
+	 * @deprecated Der Parameter <code>source</code> hat den falschen Typ, besser
+	 *             den anderen Konstruktor verwenden!!
 	 */
 	@Deprecated
 	public DAOEvent(final Object source, final Type type, final Object object) {
@@ -87,12 +85,9 @@ public class DAOEvent extends EventObject {
 	/**
 	 * Erzeugt ein neues Event.
 	 * 
-	 * @param source
-	 *            die Quelle des Events, in der Regel eine DAO.
-	 * @param type
-	 *            der Typ des Events.
-	 * @param object
-	 *            das aktualiserte Objekt.
+	 * @param source die Quelle des Events, in der Regel eine DAO.
+	 * @param type   der Typ des Events.
+	 * @param object das aktualiserte Objekt.
 	 */
 	public DAOEvent(final DAO<?, ?> source, final Type type, final Object object) {
 		super(source);
@@ -119,8 +114,8 @@ public class DAOEvent extends EventObject {
 	}
 
 	/**
-	 * Gibt das aktualisierte Objekt zurück. Für den Typ {@link Type#Unknown}
-	 * kann der Rückgabewert {@code null} sein.
+	 * Gibt das aktualisierte Objekt zurück. Für den Typ {@link Type#Unknown} kann
+	 * der Rückgabewert {@code null} sein.
 	 * 
 	 * @return das aktualisierte Objekt.
 	 */

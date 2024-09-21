@@ -36,23 +36,19 @@ public final class TreeUtil {
 	/**
 	 * Bestimmt die notwendige Höhe eines B+-Baumes.
 	 * 
-	 * @param k
-	 *            die maximale Anzahl der Elemente, die pro Blatt gesichert
-	 *            werden dürfen.
-	 * @param n
-	 *            Anzahl der unterzubringenden Elemente.
+	 * @param k die maximale Anzahl der Elemente, die pro Blatt gesichert werden
+	 *          dürfen.
+	 * @param n Anzahl der unterzubringenden Elemente.
 	 * @return die notwendige Baumhöhe.
 	 * @deprecated Funktion muss validiert werden, da scheinbar fehlerhaft.
 	 */
 	@Deprecated
 	public static int necessaryHighOfBPlusTree(final int k, final long n) {
 		if (n <= 1) {
-			throw new IllegalArgumentException(
-					"Number of elements must be greater than 1.");
+			throw new IllegalArgumentException("Number of elements must be greater than 1.");
 		}
 		if (k <= 0) {
-			throw new IllegalArgumentException(
-					"Number of leaf elements must be greater than 0.");
+			throw new IllegalArgumentException("Number of leaf elements must be greater than 0.");
 		}
 
 		final int b = k;
@@ -64,17 +60,14 @@ public final class TreeUtil {
 	 * Bestimmt die maximale Anzahl von Elementen, die in einem B+-Baum
 	 * untergebracht werden können.
 	 * 
-	 * @param k
-	 *            die maximale Anzahl der Elemente, die pro Blatt gesichert
-	 *            werden dürfen.
-	 * @param height
-	 *            die gewünschte Höhe des Baumes.
+	 * @param k      die maximale Anzahl der Elemente, die pro Blatt gesichert
+	 *               werden dürfen.
+	 * @param height die gewünschte Höhe des Baumes.
 	 * @return die maximale Elementanzahl im Baum.
 	 */
 	public static long maxElementsOfBPlusTree(final int k, final int height) {
 		if (k <= 0) {
-			throw new IllegalArgumentException(
-					"Number of leaf elements must be greater than 0.");
+			throw new IllegalArgumentException("Number of leaf elements must be greater than 0.");
 		}
 		if (height <= 0) {
 			throw new IllegalArgumentException("Height must be greater than 0.");

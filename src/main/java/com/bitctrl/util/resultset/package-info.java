@@ -28,9 +28,9 @@
  * erwartet und weitermachen will, wenn
  * <ul>
  * <li>Alle Werte da sind</li>
- * <li>Eine maximale Wartezeit abgelaufen ist, nachdem der ERSTE Wert da ist.</li>
+ * <li>Eine maximale Wartezeit abgelaufen ist, nachdem der ERSTE Wert da
+ * ist.</li>
  * </ul>
- *  
+ * 
  */
 package com.bitctrl.util.resultset;
-

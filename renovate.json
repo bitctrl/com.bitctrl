@@ -11,6 +11,7 @@
         "org.apache.maven.plugins:maven-surefire-report-plugin",
         "jfrog/setup-jfrog-cli",
         "org.codehaus.mojo:taglist-maven-plugin",
+        "com.github.spotbugs:spotbugs-maven-plugin",
         "github-action"
       ],
       "matchUpdateTypes": [

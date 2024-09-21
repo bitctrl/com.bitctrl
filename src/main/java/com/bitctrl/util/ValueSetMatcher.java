@@ -35,29 +35,28 @@ import java.util.List;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <T>
- *            der Typ der zu prüfenden Werte.
+ * @param <T> der Typ der zu prüfenden Werte.
  */
 public class ValueSetMatcher<T> implements ValueMatcher<T> {
 
-	private final List<ValueMatcher<T>> matchers = new ArrayList<ValueMatcher<T>>();
+	private final List<ValueMatcher<T>> matchers = new ArrayList<>();
 
 	/**
 	 * Fügt einen Matcher der Matcher-Menge hinzu.
 	 * 
-	 * @param matcher
-	 *            ein beliebiger Matcher.
+	 * @param matcher ein beliebiger Matcher.
 	 */
 	public void add(final ValueMatcher<T> matcher) {
 		matchers.add(matcher);
 	}
 
 	/**
-	 * Gibt {@code true} zurück, wenn irgendein Matcher der Matcher-Menge matcht
-	 * und {@code false}, wenn kein Matcher matcht. 
+	 * Gibt {@code true} zurück, wenn irgendein Matcher der Matcher-Menge matcht und
+	 * {@code false}, wenn kein Matcher matcht.
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean match(final T value) {
 		for (final ValueMatcher<T> vm : matchers) {
 			if (vm.match(value)) {

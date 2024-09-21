@@ -23,8 +23,7 @@ public interface Bogen {
 
 	/**
 	 * Gibt die Länge des Bogens zurück. Die Länge kann auch als Kosten
-	 * interpretiert, die aufgebracht werden müssen, um den Bogen zu
-	 * durchlaufen.
+	 * interpretiert, die aufgebracht werden müssen, um den Bogen zu durchlaufen.
 	 * 
 	 * @return die Bogenlänge.
 	 */

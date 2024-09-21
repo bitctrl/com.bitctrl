@@ -41,86 +41,67 @@ import com.bitctrl.modell.criteria.DAOCriterion;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public final class DAOPaging {
 
 	/**
-	 * Erzeugt abhängig von der Anzahl der erwarteten Objekte beim Datenabruf
-	 * ein Paging oder gibt die Liste der Datenobjekte direkt zurück.
+	 * Erzeugt abhängig von der Anzahl der erwarteten Objekte beim Datenabruf ein
+	 * Paging oder gibt die Liste der Datenobjekte direkt zurück.
 	 * <p>
-	 * Ist die Gesamtanzahl der gefundenen Objekte größer als die maximale
-	 * Anzahl von Objekten pro Seite, werden die notwendigen Seiten zur Anzeige
+	 * Ist die Gesamtanzahl der gefundenen Objekte größer als die maximale Anzahl
+	 * von Objekten pro Seite, werden die notwendigen Seiten zur Anzeige
 	 * zurückgegeben. Der Typ der Liste ist dann {@link DAOPage}.
 	 * <p>
-	 * Ist die Anzahl der erwarteten Datenelemente kleiner oder gleich der
-	 * maximalen Anzahl Element pro Seite, werden die Datenelemente direkt als
-	 * Liste zurückgegeben. Der Typ der Liste ist dann der Typ der Datenobjekte.
+	 * Ist die Anzahl der erwarteten Datenelemente kleiner oder gleich der maximalen
+	 * Anzahl Element pro Seite, werden die Datenelemente direkt als Liste
+	 * zurückgegeben. Der Typ der Liste ist dann der Typ der Datenobjekte.
 	 * 
-	 * @param dao
-	 *            die DAO, von der die Daten abgerufen werden sollen.
-	 * @param pageSize
-	 *            die maximale Anzahl der Elemente pro Seite.
-	 * @param showPageName
-	 *            Flag, ob {@link #toString()} nur den Bereich oder auch den
-	 *            Namen der Page zurückgeben soll. Der Name der Page wird anhand
-	 *            des Typs bzw. der BeanInfo bestimmt.
-	 * @param createSubpages
-	 *            Flag, ob das Anlegen von Subpages bei sehr großen Listen
-	 *            erlaubt ist.
-	 * @param criteria
-	 *            mögliche Kriterien.
+	 * @param dao            die DAO, von der die Daten abgerufen werden sollen.
+	 * @param pageSize       die maximale Anzahl der Elemente pro Seite.
+	 * @param showPageName   Flag, ob {@link #toString()} nur den Bereich oder auch
+	 *                       den Namen der Page zurückgeben soll. Der Name der Page
+	 *                       wird anhand des Typs bzw. der BeanInfo bestimmt.
+	 * @param createSubpages Flag, ob das Anlegen von Subpages bei sehr großen
+	 *                       Listen erlaubt ist.
+	 * @param criteria       mögliche Kriterien.
 	 * @return entweder die Liste der {@link DAOPage}s oder die Liste der
 	 *         Datenobjekte.
-	 * @throws DAOException
-	 *             bei einem Fehler beim Datenabruf.
+	 * @throws DAOException bei einem Fehler beim Datenabruf.
 	 */
-	public static List<?> getPagesOrElements(final DAO<?, ?> dao,
-			final int pageSize, final boolean showPageName,
-			final boolean createSubpages, final DAOCriterion... criteria)
-			throws DAOException {
+	public static List<?> getPagesOrElements(final DAO<?, ?> dao, final int pageSize, final boolean showPageName,
+			final boolean createSubpages, final DAOCriterion... criteria) throws DAOException {
 		if (dao.count(criteria) > pageSize) {
-			return getPages(dao, pageSize, showPageName, createSubpages,
-					criteria);
+			return getPages(dao, pageSize, showPageName, createSubpages, criteria);
 		}
 		return dao.retrieve(criteria);
 	}
 
 	/**
-	 * Die Liste der benötigen Seiten zurück, um die Elemente der DAO
-	 * anzuzeigen.
+	 * Die Liste der benötigen Seiten zurück, um die Elemente der DAO anzuzeigen.
 	 * 
-	 * @param dao
-	 *            die DAO, von der die Daten abgerufen werden sollen.
-	 * @param pageSize
-	 *            die maximale Anzahl der Elemente pro Seite.
-	 * @param showPageName
-	 *            Flag, ob {@link #toString()} nur den Bereich oder auch den
-	 *            Namen der Page zurückgeben soll. Der Name der Page wird anhand
-	 *            des Typs bzw. der BeanInfo bestimmt.
-	 * @param createSubpages
-	 *            Flag, ob das Anlegen von Subpages bei sehr großen Listen
-	 *            erlaubt ist.
-	 * @param criteria
-	 *            mögliche Kriterien.
+	 * @param dao            die DAO, von der die Daten abgerufen werden sollen.
+	 * @param pageSize       die maximale Anzahl der Elemente pro Seite.
+	 * @param showPageName   Flag, ob {@link #toString()} nur den Bereich oder auch
+	 *                       den Namen der Page zurückgeben soll. Der Name der Page
+	 *                       wird anhand des Typs bzw. der BeanInfo bestimmt.
+	 * @param createSubpages Flag, ob das Anlegen von Subpages bei sehr großen
+	 *                       Listen erlaubt ist.
+	 * @param criteria       mögliche Kriterien.
 	 * @return die Seitenliste.
-	 * @throws DAOException
-	 *             bei einem Fehler beim Datenabruf.
+	 * @throws DAOException bei einem Fehler beim Datenabruf.
 	 */
 	@SuppressWarnings("unchecked")
-	public static List<DAOPage> getPages(final DAO<?, ?> dao,
-			final int pageSize, final boolean showPageName,
-			final boolean createSubpages, final DAOCriterion... criteria)
-			throws DAOException {
+	public static List<DAOPage> getPages(final DAO<?, ?> dao, final int pageSize, final boolean showPageName,
+			final boolean createSubpages, final DAOCriterion... criteria) throws DAOException {
 		if (pageSize <= 0) {
-			throw new IllegalArgumentException(
-					"Page size must be greater than 0.");
+			throw new IllegalArgumentException("Page size must be greater than 0.");
 		}
 
-		final List<DAOPage> pages = new ArrayList<DAOPage>();
+		final List<DAOPage> pages = new ArrayList<>();
 		final long count = dao.count(criteria);
 
 		if (pageSize < count && createSubpages) {
-			return (List<DAOPage>) new DAOPage(dao, count, pageSize,
-					showPageName, 0, count, criteria).getElements();
+			return (List<DAOPage>) new DAOPage(dao, count, pageSize, showPageName, 0, count, criteria).getElements();
 		}
 
 		// Keine Subpages anlegen
@@ -134,8 +115,7 @@ public final class DAOPaging {
 				currentSize = (int) (count - offset);
 			}
 
-			pages.add(new DAOPage(dao, count, pageSize, showPageName, offset,
-					offset + currentSize, criteria));
+			pages.add(new DAOPage(dao, count, pageSize, showPageName, offset, offset + currentSize, criteria));
 		}
 
 		return pages;

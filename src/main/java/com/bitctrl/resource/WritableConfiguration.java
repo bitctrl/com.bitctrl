@@ -36,68 +36,55 @@ public interface WritableConfiguration extends ReadOnlyConfiguration {
 	/**
 	 * Öffnet ein neues Feld zum Schreiben.
 	 * 
-	 * @param name
-	 *            der Name des Felds.
+	 * @param name der Name des Felds.
 	 */
 	void beginWriteArray(final String name);
 
 	/**
 	 * Öffnet ein neues Feld zum Schreiben.
 	 * 
-	 * @param name
-	 *            der Name des Felds.
-	 * @param size
-	 *            die Gr��e die das Feld haben soll.
+	 * @param name der Name des Felds.
+	 * @param size die Gr��e die das Feld haben soll.
 	 */
 	void beginWriteArray(final String name, final int size);
 
 	/**
 	 * Legt einen booleschen Wert unter dem Schlüssel ab.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param value
-	 *            der Wert.
+	 * @param key   der Schlüssel.
+	 * @param value der Wert.
 	 */
 	void set(final String key, final boolean value);
 
 	/**
 	 * Legt einen Gleitkommawert unter dem Schlüssel ab.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param value
-	 *            der Wert.
+	 * @param key   der Schlüssel.
+	 * @param value der Wert.
 	 */
 	void set(final String key, final double value);
 
 	/**
 	 * Legt einen Ganzzahlwert unter dem Schlüssel ab.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param value
-	 *            der Wert.
+	 * @param key   der Schlüssel.
+	 * @param value der Wert.
 	 */
 	void set(final String key, final int value);
 
 	/**
 	 * Legt einen Ganzzahlwert unter dem Schlüssel ab.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param value
-	 *            der Wert.
+	 * @param key   der Schlüssel.
+	 * @param value der Wert.
 	 */
 	void set(final String key, final long value);
 
 	/**
 	 * Legt einen Stringwert unter dem Schlüssel ab.
 	 * 
-	 * @param key
-	 *            der Schlüssel.
-	 * @param value
-	 *            der Wert.
+	 * @param key   der Schlüssel.
+	 * @param value der Wert.
 	 */
 	void set(final String key, final String value);
 

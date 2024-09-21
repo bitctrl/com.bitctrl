@@ -66,23 +66,19 @@ public class CSVReader extends CSVProperties {
 	/**
 	 * Verwendet einen {@link java.io.InputStream} als Quelle für CSV-Daten.
 	 * 
-	 * @param in
-	 *            ein Eingabestrom, z.&nbsp;B. von einem File.
-	 * @param charset
-	 *            der zu verwendende Zeichensatz.
-	 * @throws UnsupportedEncodingException
-	 *             wenn der angegebene Zeichsatz nicht unterstützt wird.
+	 * @param in      ein Eingabestrom, z.&nbsp;B. von einem File.
+	 * @param charset der zu verwendende Zeichensatz.
+	 * @throws UnsupportedEncodingException wenn der angegebene Zeichsatz nicht
+	 *                                      unterstützt wird.
 	 */
-	public CSVReader(final InputStream in, final String charset)
-			throws UnsupportedEncodingException {
+	public CSVReader(final InputStream in, final String charset) throws UnsupportedEncodingException {
 		this.in = new InputStreamReader(in, charset);
 	}
 
 	/**
 	 * Parst einen String als CSV-Daten.
 	 * 
-	 * @param in
-	 *            ein String, z.&nbsp; der Inhalt eines Files.
+	 * @param in ein String, z.&nbsp; der Inhalt eines Files.
 	 */
 	public CSVReader(final String in) {
 		this.in = new StringReader(in);
@@ -92,11 +88,10 @@ public class CSVReader extends CSVProperties {
 	 * Liest den nächsten Datensatz aus der Datei.
 	 * 
 	 * @return der gelesene Datensatz.
-	 * @throws IOException
-	 *             bei Fehlern vom Lesen aus dem Eingabestrom.
+	 * @throws IOException bei Fehlern vom Lesen aus dem Eingabestrom.
 	 */
 	public List<String> next() throws IOException {
-		List<String> record = new ArrayList<String>();
+		List<String> record = new ArrayList<>();
 		boolean eof = false;
 		boolean escaped = false;
 		char lastSymbol;
@@ -142,23 +137,18 @@ public class CSVReader extends CSVProperties {
 					if (lastSymbol == CR) {
 						if (currentSymbol == LF) {
 							// Ende des Records erreicht (Windows)
-							record
-									.add(buffer.substring(0,
-											buffer.length() - 1));
+							record.add(buffer.substring(0, buffer.length() - 1));
 							buffer = "";
 						} else {
 							// Ende des Records erreicht (Mac OS)
-							record
-									.add(buffer.substring(0,
-											buffer.length() - 2));
+							record.add(buffer.substring(0, buffer.length() - 2));
 							buffer = String.valueOf(currentSymbol);
 						}
 						eof = true;
 					}
 
 					if (buffer.length() == 0 && currentSymbol == getEscape()
-							|| buffer.length() == 1
-							&& buffer.charAt(0) == getEscape()) {
+							|| buffer.length() == 1 && buffer.charAt(0) == getEscape()) {
 						buffer = "";
 						escaped = true;
 					}
@@ -173,7 +163,7 @@ public class CSVReader extends CSVProperties {
 			}
 			if (eof && getHeader().isEmpty() && isFirstLineHeader()) {
 				setHeader(record);
-				record = new ArrayList<String>();
+				record = new ArrayList<>();
 				eof = false;
 			}
 		}

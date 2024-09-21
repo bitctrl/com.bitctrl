@@ -31,11 +31,12 @@ package com.bitctrl.modell;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface TicketDAOFactory extends DAOFactory {
 
 	/**
-	 * Gibt das Ticket zurück, welches die Factory den von ihr erzeugten DAOs
-	 * mit gibt.
+	 * Gibt das Ticket zurück, welches die Factory den von ihr erzeugten DAOs mit
+	 * gibt.
 	 * 
 	 * @return das Ticket, welches die Factory verwendet.
 	 */
@@ -46,6 +47,7 @@ public interface TicketDAOFactory extends DAOFactory {
 	 * 
 	 * Ändert den Rückgabewert auf {@link TicketDAO}.
 	 */
+	@Override
 	<T> TicketDAO<T, ?> findDAO(Class<T> type);
 
 }

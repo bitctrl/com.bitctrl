@@ -30,8 +30,7 @@ public abstract class AbstractGraph implements Graph {
 	@Override
 	public void initStuetzBogen(final Knoten wurzel) {
 		if (!getKnoten().contains(wurzel)) {
-			throw new IllegalArgumentException(
-					"Der Knoten ist im Netz nicht vorhanden: " + wurzel);
+			throw new IllegalArgumentException("Der Knoten ist im Netz nicht vorhanden: " + wurzel);
 		}
 		for (final Knoten knoten : getKnoten()) {
 			if (knoten == wurzel) {

@@ -28,4 +28,3 @@
  * Modellierung von Baumstrukturen.
  */
 package com.bitctrl.geo.graph.tree;
-

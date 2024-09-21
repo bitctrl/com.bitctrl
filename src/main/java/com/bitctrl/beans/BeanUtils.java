@@ -48,11 +48,9 @@ public final class BeanUtils {
 	 * Getter und Setter verfügen. Sind beide vorhanden, müssen sie auch {@code
 	 * public} sein.
 	 * 
-	 * @param source
-	 *            die zu kopierende Bean.
+	 * @param source die zu kopierende Bean.
 	 * @return die Kopie der Bean.
-	 * @throws IllegalArgumentException
-	 *             wenn die Bean nicht kopierbar ist.
+	 * @throws IllegalArgumentException wenn die Bean nicht kopierbar ist.
 	 */
 	public static Object copy(final Object source) {
 		final Class<?> clazz = source.getClass();
@@ -61,19 +59,16 @@ public final class BeanUtils {
 		try {
 			info = Introspector.getBeanInfo(clazz);
 		} catch (final IntrospectionException ex) {
-			throw new IllegalArgumentException("Can not introspect bean: "
-					+ clazz, ex);
+			throw new IllegalArgumentException("Can not introspect bean: " + clazz, ex);
 		}
 
 		final Object target;
 		try {
 			target = clazz.newInstance();
 		} catch (final InstantiationException ex) {
-			throw new IllegalArgumentException(
-					"Can not copy interface or abstract class: " + clazz, ex);
+			throw new IllegalArgumentException("Can not copy interface or abstract class: " + clazz, ex);
 		} catch (final IllegalAccessException ex) {
-			throw new IllegalArgumentException(
-					"Bean must have a public default constructor: " + clazz, ex);
+			throw new IllegalArgumentException("Bean must have a public default constructor: " + clazz, ex);
 		}
 
 		for (final PropertyDescriptor pd : info.getPropertyDescriptors()) {
@@ -83,17 +78,13 @@ public final class BeanUtils {
 				try {
 					setter.invoke(target, getter.invoke(source));
 				} catch (final IllegalArgumentException ex) {
-					throw new IllegalArgumentException(
-							"Getter and setter have different type: " + clazz
-									+ ", " + pd, ex);
+					throw new IllegalArgumentException("Getter and setter have different type: " + clazz + ", " + pd,
+							ex);
 				} catch (final IllegalAccessException ex) {
-					throw new IllegalArgumentException(
-							"Getter and setter must be public: " + clazz + ", "
-									+ pd, ex);
+					throw new IllegalArgumentException("Getter and setter must be public: " + clazz + ", " + pd, ex);
 				} catch (final InvocationTargetException ex) {
-					throw new IllegalArgumentException(
-							"Getter or setter throws an exception: " + clazz
-									+ ", " + pd, ex);
+					throw new IllegalArgumentException("Getter or setter throws an exception: " + clazz + ", " + pd,
+							ex);
 				}
 			}
 		}
@@ -104,91 +95,66 @@ public final class BeanUtils {
 	/**
 	 * Erstellt eine neue Instanz der übergebenen Bean-Klasse.
 	 * 
-	 * @param <T>
-	 *            der Typ der Bean die angelegt werden soll.
-	 * @param beanClass
-	 *            die Klasse der Bean die angelegt werden soll.
+	 * @param <T>       der Typ der Bean die angelegt werden soll.
+	 * @param beanClass die Klasse der Bean die angelegt werden soll.
 	 * @return die neue Instanz der Bean.
 	 */
 	public static <T> T createInstance(final Class<T> beanClass) {
 		try {
 			return beanClass.newInstance();
-		} catch (final InstantiationException ex) {
-			throw new IllegalArgumentException(
-					"Cannot create new instance of bean type " + beanClass
-							+ ".", ex);
-		} catch (final IllegalAccessException ex) {
-			throw new IllegalArgumentException(
-					"Cannot create new instance of bean type " + beanClass
-							+ ".", ex);
+		} catch (final InstantiationException | IllegalAccessException ex) {
+			throw new IllegalArgumentException("Cannot create new instance of bean type " + beanClass + ".", ex);
 		}
 	}
 
 	/**
 	 * Liest den Wert der Property einer Java Bean.
 	 * 
-	 * @param target
-	 *            eine Java Bean.
-	 * @param propertyName
-	 *            der Name der Property.
+	 * @param target       eine Java Bean.
+	 * @param propertyName der Name der Property.
 	 * @return der Wert.
 	 */
-	public static Object getProperty(final Object target,
-			final String propertyName) {
+	public static Object getProperty(final Object target, final String propertyName) {
 		final BeanInfo beanInfo = getBeanInfo(target.getClass());
 
 		for (final PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
 			if (pd.getName().equals(propertyName)) {
 				try {
 					return pd.getReadMethod().invoke(target);
-				} catch (final IllegalAccessException ex) {
-					throw new IllegalArgumentException(
-							"Cannot read property data.", ex);
-				} catch (final InvocationTargetException ex) {
-					throw new IllegalArgumentException(
-							"Cannot read property data.", ex);
+				} catch (final IllegalAccessException | InvocationTargetException ex) {
+					throw new IllegalArgumentException("Cannot read property data.", ex);
 				}
 			}
 		}
 
-		throw new IllegalArgumentException("Bean "
-				+ target.getClass().getName() + " has no property "
-				+ propertyName + ".");
+		throw new IllegalArgumentException(
+				"Bean " + target.getClass().getName() + " has no property " + propertyName + ".");
 
 	}
 
 	/**
 	 * Setzt den Wert der Property einer Java Bean.
 	 * 
-	 * @param target
-	 *            eine Java Bean.
-	 * @param propertyName
-	 *            der Name der Property.
-	 * @param value
-	 *            der neue Wert.
+	 * @param target       eine Java Bean.
+	 * @param propertyName der Name der Property.
+	 * @param value        der neue Wert.
 	 */
-	public static void setProperty(final Object target,
-			final String propertyName, final Object value) {
+	public static void setProperty(final Object target, final String propertyName, final Object value) {
 		final BeanInfo beanInfo = getBeanInfo(target.getClass());
 
 		for (final PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
 			if (pd.getName().equals(propertyName)) {
 				try {
 					pd.getWriteMethod().invoke(target, value);
-				} catch (final IllegalAccessException ex) {
-					throw new IllegalArgumentException(
-							"Cannot set property data.", ex);
-				} catch (final InvocationTargetException ex) {
-					throw new IllegalArgumentException(
-							"Cannot set property data.", ex);
+				} catch (final IllegalAccessException | InvocationTargetException ex) {
+					throw new IllegalArgumentException("Cannot set property data.", ex);
 				}
 				return;
 			}
 		}
 
-		throw new IllegalArgumentException("Bean "
-				+ target.getClass().getName() + " has no property "
-				+ propertyName + ".");
+		throw new IllegalArgumentException(
+				"Bean " + target.getClass().getName() + " has no property " + propertyName + ".");
 
 	}
 
@@ -196,15 +162,13 @@ public final class BeanUtils {
 			.synchronizedMap(new WeakHashMap<Class<?>, BeanInfo>());
 
 	/**
-	 * Bestimmt zu einer Klasse die dazugehörige {@link BeanInfo}. Es wird die
-	 * Bean Info-Klasse direkt geladen, weil
-	 * {@link Introspector#getBeanInfo(Class)} eine Bean Info zurückgibt, deren
-	 * Properties nicht mehr der Originalsortierung entsprechen. Sollte die Bean
-	 * Info-Klasse nicht direkt geladen werden können, wird als Rückfallebene
-	 * der Introspector gefragt.
+	 * Bestimmt zu einer Klasse die dazugehörige {@link BeanInfo}. Es wird die Bean
+	 * Info-Klasse direkt geladen, weil {@link Introspector#getBeanInfo(Class)} eine
+	 * Bean Info zurückgibt, deren Properties nicht mehr der Originalsortierung
+	 * entsprechen. Sollte die Bean Info-Klasse nicht direkt geladen werden können,
+	 * wird als Rückfallebene der Introspector gefragt.
 	 * 
-	 * @param beanClass
-	 *            eine Klasse.
+	 * @param beanClass eine Klasse.
 	 * @return die Bean Info zu der Klasse.
 	 */
 	public static BeanInfo getBeanInfo(final Class<?> beanClass) {
@@ -216,23 +180,16 @@ public final class BeanUtils {
 		Class<? extends BeanInfo> beanInfoClass;
 		BeanInfo info = null;
 		try {
-			beanInfoClass = (Class<? extends BeanInfo>) loader
-					.loadClass(beanClass.getName() + "BeanInfo");
+			beanInfoClass = (Class<? extends BeanInfo>) loader.loadClass(beanClass.getName() + "BeanInfo");
 			info = beanInfoClass.newInstance();
 		} catch (final ClassNotFoundException ex) {
 			try {
 				info = Introspector.getBeanInfo(beanClass);
 			} catch (final IntrospectionException ex1) {
-				throw new IllegalArgumentException(
-						"Can not analyze Java Bean type " + beanClass + ".",
-						ex1);
+				throw new IllegalArgumentException("Can not analyze Java Bean type " + beanClass + ".", ex1);
 			}
-		} catch (final InstantiationException ex) {
-			throw new IllegalArgumentException(
-					"Can not analyze Java Bean type " + beanClass + ".", ex);
-		} catch (final IllegalAccessException ex) {
-			throw new IllegalArgumentException(
-					"Can not analyze Java Bean type " + beanClass + ".", ex);
+		} catch (final InstantiationException | IllegalAccessException ex) {
+			throw new IllegalArgumentException("Can not analyze Java Bean type " + beanClass + ".", ex);
 		}
 
 		beanInfoCache.put(beanClass, info);
@@ -242,8 +199,7 @@ public final class BeanUtils {
 	/**
 	 * Prüft, ob es sich bei einer Property um eine Textproperty handelt.
 	 * 
-	 * @param pd
-	 *            ein Property Descriptor.
+	 * @param pd ein Property Descriptor.
 	 * @return {@code true}, wenn es sich um eine Textproperty handelt.
 	 */
 	public static boolean isText(final PropertyDescriptor pd) {
@@ -253,13 +209,11 @@ public final class BeanUtils {
 	/**
 	 * Prüft, ob es sich bei einer Property um eine ganze Zahl handelt.
 	 * 
-	 * @param pd
-	 *            ein Property Descriptor.
+	 * @param pd ein Property Descriptor.
 	 * @return {@code true}, wenn es sich um eine ganze Zahl handelt.
 	 */
 	public static boolean isNumber(final PropertyDescriptor pd) {
-		return pd.getPropertyType().isAssignableFrom(long.class)
-				|| pd.getPropertyType().isAssignableFrom(Long.class)
+		return pd.getPropertyType().isAssignableFrom(long.class) || pd.getPropertyType().isAssignableFrom(Long.class)
 				|| pd.getPropertyType().isAssignableFrom(int.class)
 				|| pd.getPropertyType().isAssignableFrom(Integer.class)
 				|| pd.getPropertyType().isAssignableFrom(short.class)
@@ -271,13 +225,11 @@ public final class BeanUtils {
 	/**
 	 * Prüft, ob es sich bei einer Property um eine reele Zahl handelt.
 	 * 
-	 * @param pd
-	 *            ein Property Descriptor.
+	 * @param pd ein Property Descriptor.
 	 * @return {@code true}, wenn es sich um eine reele Zahl handelt.
 	 */
 	public static boolean isRealNumber(final PropertyDescriptor pd) {
-		return pd.getPropertyType().isAssignableFrom(float.class)
-				|| pd.getPropertyType().isAssignableFrom(Float.class)
+		return pd.getPropertyType().isAssignableFrom(float.class) || pd.getPropertyType().isAssignableFrom(Float.class)
 				|| pd.getPropertyType().isAssignableFrom(double.class)
 				|| pd.getPropertyType().isAssignableFrom(Double.class);
 	}
@@ -285,8 +237,7 @@ public final class BeanUtils {
 	/**
 	 * Prüft, ob es sich bei einer Property um eine Boolean-Property handelt.
 	 * 
-	 * @param pd
-	 *            ein Property Descriptor.
+	 * @param pd ein Property Descriptor.
 	 * @return {@code true}, wenn es sich um eine Boolean-Property handelt.
 	 */
 	public static boolean isBoolean(final PropertyDescriptor pd) {
@@ -297,8 +248,7 @@ public final class BeanUtils {
 	/**
 	 * Prüft, ob es sich bei einer Property um eine Zeitangabe handelt.
 	 * 
-	 * @param pd
-	 *            ein Property Descriptor.
+	 * @param pd ein Property Descriptor.
 	 * @return {@code true}, wenn es sich um eine Zeitangabe handelt.
 	 */
 	public static boolean isTime(final PropertyDescriptor pd) {
@@ -308,8 +258,7 @@ public final class BeanUtils {
 	/**
 	 * Prüft, ob es sich bei einer Property um eine Datumsangabe handelt.
 	 * 
-	 * @param pd
-	 *            ein Property Descriptor.
+	 * @param pd ein Property Descriptor.
 	 * @return {@code true}, wenn es sich um eine Datumsangabe handelt.
 	 */
 	public static boolean isDate(final PropertyDescriptor pd) {
@@ -319,23 +268,20 @@ public final class BeanUtils {
 	/**
 	 * Prüft, ob es sich bei einer Property um einen Zeitstempel handelt.
 	 * 
-	 * @param pd
-	 *            ein Property Descriptor.
+	 * @param pd ein Property Descriptor.
 	 * @return {@code true}, wenn es sich um einen Zeitstempel handelt.
 	 */
 	public static boolean isTimestamp(final PropertyDescriptor pd) {
 		return pd.getPropertyType().isAssignableFrom(java.util.Date.class)
-				|| pd.getPropertyType().isAssignableFrom(
-						java.sql.Timestamp.class);
+				|| pd.getPropertyType().isAssignableFrom(java.sql.Timestamp.class);
 	}
 
 	/**
-	 * Gibt den eine Bean als String zurück. Der zurückgegebene String
-	 * entspricht dem üblichen allgemeinen {@code toString()} z.&nbsp;B. {@code
+	 * Gibt den eine Bean als String zurück. Der zurückgegebene String entspricht
+	 * dem üblichen allgemeinen {@code toString()} z.&nbsp;B. {@code
 	 * Punkt[x=10, y=20]}.
 	 * 
-	 * @param bean
-	 *            eine beliebige Java Bean.
+	 * @param bean eine beliebige Java Bean.
 	 * @return der String zur Bean.
 	 */
 	public static String toString(final Object bean) {
@@ -347,11 +293,9 @@ public final class BeanUtils {
 		final Method[] methods = objClass.getMethods();
 
 		String buffer = bean.getClass().getName() + "[";
-		for (int i = 0; i < methods.length; ++i) {
-			final Method method = methods[i];
-			if (!method.getName().equals("getClass")
-					&& (method.getName().startsWith("get") || method.getName()
-							.startsWith("is"))
+		for (final Method method : methods) {
+			if (!"getClass".equals(method.getName())
+					&& (method.getName().startsWith("get") || method.getName().startsWith("is"))
 					&& method.getParameterTypes().length == 0) {
 				final String name = method.getName();
 				if (name.startsWith("get")) {

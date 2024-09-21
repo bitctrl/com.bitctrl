@@ -48,7 +48,7 @@ import com.bitctrl.resource.WritableConfiguration;
  */
 public class TreeProperties extends Properties implements WritableConfiguration {
 
-	private class Group {
+	private static class Group {
 
 		private final String name;
 		private int index;
@@ -57,8 +57,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		/**
 		 * Erzeugt eine Gruppe.
 		 * 
-		 * @param name
-		 *            der Name der Gruppe
+		 * @param name der Name der Gruppe
 		 */
 		public Group(final String name) {
 			this.name = name;
@@ -69,10 +68,8 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		/**
 		 * Erzeugt ein Feld.
 		 * 
-		 * @param name
-		 *            der Name des Feldes
-		 * @param guessArraySize
-		 *            {@code true}, wenn die Feldgröße mit gespeichert wird.
+		 * @param name           der Name des Feldes
+		 * @param guessArraySize {@code true}, wenn die Feldgröße mit gespeichert wird.
 		 */
 		public Group(final String name, final boolean guessArraySize) {
 			this.name = name;
@@ -83,8 +80,8 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		/**
 		 * Gibt die aktuelle Feldgröße zurück.
 		 * 
-		 * @return die aktuelle Größe des Feldes oder {@code -1}, wenn die
-		 *         Feldgröße unbekannt ist oder es sich um eine Gruppe handelt.
+		 * @return die aktuelle Größe des Feldes oder {@code -1}, wenn die Feldgröße
+		 *         unbekannt ist oder es sich um eine Gruppe handelt.
 		 */
 		public int arraySizeGuess() {
 			return arraySize;
@@ -111,8 +108,8 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		/**
 		 * Fragt, ob dies ein Feld ist.
 		 * 
-		 * @return {@code true}, wenn es ein Feld ist und {@code false}, wenn es
-		 *         ein einfache Gruppe ist.
+		 * @return {@code true}, wenn es ein Feld ist und {@code false}, wenn es ein
+		 *         einfache Gruppe ist.
 		 */
 		public boolean isArray() {
 			return index != -1;
@@ -121,8 +118,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		/**
 		 * Legt den aktuellen Feldindex fest.
 		 * 
-		 * @param index
-		 *            der Index.
+		 * @param index der Index.
 		 */
 		public void setIndex(final int index) {
 			this.index = index + 1;
@@ -133,13 +129,13 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 
 		@Override
 		public String toString() {
-			String s = name + ".";
+			final StringBuilder s = new StringBuilder().append(name).append(".");
 
 			if (index > 0) {
-				s += index + ".";
+				s.append(index).append(".");
 			}
 
-			return s;
+			return s.toString();
 		}
 
 	}
@@ -157,7 +153,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		bw.newLine();
 	}
 
-	private final Stack<Group> stack = new Stack<Group>();
+	private final Stack<Group> stack = new Stack<>();
 
 	private String trace = "";
 
@@ -171,17 +167,18 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 	/**
 	 * Erzeugt eine leere Properties-Liste mit Standardwerten.
 	 * 
-	 * @param defaults
-	 *            die Standardwerte.
+	 * @param defaults die Standardwerte.
 	 */
 	public TreeProperties(final TreeProperties defaults) {
 		super(defaults);
 	}
 
+	@Override
 	public void beginGroup(final String name) {
 		beginGroupOrArray(new Group(name));
 	}
 
+	@Override
 	public int beginReadArray(final String name) {
 		beginGroupOrArray(new Group(name, false));
 		if (getProperty("size") != null) {
@@ -190,10 +187,12 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		return 0;
 	}
 
+	@Override
 	public void beginWriteArray(final String name) {
 		beginWriteArray(name, -1);
 	}
 
+	@Override
 	public void beginWriteArray(final String name, final int size) {
 		beginGroupOrArray(new Group(name, size < 0));
 
@@ -204,6 +203,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		}
 	}
 
+	@Override
 	public void endArray(final String name) {
 		final Group group = stack.pop();
 
@@ -223,6 +223,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		}
 	}
 
+	@Override
 	public void endGroup(final String name) {
 		final Group group = stack.pop();
 
@@ -238,34 +239,42 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		}
 	}
 
+	@Override
 	public boolean getBoolean(final String key) {
 		return getBoolean(key, DEFAULT_BOOLEAN);
 	}
 
+	@Override
 	public boolean getBoolean(final String key, final boolean defaultValue) {
 		return Boolean.valueOf(getProperty(key, String.valueOf(defaultValue)));
 	}
 
+	@Override
 	public double getDouble(final String key) {
 		return getDouble(key, DEFAULT_DOUBLE);
 	}
 
+	@Override
 	public double getDouble(final String key, final double defaultValue) {
 		return Double.valueOf(getProperty(key, String.valueOf(defaultValue)));
 	}
 
+	@Override
 	public int getInt(final String key) {
 		return getInt(key, DEFAULT_INT);
 	}
 
+	@Override
 	public int getInt(final String key, final int defaultValue) {
 		return Integer.parseInt(getProperty(key, String.valueOf(defaultValue)));
 	}
 
+	@Override
 	public long getLong(final String key) {
 		return getInt(key, DEFAULT_LONG);
 	}
 
+	@Override
 	public long getLong(final String key, final long defaultValue) {
 		return Long.parseLong(getProperty(key, String.valueOf(defaultValue)));
 	}
@@ -281,10 +290,12 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		return val == null ? defaultValue : val;
 	}
 
+	@Override
 	public String getString(final String key) {
 		return getString(key, DEFAULT_STRING);
 	}
 
+	@Override
 	public String getString(final String key, final String defaultValue) {
 		return getProperty(key, defaultValue);
 	}
@@ -303,26 +314,32 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		return super.remove(getAbsoluteKey(key.toString()));
 	}
 
+	@Override
 	public void set(final String key, final boolean value) {
 		setProperty(key, String.valueOf(value));
 	}
 
+	@Override
 	public void set(final String key, final double value) {
 		setProperty(key, String.valueOf(value));
 	}
 
+	@Override
 	public void set(final String key, final int value) {
 		setProperty(key, String.valueOf(value));
 	}
 
+	@Override
 	public void set(final String key, final long value) {
 		setProperty(key, String.valueOf(value));
 	}
 
+	@Override
 	public void set(final String key, final String value) {
 		setProperty(key, value);
 	}
 
+	@Override
 	public void setArrayIndex(final int index) {
 		final Group group = stack.peek();
 		int length;
@@ -358,7 +375,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		}
 		writeln(awriter, "#" + new Date().toString());
 
-		final SortedSet<String> keys = new TreeSet<String>();
+		final SortedSet<String> keys = new TreeSet<>();
 		for (final Object o : keySet()) {
 			keys.add(o.toString());
 		}
@@ -368,8 +385,8 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 			key = saveConvert(key, true);
 
 			/*
-			 * No need to escape embedded and trailing spaces for value, hence
-			 * pass false to flag.
+			 * No need to escape embedded and trailing spaces for value, hence pass false to
+			 * flag.
 			 */
 			val = saveConvert(val, false);
 			writeln(awriter, key + "=" + val);
@@ -505,10 +522,11 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 	 * 
 	 * TODO Mit Umstellung auf Java 6 des Projekts vereinfachen!
 	 */
+	@Override
 	public Set<String> stringPropertyNames() {
 		// return configuration.stringPropertyNames();
 
-		final Set<String> keys = new HashSet<String>();
+		final Set<String> keys = new HashSet<>();
 		for (final Object key : keySet()) {
 			if (key instanceof String) {
 				keys.add((String) key);
@@ -517,6 +535,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 		return keys;
 	}
 
+	@Override
 	public boolean containsKey(final String key) {
 		return contains(getAbsoluteKey(key)) || contains(key);
 	}

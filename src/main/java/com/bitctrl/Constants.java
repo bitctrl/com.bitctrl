@@ -63,8 +63,8 @@ public final class Constants {
 	/**
 	 * Ein leerer String.
 	 * <p>
-	 * <em>Hinweis</em>: Der Test mit {@code equals()} auf den Leerstring ist
-	 * sehr ineffektiv, deswegen sollte bis Java 6 besser geprüft werden ob
+	 * <em>Hinweis</em>: Der Test mit {@code equals()} auf den Leerstring ist sehr
+	 * ineffektiv, deswegen sollte bis Java 6 besser geprüft werden ob
 	 * {@link String#length()} gleich 0 ist. Ab Java 6 kann für den Test auf den
 	 * Leerstring {@link String#isEmpty()} verwendet werden.
 	 */

@@ -35,8 +35,8 @@ package com.bitctrl.util;
 public interface ISimpleCallCountInfoProvider {
 
 	/**
-	 * Liefert einen Text, der die aktuellen Zähler für die einzelnen
-	 * WSDL-Callbacks enthält.
+	 * Liefert einen Text, der die aktuellen Zähler für die einzelnen WSDL-Callbacks
+	 * enthält.
 	 * 
 	 * @return der Text
 	 */

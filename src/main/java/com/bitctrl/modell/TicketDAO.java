@@ -33,17 +33,15 @@ package com.bitctrl.modell;
  * 
  * @author BitCtrl Systems GmbH, krosse
  * 
- * @param <T>
- *            der Typ der Datenobjekte.
- * @param <ID>
- *            der Schlüssel für die Datenobjekte.
+ * @param <T>  der Typ der Datenobjekte.
+ * @param <ID> der Schlüssel für die Datenobjekte.
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public interface TicketDAO<T, ID> extends DAO<T, ID> {
 
 	/**
-	 * Gibt das Ticket zurück, welches diese DAO zur Sessionverwaltung
-	 * verwendet. Das Ticket darf sich nach der Initialisierung nicht mehr
-	 * ändern.
+	 * Gibt das Ticket zurück, welches diese DAO zur Sessionverwaltung verwendet.
+	 * Das Ticket darf sich nach der Initialisierung nicht mehr ändern.
 	 * 
 	 * @return das Ticket dieser DAO.
 	 */

@@ -50,8 +50,8 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	 * Die Methode legt die zu beschreibende Java Bean fest und setzt deren
 	 * übersetzten Namen und Kurzbeschreibung. Da sich die Bean zur Laufzeit
 	 * i.&nbsp;d.&nbsp;R. nicht ändert wird das Ergebnis der Funktion intern
-	 * statisch gecacht, so dass der Aufruf ab dem zweiten Mal schneller
-	 * vonstatten geht.
+	 * statisch gecacht, so dass der Aufruf ab dem zweiten Mal schneller vonstatten
+	 * geht.
 	 * 
 	 * {@inheritDoc}
 	 * 
@@ -76,7 +76,8 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	/**
 	 * Die Methode registriert die vorhandenen Properties und setzt deren übersetzte
 	 * Namen und Kurzbeschreibungen. In Umgebungen mit Mehrsprachigkeit können sich
-	 * die Properties zur Laufzeit ändern (z.B. {@link #getDisplayName(PropertyInfo)}. 
+	 * die Properties zur Laufzeit ändern (z.B.
+	 * {@link #getDisplayName(PropertyInfo)}.
 	 * 
 	 * {@inheritDoc}
 	 * 
@@ -100,12 +101,12 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 				for (int i = 0; i < propertyDescriptors.length; ++i) {
 					final PropertyDescriptor prop;
 
-					Class<?> beanClass = getBeanClass();
+					final Class<?> beanClass = getBeanClass();
 					String propName = propInfo[i].name();
 					propName = propName.substring(0, 1).toUpperCase() + propName.substring(1);
 
-					String readMethodName = getReadMethodName(beanClass, propName);
-					String writeMethodName = getWriteMethodName(beanClass, propName);
+					final String readMethodName = getReadMethodName(beanClass, propName);
+					final String writeMethodName = getWriteMethodName(beanClass, propName);
 
 					prop = new PropertyDescriptor(propInfo[i].name(), getBeanClass(), readMethodName, writeMethodName);
 					prop.setDisplayName(getDisplayName(propInfo[i]));
@@ -130,33 +131,32 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	}
 
 	private String getReadMethodName(Class<?> beanClass, String propName) {
-		
+
 		try {
 			return beanClass.getMethod("get" + propName).getName();
-		} catch (NoSuchMethodException ignored) {
+		} catch (final NoSuchMethodException ignored) {
 			try {
 				return beanClass.getMethod("is" + propName).getName();
-			} catch (NoSuchMethodException ex) {
+			} catch (final NoSuchMethodException ex) {
 				return null;
 			}
 		}
 	}
 
 	private String getWriteMethodName(Class<?> beanClass, String propName) {
-		
-		String name = "set" + propName;
-		
-		Method[] methods = beanClass.getMethods();
-		for ( Method method : methods) {
-			if( name.equals(method.getName())) {
+
+		final String name = "set" + propName;
+
+		final Method[] methods = beanClass.getMethods();
+		for (final Method method : methods) {
+			if (name.equals(method.getName())) {
 				return name;
 			}
 		}
-		
+
 		return null;
 	}
 
-	
 	/**
 	 * Gibt die Liste der Properties zurück der Java Bean zurück.
 	 * 
@@ -165,15 +165,15 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	protected abstract PropertyInfo[] getProperties();
 
 	/**
-	 * Gibt die Liste der Properties zurück, die standardmäßig ausgeblendet
-	 * werden sollen. Abgeleite Klassen können die Methode überschreiben. Die
+	 * Gibt die Liste der Properties zurück, die standardmäßig ausgeblendet werden
+	 * sollen. Abgeleite Klassen können die Methode überschreiben. Die
 	 * Standardimplementierung gibt eine leere Liste zurück.
 	 * <p>
-	 * <em>Hinweis:</em> Die versteckten Properties müssen auch in der Liste
-	 * aller Properties enthalten sein.
+	 * <em>Hinweis:</em> Die versteckten Properties müssen auch in der Liste aller
+	 * Properties enthalten sein.
 	 * 
-	 * @return die Liste der versteckten Properties oder ein leeres Feld,
-	 *         niemals {@code null}.
+	 * @return die Liste der versteckten Properties oder ein leeres Feld, niemals
+	 *         {@code null}.
 	 * @see #getProperties()
 	 */
 	protected PropertyInfo[] getHiddenProperties() {
@@ -181,8 +181,8 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	}
 
 	/**
-	 * Gibt die Liste der Properties zurück, die als wichtig hervorgehoben
-	 * werden sollen. Abgeleite Klassen können die Methode überschreiben. Die
+	 * Gibt die Liste der Properties zurück, die als wichtig hervorgehoben werden
+	 * sollen. Abgeleite Klassen können die Methode überschreiben. Die
 	 * Standardimplementierung gibt eine leere Liste zurück.
 	 * <p>
 	 * <em>Hinweis:</em> Die wichtigen Properties müssen auch in der Liste aller
@@ -198,8 +198,8 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 
 	/**
 	 * Gibt die Liste der Properties zurück, die nur fortgeschrittenen Nutzern
-	 * angeboten werden sollen. Abgeleite Klassen können die Methode
-	 * überschreiben. Die Standardimplementierung gibt eine leere Liste zurück.
+	 * angeboten werden sollen. Abgeleite Klassen können die Methode überschreiben.
+	 * Die Standardimplementierung gibt eine leere Liste zurück.
 	 * <p>
 	 * <em>Hinweis:</em> Die Expertenproperties müssen auch in der Liste aller
 	 * Properties enthalten sein.
@@ -214,11 +214,10 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 
 	/**
 	 * Gibt den übersetzten Namen der Property zurück. Die Methode sollte in
-	 * abgeleiteten Klassen überschrieben werden. Die Standardimplementierung
-	 * gibt einfach den Propertynamen zurück.
+	 * abgeleiteten Klassen überschrieben werden. Die Standardimplementierung gibt
+	 * einfach den Propertynamen zurück.
 	 * 
-	 * @param info
-	 *            eine Propertybeschreibung.
+	 * @param info eine Propertybeschreibung.
 	 * @return der übersetzte Propertyname.
 	 */
 	protected String getDisplayName(final PropertyInfo info) {
@@ -226,13 +225,12 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	}
 
 	/**
-	 * Gibt eine kurze Beschreibung der Property zurück. Diese kann z.&nbsp;B.
-	 * von einem Editor als Tooltip angezeigt werden. Die Methode sollte in
-	 * abgeleiteten Klassen überschrieben werden. Die Standardimplementierung
-	 * gibt einfach den übersetzen Propertynamen zurück.
+	 * Gibt eine kurze Beschreibung der Property zurück. Diese kann z.&nbsp;B. von
+	 * einem Editor als Tooltip angezeigt werden. Die Methode sollte in abgeleiteten
+	 * Klassen überschrieben werden. Die Standardimplementierung gibt einfach den
+	 * übersetzen Propertynamen zurück.
 	 * 
-	 * @param info
-	 *            eine Propertybeschreibung.
+	 * @param info eine Propertybeschreibung.
 	 * @return die kurze Beanbeschreibung.
 	 * @see #getDisplayName(PropertyInfo)
 	 */
@@ -249,8 +247,8 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 
 	/**
 	 * Gibt den übersetzten Namen der Java Bean zurück. Die Methode sollte in
-	 * abgeleiteten Klassen überschrieben werden. Die Standardimplementierung
-	 * gibt einfach den Klassennamen (ohne Package) zurück.
+	 * abgeleiteten Klassen überschrieben werden. Die Standardimplementierung gibt
+	 * einfach den Klassennamen (ohne Package) zurück.
 	 * 
 	 * @return der übersetzte Beanname.
 	 */
@@ -259,10 +257,10 @@ public abstract class AbstractBeanInfo extends SimpleBeanInfo {
 	}
 
 	/**
-	 * Gibt eine kurze Beschreibung der Java Bean zurück. Diese kann z.&nbsp;B.
-	 * von einem Editor als Tooltip angezeigt werden. Die Methode sollte in
-	 * abgeleiteten Klassen überschrieben werden. Die Standardimplementierung
-	 * gibt einfach den übersetzen Beannamen zurück.
+	 * Gibt eine kurze Beschreibung der Java Bean zurück. Diese kann z.&nbsp;B. von
+	 * einem Editor als Tooltip angezeigt werden. Die Methode sollte in abgeleiteten
+	 * Klassen überschrieben werden. Die Standardimplementierung gibt einfach den
+	 * übersetzen Beannamen zurück.
 	 * 
 	 * @return die kurze Beanbeschreibung.
 	 * @see #getDisplayName()

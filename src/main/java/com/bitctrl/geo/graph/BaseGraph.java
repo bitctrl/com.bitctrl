@@ -38,51 +38,58 @@ import java.util.List;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  * 
- * @param <N>
- *            der Typ der Knoten.
- * @param <E>
- *            der Typ der Kanten.
+ * @param <N> der Typ der Knoten.
+ * @param <E> der Typ der Kanten.
  */
 public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 
 	/** Die Liste der Knoten im Graphen. */
-	protected final List<Node> nodes = new LinkedList<Node>();
+	protected final List<Node> nodes = new LinkedList<>();
 
 	/** Die Liste der Kanten im Graphen. */
-	protected final List<Edge> edges = new LinkedList<Edge>();
+	protected final List<Edge> edges = new LinkedList<>();
 
+	@Override
 	public void addNode(final N node) {
 		nodes.add(node);
 	}
 
+	@Override
 	public void removeNode(final N node) {
 		nodes.remove(node);
 	}
 
+	@Override
 	public boolean containsNode(final N node) {
 		return nodes.contains(node);
 	}
 
+	@Override
 	public Iterable<Node> nodes() {
 		return nodes;
 	}
 
+	@Override
 	public void insertEdge(final E edge) {
 		edges.add(edge);
 	}
 
+	@Override
 	public void removeEdge(final E edge) {
 		edges.remove(edge);
 	}
 
+	@Override
 	public Iterable<Edge> edges() {
 		return edges;
 	}
 
+	@Override
 	public boolean containsEdge(final E edge) {
 		return edges.contains(edge);
 	}
 
+	@Override
 	public boolean containsEdge(final N source, final N target) {
 		for (final Edge e : edges()) {
 			if (source.equals(e.getSource()) && target.equals(e.getTarget())) {
@@ -92,8 +99,9 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 		return false;
 	}
 
+	@Override
 	public Iterable<Edge> inEdges(final N node) {
-		final List<Edge> inEdges = new ArrayList<Edge>();
+		final List<Edge> inEdges = new ArrayList<>();
 		BaseEdge edge;
 
 		// Alle Eingangsbögen
@@ -107,8 +115,9 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 		return inEdges;
 	}
 
+	@Override
 	public Iterable<Edge> outEdges(final N node) {
-		final List<Edge> outEdges = new ArrayList<Edge>();
+		final List<Edge> outEdges = new ArrayList<>();
 		BaseEdge edge;
 
 		// Alle Ausgangsbögen
@@ -122,8 +131,9 @@ public class BaseGraph<N extends Node, E extends Edge> implements Graph<N, E> {
 		return outEdges;
 	}
 
+	@Override
 	public Iterable<Edge> incidentEdges(final N node) {
-		final List<Edge> incidentEdges = new ArrayList<Edge>();
+		final List<Edge> incidentEdges = new ArrayList<>();
 		BaseEdge edge;
 
 		// Alle Ausgangsbögen

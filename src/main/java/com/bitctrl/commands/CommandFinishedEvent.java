@@ -42,15 +42,11 @@ public class CommandFinishedEvent extends EventObject {
 	/**
 	 * Initialisiert das Objekt {@code CommandFinishedEvent}.
 	 * 
-	 * @param source
-	 *            die Quelle des Events.
-	 * @param successful
-	 *            {@code true}, wenn der Befehl erfolgreich beendet wurde.
-	 * @param message
-	 *            eine Vollzugsmitteilung oder Fehlernachricht.
+	 * @param source     die Quelle des Events.
+	 * @param successful {@code true}, wenn der Befehl erfolgreich beendet wurde.
+	 * @param message    eine Vollzugsmitteilung oder Fehlernachricht.
 	 */
-	public CommandFinishedEvent(final Command source, final boolean successful,
-			final String message) {
+	public CommandFinishedEvent(final Command source, final boolean successful, final String message) {
 		super(source);
 		this.successful = successful;
 		this.message = message;

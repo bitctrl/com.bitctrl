@@ -49,8 +49,7 @@ public class Shifter {
 	 * {@code maximas} bestimmt die Anzahl der Elemente im internen Feld des
 	 * Shifters.
 	 * 
-	 * @param maximas
-	 *            die maximalen Werte der einzelnen Feldelemente.
+	 * @param maximas die maximalen Werte der einzelnen Feldelemente.
 	 */
 	public Shifter(final int... maximas) {
 		this.maximas = maximas.clone();
@@ -62,8 +61,7 @@ public class Shifter {
 	 * {@code maximas} bestimmt die Anzahl der Elemente im internen Feld des
 	 * Shifters.
 	 * 
-	 * @param maximas
-	 *            die maximalen Werte der einzelnen Feldelemente.
+	 * @param maximas die maximalen Werte der einzelnen Feldelemente.
 	 */
 	public Shifter(final List<Integer> maximas) {
 		this.maximas = new int[maximas.size()];
@@ -105,8 +103,7 @@ public class Shifter {
 	 * Setzt den aktuellen Zustands des internen Felds. Die Länge des Felds im
 	 * Parameter muss mit der des internen Felds übereinstimmen.
 	 * 
-	 * @param values
-	 *            die neuen Werte.
+	 * @param values die neuen Werte.
 	 */
 	public void setValues(final int[] values) {
 		if (values.length != this.values.length) {
@@ -116,19 +113,17 @@ public class Shifter {
 
 		for (int i = 0; i < values.length; ++i) {
 			if (values[i] > maximas[i]) {
-				throw new IllegalArgumentException("Der Wert (" + values[i]
-						+ ") des Elements mit dem Index " + i
-						+ " ist größer als sein erlaubtes Maximum ("
-						+ maximas[i] + ").");
+				throw new IllegalArgumentException("Der Wert (" + values[i] + ") des Elements mit dem Index " + i
+						+ " ist größer als sein erlaubtes Maximum (" + maximas[i] + ").");
 			}
 			this.values[i] = values[i];
 		}
 	}
 
 	/**
-	 * Shiften das interne Feld um eine Kombination weiter. Das Shiften erfolgt
-	 * von hinten nach vorne, d.&nbsp;h. zuerst wird das Element mit dem größten
-	 * Index und zu letzt das Element mit dem kleinsten Index geshiftet.
+	 * Shiften das interne Feld um eine Kombination weiter. Das Shiften erfolgt von
+	 * hinten nach vorne, d.&nbsp;h. zuerst wird das Element mit dem größten Index
+	 * und zu letzt das Element mit dem kleinsten Index geshiftet.
 	 * 
 	 * @return {@code true}, wenn das Shiften ohne Überlauf stattfand und
 	 *         {@code false}, wenn das das interne Feld einmal komplett
@@ -153,12 +148,12 @@ public class Shifter {
 		final List<Integer> helperValues, helperMaximas;
 		String s;
 
-		helperValues = new ArrayList<Integer>();
+		helperValues = new ArrayList<>();
 		for (final int i : values) {
 			helperValues.add(i);
 		}
 
-		helperMaximas = new ArrayList<Integer>();
+		helperMaximas = new ArrayList<>();
 		for (final int i : values) {
 			helperMaximas.add(i);
 		}

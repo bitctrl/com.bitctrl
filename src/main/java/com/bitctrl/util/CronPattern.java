@@ -50,17 +50,16 @@ import java.util.Calendar;
 public class CronPattern implements ValueMatcher<Long> {
 
 	private final String pattern;
-	private final ValueSetMatcher<Integer> minuteMatcher = new ValueSetMatcher<Integer>();
-	private final ValueSetMatcher<Integer> hourMatcher = new ValueSetMatcher<Integer>();
-	private final ValueSetMatcher<Integer> dayOfMonthMatcher = new ValueSetMatcher<Integer>();
-	private final ValueSetMatcher<Integer> monthMatcher = new ValueSetMatcher<Integer>();
-	private final ValueSetMatcher<Integer> dayOfWeekMatcher = new ValueSetMatcher<Integer>();
+	private final ValueSetMatcher<Integer> minuteMatcher = new ValueSetMatcher<>();
+	private final ValueSetMatcher<Integer> hourMatcher = new ValueSetMatcher<>();
+	private final ValueSetMatcher<Integer> dayOfMonthMatcher = new ValueSetMatcher<>();
+	private final ValueSetMatcher<Integer> monthMatcher = new ValueSetMatcher<>();
+	private final ValueSetMatcher<Integer> dayOfWeekMatcher = new ValueSetMatcher<>();
 
 	/**
 	 * Erzeugt ein neues Objekt anhand eines String.
 	 * 
-	 * @param pattern
-	 *            ein String in Cron-Syntax.
+	 * @param pattern ein String in Cron-Syntax.
 	 */
 	public CronPattern(final String pattern) {
 		this.pattern = pattern;
@@ -84,33 +83,33 @@ public class CronPattern implements ValueMatcher<Long> {
 			throw new IllegalArgumentException("Das Pattern entspricht nicht der unterstützten Cron-Syntax.");
 		}
 		try {
-			if (parts[0].equals("*")) {
-				minuteMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
+			if ("*".equals(parts[0])) {
+				minuteMatcher.add(new ValueMatcher.AlwaysMatcher<>());
 			} else {
-				minuteMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[0])));
+				minuteMatcher.add(new ValueMatcher.CollectionValueMatcher<>(Integer.valueOf(parts[0])));
 			}
 
-			if (parts[1].equals("*")) {
-				hourMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
+			if ("*".equals(parts[1])) {
+				hourMatcher.add(new ValueMatcher.AlwaysMatcher<>());
 			} else {
-				hourMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[1])));
+				hourMatcher.add(new ValueMatcher.CollectionValueMatcher<>(Integer.valueOf(parts[1])));
 			}
 
-			if (parts[2].equals("*")) {
-				dayOfMonthMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
+			if ("*".equals(parts[2])) {
+				dayOfMonthMatcher.add(new ValueMatcher.AlwaysMatcher<>());
 			} else {
-				dayOfMonthMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[2])));
+				dayOfMonthMatcher.add(new ValueMatcher.CollectionValueMatcher<>(Integer.valueOf(parts[2])));
 			}
 
-			if (parts[3].equals("*")) {
-				monthMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
+			if ("*".equals(parts[3])) {
+				monthMatcher.add(new ValueMatcher.AlwaysMatcher<>());
 			} else {
 				// Java-Monate gehen bei 0 los
-				monthMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(Integer.valueOf(parts[3])));
+				monthMatcher.add(new ValueMatcher.CollectionValueMatcher<>(Integer.valueOf(parts[3])));
 			}
 
-			if (parts[4].equals("*")) {
-				dayOfWeekMatcher.add(new ValueMatcher.AlwaysMatcher<Integer>());
+			if ("*".equals(parts[4])) {
+				dayOfWeekMatcher.add(new ValueMatcher.AlwaysMatcher<>());
 			} else {
 				// Java-Wochentage gehen bei 1 mit Sonntag los
 				int day;
@@ -120,7 +119,7 @@ public class CronPattern implements ValueMatcher<Long> {
 					// Sonntag ist intern nur 0, nicht mehr auch 7
 					day = 0;
 				}
-				dayOfWeekMatcher.add(new ValueMatcher.CollectionValueMatcher<Integer>(day));
+				dayOfWeekMatcher.add(new ValueMatcher.CollectionValueMatcher<>(day));
 			}
 
 		} catch (final NumberFormatException ex) {
@@ -130,14 +129,13 @@ public class CronPattern implements ValueMatcher<Long> {
 	}
 
 	/**
-	 * Prüft ob ein Zeitstampel mit dem Cron-Pattern matcht. Der Zeitstempel
-	 * muss mit den Angaben von Wochentag, Monat, Tag, Stunde und Minute
-	 * übereinstimmen.
+	 * Prüft ob ein Zeitstampel mit dem Cron-Pattern matcht. Der Zeitstempel muss
+	 * mit den Angaben von Wochentag, Monat, Tag, Stunde und Minute übereinstimmen.
 	 * 
-	 * @param timestamp
-	 *            ein beliebiger Zeitstempel.
+	 * @param timestamp ein beliebiger Zeitstempel.
 	 * @return {@code true}, wenn der Zeitstempel mit dem Cron-Pattern matcht.
 	 */
+	@Override
 	public boolean match(final Long timestamp) {
 		final int minute, hour, dayOfMonth, month, dayOfWeek;
 		Calendar cal;

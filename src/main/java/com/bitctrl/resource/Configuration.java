@@ -42,32 +42,31 @@ import com.bitctrl.util.TreeProperties;
  * Konfiguration zu dienen. Die Werte aus dem Propertiesfile können mit
  * Kommandozeilenargumenten überschrieben werden.
  * <p>
- * Als Standardfile dient {@link Configuration#CONFIG_FILE}. Es kann aber auch jedes
- * beliebige andere Propertiesfile als Konfiguration dienen.
+ * Als Standardfile dient {@link Configuration#CONFIG_FILE}. Es kann aber auch
+ * jedes beliebige andere Propertiesfile als Konfiguration dienen.
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
 public final class Configuration implements ReadOnlyConfiguration {
 
 	/** Name der Konfigurationsdatei. */
-	public static final String CONFIG_FILE = String
-			.valueOf("Configuration.properties");
+	public static final String CONFIG_FILE = String.valueOf("Configuration.properties");
 	private static Configuration singleton;
 
 	/**
-	 * Lädt die Konfiguration einer Applikation. Die Konfiguration steht in
-	 * einem Properties-File. Das File {@link Configuration#CONFIG_FILE} wird im
-	 * Arbeitsverzeichnis der Applikation gesucht. Im Defaultpackage des
-	 * Classpath muss eine solches File existieren. Dieses enthält alle
-	 * Standardwerte der Konfiguration.
+	 * Lädt die Konfiguration einer Applikation. Die Konfiguration steht in einem
+	 * Properties-File. Das File {@link Configuration#CONFIG_FILE} wird im
+	 * Arbeitsverzeichnis der Applikation gesucht. Im Defaultpackage des Classpath
+	 * muss eine solches File existieren. Dieses enthält alle Standardwerte der
+	 * Konfiguration.
 	 * <p>
 	 * Das externe Konfigurationsfile ist optional. Das File im Defaultpackage
 	 * dagegen muss existieren.
 	 * 
 	 * @return die Einstellungen aus dem File oder <code>null</code>, wenn die
 	 *         Einstellungen nicht geladen werden konnten. Letzteres darf nicht
-	 *         eintreten, da die Standardeinstellungen im JAR-File enthalten
-	 *         sein müssen.
+	 *         eintreten, da die Standardeinstellungen im JAR-File enthalten sein
+	 *         müssen.
 	 * @see #getConfiguration(String[])
 	 */
 	public static synchronized Configuration getConfiguration() {
@@ -119,8 +118,7 @@ public final class Configuration implements ReadOnlyConfiguration {
 				final String txt;
 
 				txt = "Beim Laden des Konfigurationsfiles ist ein Fehler"
-						+ " aufgetreten. Die Konfiguration steht nicht zur"
-						+ " Verfügung. Grund: " + ex;
+						+ " aufgetreten. Die Konfiguration steht nicht zur" + " Verfügung. Grund: " + ex;
 				singleton.log.severe(txt);
 				System.err.println(txt);
 				singleton = null;
@@ -132,21 +130,19 @@ public final class Configuration implements ReadOnlyConfiguration {
 	}
 
 	/**
-	 * Lädt die Konfiguration der Applikation und überschreibt oder ergänzt
-	 * diese mit Kommandozeilenargumenten.
+	 * Lädt die Konfiguration der Applikation und überschreibt oder ergänzt diese
+	 * mit Kommandozeilenargumenten.
 	 * 
-	 * @param args
-	 *            die Kommandozeilenargumente.
+	 * @param args die Kommandozeilenargumente.
 	 * @return die Konfiguration.
 	 * @see #getConfiguration()
 	 */
-	public static synchronized Configuration getConfiguration(
-			final String[] args) {
+	public static synchronized Configuration getConfiguration(final String[] args) {
 		getConfiguration();
 
-		for (int i = 0; i < args.length; i++) {
+		for (final String arg : args) {
 			String[] param;
-			param = args[i].split("=");
+			param = arg.split("=");
 			if (param[0].startsWith("-")) {
 				param[0] = param[0].substring(1);
 			}
@@ -159,11 +155,10 @@ public final class Configuration implements ReadOnlyConfiguration {
 	}
 
 	/**
-	 * Lädt die Konfiguration der Applikation und überschreibt oder ergänzt
-	 * diese mit der Konfiguration der URL.
+	 * Lädt die Konfiguration der Applikation und überschreibt oder ergänzt diese
+	 * mit der Konfiguration der URL.
 	 * 
-	 * @param url
-	 *            ein Propertiesfile.
+	 * @param url ein Propertiesfile.
 	 * @return die Konfiguration.
 	 * @see #getConfiguration()
 	 */
@@ -173,12 +168,9 @@ public final class Configuration implements ReadOnlyConfiguration {
 		try {
 			singleton.configuration.load(url.openStream());
 		} catch (final FileNotFoundException ex) {
-			throw new IllegalArgumentException("Das Konfigurationsfile " + url
-					+ " existiert nicht.", ex);
+			throw new IllegalArgumentException("Das Konfigurationsfile " + url + " existiert nicht.", ex);
 		} catch (final IOException ex) {
-			throw new IllegalArgumentException(
-					"Fehler beim Lesen aus dem Konfigurationsfile " + url
-							+ " .", ex);
+			throw new IllegalArgumentException("Fehler beim Lesen aus dem Konfigurationsfile " + url + " .", ex);
 		}
 
 		return singleton;
@@ -191,62 +183,77 @@ public final class Configuration implements ReadOnlyConfiguration {
 		// Konstruktor verstecken
 	}
 
+	@Override
 	public void beginGroup(final String name) {
 		configuration.beginGroup(name);
 	}
 
+	@Override
 	public int beginReadArray(final String name) {
 		return configuration.beginReadArray(name);
 	}
 
+	@Override
 	public void endArray(final String name) {
 		configuration.endArray(name);
 	}
 
+	@Override
 	public void endGroup(final String name) {
 		configuration.endGroup(name);
 	}
 
+	@Override
 	public boolean getBoolean(final String key) {
 		return configuration.getBoolean(key);
 	}
 
+	@Override
 	public boolean getBoolean(final String key, final boolean defaultValue) {
 		return configuration.getBoolean(key, defaultValue);
 	}
 
+	@Override
 	public double getDouble(final String key) {
 		return configuration.getDouble(key);
 	}
 
+	@Override
 	public double getDouble(final String key, final double defaultValue) {
 		return configuration.getDouble(key, defaultValue);
 	}
 
+	@Override
 	public int getInt(final String key) {
 		return configuration.getInt(key);
 	}
 
+	@Override
 	public int getInt(final String key, final int defaultValue) {
 		return configuration.getInt(key, defaultValue);
 	}
 
+	@Override
 	public long getLong(final String key) {
 		return configuration.getLong(key);
 	}
 
+	@Override
 	public long getLong(final String key, final long defaultValue) {
 		return configuration.getLong(key, defaultValue);
 	}
 
+	@Override
 	public String getString(final String key) {
 		return configuration.getString(key);
 	}
 
+	@Override
 	public String getString(final String key, final String defaultValue) {
 		return configuration.getString(key, defaultValue);
 	}
 
+	@Override
 	public void setArrayIndex(final int index) {
 		configuration.setArrayIndex(index);
 	}
@@ -261,10 +268,11 @@ public final class Configuration implements ReadOnlyConfiguration {
 	 * 
 	 * TODO Mit Umstellung auf Java 6 des Projekts vereinfachen!
 	 */
+	@Override
 	public Set<String> stringPropertyNames() {
 		// return configuration.stringPropertyNames();
 
-		final Set<String> keys = new HashSet<String>();
+		final Set<String> keys = new HashSet<>();
 		for (final Object key : configuration.keySet()) {
 			if (key instanceof String) {
 				keys.add((String) key);
@@ -273,6 +281,7 @@ public final class Configuration implements ReadOnlyConfiguration {
 		return keys;
 	}
 
+	@Override
 	public boolean containsKey(final String key) {
 		return configuration.containsKey(key);
 	}

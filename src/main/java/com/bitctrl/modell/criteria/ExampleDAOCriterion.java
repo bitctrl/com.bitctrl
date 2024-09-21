@@ -31,6 +31,7 @@ package com.bitctrl.modell.criteria;
  * 
  * @author BitCtrl Systems GmbH, Falko Schumann
  */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class ExampleDAOCriterion implements DAOCriterion {
 
 	private final Object example;
@@ -38,8 +39,7 @@ public class ExampleDAOCriterion implements DAOCriterion {
 	/**
 	 * Initialisiert das Kriterium mit dem Beispielobjekt.
 	 * 
-	 * @param example
-	 *            ein Beispielobjekt.
+	 * @param example ein Beispielobjekt.
 	 */
 	public ExampleDAOCriterion(final Object example) {
 		this.example = example;
