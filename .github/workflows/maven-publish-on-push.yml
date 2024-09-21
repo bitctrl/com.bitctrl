@@ -93,14 +93,6 @@ jobs:
       env:
          MAVEN_USERNAME: ${{ secrets.NERZ_USERNAME }}
          MAVEN_PASSWORD: ${{ secrets.NERZ_TOKEN }}
-    
-    - name: Publish to GitHub
-      run: |
-        mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-      env:
-        MAVEN_USERNAME: ${{ github.actor }}
-        MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-      
       
       
         
