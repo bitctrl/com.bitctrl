@@ -53,6 +53,7 @@ jobs:
 
     - name: Publish to GitHub Packages Apache Maven
       if: steps.check_release.outputs.is_snapshot == 'true' || steps.check_release.outputs.is_snapshot == 'false' && steps.check_release.outputs.has_tag == 'true'
+      continue-on-error: true
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
