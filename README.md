@@ -5,6 +5,9 @@
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
 
+## Version 3.0.1
+ - Update der Dependencies
+
 ## Version 3.0.0
  - Update auf Java 17
  - javax Namespace durch jakarta ersetzt
