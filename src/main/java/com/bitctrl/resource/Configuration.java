@@ -274,8 +274,8 @@ public final class Configuration implements ReadOnlyConfiguration {
 
 		final Set<String> keys = new HashSet<>();
 		for (final Object key : configuration.keySet()) {
-			if (key instanceof String) {
-				keys.add((String) key);
+			if (key instanceof final String stringKey) {
+				keys.add(stringKey);
 			}
 		}
 		return keys;

@@ -87,7 +87,7 @@ public final class RemoteTools {
 				} catch (final NotBoundException ex) {
 					throw new IllegalStateException(ex);
 				} catch (final UnmarshalException ex) {
-					if (ex.getCause() instanceof SocketException) {
+					if (ex.getCause() instanceof final SocketException socketEx) {
 						// Verbindungsabruch, weil Applikation beendet wurde
 						System.exit(0);
 					} else {

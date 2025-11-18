@@ -528,8 +528,8 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 
 		final Set<String> keys = new HashSet<>();
 		for (final Object key : keySet()) {
-			if (key instanceof String) {
-				keys.add((String) key);
+			if (key instanceof final String stringKey) {
+				keys.add(stringKey);
 			}
 		}
 		return keys;

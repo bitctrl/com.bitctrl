@@ -504,9 +504,9 @@ public final class SubMonitor extends AbstractMonitor {
 
 		// Optimization: if the given monitor already a SubMonitor, no
 		// conversion is necessary
-		if (monitor instanceof SubMonitor) {
-			monitor.beginTask(taskName, work);
-			return (SubMonitor) monitor;
+		if (monitor instanceof final SubMonitor subMonitor) {
+			subMonitor.beginTask(taskName, work);
+			return subMonitor;
 		}
 
 		monitor.beginTask(taskName, MINIMUM_RESOLUTION);
