@@ -26,6 +26,8 @@
 
 package com.bitctrl.modell;
 
+import java.io.Serial;
+
 /**
  * Dies ist eine allgemeine Exception für Fehler bei der Arbeit mit DAO. In der
  * Regel kapselt eine {@link DAOException} eine andere Exception wie z.&nbsp;B.
@@ -36,6 +38,7 @@ package com.bitctrl.modell;
 @Deprecated(since = "3.0.0", forRemoval = true)
 public class DAOException extends Exception {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	/**

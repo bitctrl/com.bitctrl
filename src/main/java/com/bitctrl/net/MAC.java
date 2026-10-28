@@ -26,6 +26,7 @@
 
 package com.bitctrl.net;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -39,6 +40,7 @@ import org.apache.commons.codec.binary.Hex;
  */
 public class MAC implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	/**
