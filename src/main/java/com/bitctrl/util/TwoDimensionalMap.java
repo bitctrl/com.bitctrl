@@ -1,5 +1,6 @@
 package com.bitctrl.util;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +28,7 @@ import java.util.TreeMap;
  * @author BitCtrl Systems GmbH, schnepel
  */
 public class TwoDimensionalMap<R, C, D> implements Serializable, ITwoDimensionalMap<R, C, D> {
+	@Serial
 	private static final long serialVersionUID = 3216584215464568453L;
 
 	private final Map<R, Integer> rows;
