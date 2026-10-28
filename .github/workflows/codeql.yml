@@ -60,7 +60,7 @@ jobs:
     # - name: Autobuild
     #  uses: github/codeql-action/autobuild@v3
 
-    - name: Set up JDK 17
+    - name: Set up JDK
       uses: actions/setup-java@v6
       with:
         java-version: 25.0.5+8.0.LTS
