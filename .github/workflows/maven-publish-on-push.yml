@@ -22,7 +22,7 @@ jobs:
     - name: Set up JDK for Github deployment
       uses: actions/setup-java@v6
       with:
-        java-version: 25.0.5+8.0.LTS
+        java-version: 25.0.5+100000002.0.LTS
         distribution: 'temurin'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
@@ -62,7 +62,7 @@ jobs:
     - name: Set up JDK for NERZ-Snapshot-Deployment
       uses: actions/setup-java@v6
       with:
-        java-version: 25.0.5+8.0.LTS
+        java-version: 25.0.5+100000002.0.LTS
         distribution: 'temurin'
         server-id: nerz-snapshots 
         server-username: MAVEN_USERNAME
@@ -80,7 +80,7 @@ jobs:
     - name: Set up JDK for NERZ-Release-Deployment
       uses: actions/setup-java@v6
       with:
-        java-version: 25.0.5+8.0.LTS
+        java-version: 25.0.5+100000002.0.LTS
         distribution: 'temurin'
         server-id: nerz-releases 
         server-username: MAVEN_USERNAME
