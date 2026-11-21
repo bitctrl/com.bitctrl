@@ -26,6 +26,7 @@
 
 package com.bitctrl.util;
 
+import java.io.Serial;
 import java.util.EventObject;
 import java.util.List;
 
@@ -38,6 +39,7 @@ import java.util.List;
  */
 public class ListChangedEvent<T> extends EventObject {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	private final int indexFrom;
 	private final int indexTo;

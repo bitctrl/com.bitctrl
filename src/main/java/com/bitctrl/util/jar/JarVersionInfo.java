@@ -71,7 +71,7 @@ public final class JarVersionInfo {
 		files = new LinkedList<>(Arrays.asList(args));
 		if ("-short".equals(args[0])) {
 			onlyVersion = true;
-			files.remove(0);
+			files.removeFirst();
 		} else {
 			onlyVersion = false;
 		}

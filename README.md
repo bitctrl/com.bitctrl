@@ -5,6 +5,9 @@
 # com.bitctrl
 Allgemeine Bibliothek für BitCtrl-Projekte
 
+## Version 3.1.0
+ - Update auf Java 21
+
 ## Version 3.0.1
  - Update der Dependencies
 

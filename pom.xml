@@ -6,7 +6,7 @@
 
 	<groupId>com.bitctrl</groupId>
 	<artifactId>com.bitctrl</artifactId>
-	<version>3.0.2-SNAPSHOT</version>
+	<version>3.1.0-SNAPSHOT</version>
 
 	<name>Allgemeine BitCtrl-Bibliothek</name>
 	<url>http://bitctrl.github.io/${project.artifactId}/</url>
@@ -14,8 +14,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 	</properties>
 
 	<licenses>
@@ -45,11 +45,6 @@
 		<system>GitHub</system>
 		<url>https://github.com/bitctrl/${project.artifactId}/</url>
 	</issueManagement>
-
-	<ciManagement>
-		<system>Travis-CI</system>
-		<url>https://travis-ci.org/bitctrl/${project.artifactId}/</url>
-	</ciManagement>
 
 	<profiles>
 		<profile>

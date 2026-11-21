@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serial;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Properties;
@@ -140,6 +141,7 @@ public class TreeProperties extends Properties implements WritableConfiguration 
 
 	}
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	private static final char[] HEXDIGIT = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E',
 			'F' };

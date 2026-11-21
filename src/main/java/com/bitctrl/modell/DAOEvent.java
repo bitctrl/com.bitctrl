@@ -26,6 +26,7 @@
 
 package com.bitctrl.modell;
 
+import java.io.Serial;
 import java.util.EventObject;
 
 /**
@@ -36,6 +37,7 @@ import java.util.EventObject;
 @Deprecated(since = "3.0.0", forRemoval = true)
 public class DAOEvent extends EventObject {
 
+	@Serial
 	private static final long serialVersionUID = 1;
 
 	/** Die Typen einer Änderung. */
@@ -55,7 +57,7 @@ public class DAOEvent extends EventObject {
 		 * Aktualisierung nicht unterscheiden kann, z.&nbsp;B. wenn sich alle Daten der
 		 * Quelle geändert haben.
 		 */
-		Unknown;
+		Unknown
 
 	}
 

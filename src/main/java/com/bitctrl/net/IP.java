@@ -26,6 +26,7 @@
 
 package com.bitctrl.net;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -36,6 +37,7 @@ import java.io.Serializable;
  */
 public class IP implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	private static final boolean IP_V4 = true;
 

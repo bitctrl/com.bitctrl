@@ -1,5 +1,7 @@
 package com.bitctrl.model;
 
+import java.io.Serial;
+
 /**
  * Ein benanntes Modellelement.
  * 
@@ -10,6 +12,7 @@ public class NamedObject extends ModelElement {
 	/** Konstante für den Namen der entsprechenden Property. */
 	public static final String PROP_NAME = "name";
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	private String name;

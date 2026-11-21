@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.xml.bind.annotation.XmlTransient;
@@ -17,6 +18,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
  */
 public class ModelElement implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@XmlTransient

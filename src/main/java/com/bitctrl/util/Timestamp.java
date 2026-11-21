@@ -26,6 +26,7 @@
 
 package com.bitctrl.util;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -42,6 +43,7 @@ import com.bitctrl.Constants;
  */
 public class Timestamp implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 0L;
 
 	/**

@@ -116,7 +116,7 @@ public final class GraphAlgorithm {
 			return pfad;
 		}
 
-		pfad.add(0, stuetzBogen);
+		pfad.addFirst(stuetzBogen);
 		return getPfadVonWurzel(stuetzBogen.getAnfangsKnoten(), pfad);
 	}
 

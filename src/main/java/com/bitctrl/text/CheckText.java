@@ -128,8 +128,8 @@ public final class CheckText {
 			searchStrings.add(Constants.EMPTY_STRING);
 		}
 
-		boolean result = tStr.startsWith(searchStrings.get(0))
-				&& tStr.endsWith(searchStrings.get(searchStrings.size() - 1));
+		boolean result = tStr.startsWith(searchStrings.getFirst())
+				&& tStr.endsWith(searchStrings.getLast());
 
 		if (result) {
 			for (final String arg : searchStrings) {
